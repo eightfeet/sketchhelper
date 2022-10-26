@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { Canvas, useFrame } from '@react-three/fiber';
+
+function MyRotatingBox({x}: any) {
+    const myMesh = React.useRef<any>();
+    useFrame(({ clock }) => {
+        const a = clock.getElapsedTime();
+        myMesh.current.rotation.x = myMesh.current.rotation.x + x;
+    });
+
+    return (
+      <mesh ref={myMesh}>
+          <boxBufferGeometry />
+          <meshPhongMaterial color="royalblue" />
+      </mesh>
+    );
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [position, setPosition] = useState(1);
+    return (
+        <>
+            <button onClick={() => setPosition(position + 0.1)}>增加</button>
+            <button onClick={() => setPosition(position - 0.1)}>减少</button>
+            <div className="App">
+                <Canvas>
+                    <MyRotatingBox x={0.01} />
+                    <ambientLight intensity={0.1} />
+                    <directionalLight />
+                </Canvas>
+            </div>
+        </>
+    );
 }
 
 export default App;
