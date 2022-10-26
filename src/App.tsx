@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Canvas, useFrame } from '@react-three/fiber';
+import { AccumulativeShadows, RandomizedLight, OrbitControls, Environment, useGLTF } from '@react-three/drei'
 
 function MyRotatingBox({x}: any) {
     const myMesh = React.useRef<any>();
@@ -28,6 +29,7 @@ function App() {
                     <MyRotatingBox x={0.01} />
                     <ambientLight intensity={0.1} />
                     <directionalLight />
+                    <OrbitControls autoRotate={false} />
                 </Canvas>
             </div>
         </>
