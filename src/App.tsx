@@ -1,50 +1,114 @@
-import React, { useCallback, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import {
+    useGLTF,
+    OrbitControls,
+    Center,
+    softShadows,
+    PivotControls,
+    PresentationControls,
+} from '@react-three/drei';
 import './App.css';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { AccumulativeShadows, RandomizedLight, OrbitControls, Environment, useGLTF, Line } from '@react-three/drei'
 
-function MyRotatingBox({x}: any) {
-    const myMesh = React.useRef<any>();
-    useFrame(({ clock }) => {
-        const a = clock.getElapsedTime();
-        myMesh.current.rotation.x = myMesh.current.rotation.x + x;
-    });
+softShadows();
 
+export default function App() {
     return (
-      <mesh ref={myMesh}>
-          <boxBufferGeometry width={1000} args={[1,2,3]} />
-          <Line points={[[0, -1000, 0], [0, 1000, 0]]} color="royalblue" onClick={() => {console.log(555)}} />
-          <Line points={[[0.5, -1000, 0], [0.5, 1000, 0]]} color="royalblue" />
-          <meshPhongMaterial color="royalblue" />
-      </mesh>
+        <div className="App">
+            <Canvas
+                linear
+                shadows
+                raycaster={{ params: { Line: { threshold: 0.15 } } }}
+                camera={{ position: [-10, 10, 10], fov: 20 }}
+            >
+                <color attach="background" args={['#bbb']} />
+                <ambientLight intensity={0.5} />
+                <directionalLight
+                    castShadow
+                    position={[2.5, 8, 5]}
+                    intensity={1}
+                    shadow-mapSize={[1024, 1024]}
+                >
+                    <orthographicCamera
+                        attach="shadow-camera"
+                        args={[-5, 5, 5, -5, 1, 50]}
+                    />
+                </directionalLight>
+
+                <mesh scale={20} receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
+                    <planeGeometry />
+                    <shadowMaterial transparent opacity={0.5} />
+                </mesh>
+
+                <PivotControls
+                    rotation={[0, -Math.PI / 2, 0]}
+                    anchor={[1, -1, -1]}
+                    scale={75}
+                    depthTest={false}
+                    fixed
+                    lineWidth={2}
+                    disableAxes
+                    disableRotations={false}
+                    disableSliders
+                    visible={true}
+                >
+                    <mesh receiveShadow position={[-1, 0.5, 1]}>
+                        <boxGeometry args={[1, 1, 1]} />
+                        <meshStandardMaterial wireframe />
+                    </mesh>
+                </PivotControls>
+
+                <PivotControls
+                    rotation={[0, -Math.PI / 2, 0]}
+                    anchor={[0, 0, 0]}
+                    scale={75}
+                    depthTest={false}
+                    fixed
+                    lineWidth={2}
+                    visible={false}
+                >
+                    <Center top position={[1.5, 0, 0]}>
+                        <mesh castShadow receiveShadow>
+                            <dodecahedronGeometry args={[0.5]} />
+
+                            <meshStandardMaterial color="white" wireframe />
+                        </mesh>
+                    </Center>
+                </PivotControls>
+
+                <PivotControls
+                    anchor={[1, 1, 1]}
+                    rotation={[Math.PI, -Math.PI / 2, 0]}
+                    scale={0.75}
+                    visible={false}
+                >
+                    <Center top scale={1.5} position={[-0.5, 0, -1]}>
+                        <Cup>
+                            <meshStandardMaterial
+                                color="white"
+                                opacity={0}
+                                wireframe
+                                wireframeLinewidth={10}
+                            />
+                        </Cup>
+                    </Center>
+                </PivotControls>
+
+                <OrbitControls makeDefault />
+            </Canvas>
+        </div>
     );
 }
 
-function App() {
-    const [position, setPosition] = useState(1);
-    const [controlsRotate, setControlsRotate] = useState(true);
-    const handleDoubleClick = useCallback(
-      () => {
-        console.log(1111);
-        setControlsRotate(!controlsRotate)
-      },
-      [controlsRotate],
-    )
-    
+function Cup(props: any) {
+    const { nodes, materials } = useGLTF('/coffee-transformed.glb') as any;
     return (
-        <>
-            <button onClick={() => setPosition(position + 0.1)}>增加</button>
-            <button onClick={() => setPosition(position - 0.1)}>减少</button>
-            <div className="App" >
-                <Canvas onClick={handleDoubleClick}>
-                    <MyRotatingBox x={0} />
-                    <ambientLight intensity={0.1} />
-                    <directionalLight />
-                    <OrbitControls autoRotate={controlsRotate} />
-                </Canvas>
-            </div>
-        </>
+        <mesh
+            receiveShadow
+            castShadow
+            geometry={nodes.coffee_cup_top_16oz.geometry}
+            material={materials['13 - Default']}
+            {...props}
+            dispose={null}
+        />
     );
 }
-
-export default App;
