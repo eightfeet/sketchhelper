@@ -38,7 +38,7 @@ export default function App() {
                     <planeGeometry />
                     <shadowMaterial transparent opacity={0.5} />
                 </mesh>
-
+{/* 
                 <PivotControls
                     rotation={[0, -Math.PI / 2, 0]}
                     anchor={[1, -1, -1]}
@@ -92,6 +92,51 @@ export default function App() {
                         </Cup>
                     </Center>
                 </PivotControls>
+                <lineSegments>
+                    
+                    <lineBasicMaterial color={"#fff"}>
+                    <edgesGeometry>
+                        <boxGeometry args={[1, 1, 1]} />
+                    </edgesGeometry>
+                    </lineBasicMaterial>
+                </lineSegments>
+ */}
+
+
+
+                <PivotControls
+                    rotation={[0, -Math.PI / 2, 0]}
+                    anchor={[0, 0, 0]}
+                    scale={75}
+                    depthTest={false}
+                    fixed
+                    lineWidth={2}
+                    visible={false}
+                >
+                    <Center top position={[1.5, 0, 0]}>
+                        <mesh castShadow receiveShadow>
+                            <lineSegments>
+                                <edgesGeometry>
+                                    <boxGeometry args={[1, 1, 1]} />
+                                </edgesGeometry>
+                                <lineBasicMaterial color={0x7b40f9} linewidth={1} />;
+                            </lineSegments>
+                        </mesh>
+                    </Center>
+                </PivotControls>
+
+
+                <lineSegments position={[1, 1, 1]} >
+                <mesh castShadow receiveShadow>
+                <edgesGeometry>
+                                    <boxGeometry args={[1, 1, 1]} />
+                                </edgesGeometry>
+                                </mesh>
+                <lineBasicMaterial color={0x7b40f9} linewidth={1} />;
+            </lineSegments>
+
+
+
 
                 <OrbitControls makeDefault />
             </Canvas>
