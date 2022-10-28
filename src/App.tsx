@@ -6,14 +6,62 @@ import {
     softShadows,
     PivotControls,
     PresentationControls,
+    Line,
+    Edges,
 } from '@react-three/drei';
 import './App.css';
+import Wrap from './components/Wrap';
+import { useCallback, useRef, useState } from 'react';
+import { BoxGeometry, Mesh } from 'three';
+import Box from './components/Box';
+import Guide from './components/Guide';
 
 softShadows();
 
+// const Edges = (props: { geometry: any}) => {
+//     if (props.geometry.current !== undefined) {
+
+//       return (
+//         <lineSegments>
+//           <edgesGeometry attach="geometry" args={props.geometry.current} />
+//           <lineBasicMaterial attach="material" />
+//         </lineSegments>
+//       );
+//     }
+//     return null;
+//   };
+
 export default function App() {
+    const box = useRef<any>(null);
+    const [autoRotate, setAutoRotate] = useState(false);
+
+    const [number, setNumber] = useState(1);
+    const [opacity, setOpacity] = useState(1);
+
+    const renderMain = useCallback(
+        (position: number[]) => {
+            return <Box position={position} opacity={opacity} showEdige />;
+        },
+        [opacity]
+    );
+
+    const renderObject = useCallback(() => {
+        const res = [];
+        for (let index = 0; index < number; index++) {
+            res.push(
+                <Wrap key={`x${index}`}>{renderMain([0, 0.5, index * 2])}</Wrap>
+            );
+            res.push(
+                <Wrap key={`y${index}`}>{renderMain([index * 2, 0.5, 0])}</Wrap>
+            );
+        }
+        return res;
+    }, [number, renderMain]);
+
     return (
         <div className="App">
+            <button onClick={() => setNumber(number + 1)}>增加</button>
+            <button onClick={() => setOpacity(0.2)}>透明</button>
             <Canvas
                 linear
                 shadows
@@ -21,7 +69,7 @@ export default function App() {
                 camera={{ position: [-10, 10, 10], fov: 20 }}
             >
                 <color attach="background" args={['#bbb']} />
-                <ambientLight intensity={0.5} />
+                <ambientLight intensity={0.3} />
                 <directionalLight
                     castShadow
                     position={[2.5, 8, 5]}
@@ -38,107 +86,10 @@ export default function App() {
                     <planeGeometry />
                     <shadowMaterial transparent opacity={0.5} />
                 </mesh>
-{/* 
-                <PivotControls
-                    rotation={[0, -Math.PI / 2, 0]}
-                    anchor={[1, -1, -1]}
-                    scale={75}
-                    depthTest={false}
-                    fixed
-                    lineWidth={2}
-                    disableAxes
-                    disableRotations={false}
-                    disableSliders
-                    visible={true}
-                >
-                    <mesh receiveShadow position={[-1, 0.5, 1]}>
-                        <boxGeometry args={[1, 1, 1]} />
-                        <meshStandardMaterial wireframe />
-                    </mesh>
-                </PivotControls>
 
-                <PivotControls
-                    rotation={[0, -Math.PI / 2, 0]}
-                    anchor={[0, 0, 0]}
-                    scale={75}
-                    depthTest={false}
-                    fixed
-                    lineWidth={2}
-                    visible={false}
-                >
-                    <Center top position={[1.5, 0, 0]}>
-                        <mesh castShadow receiveShadow>
-                            <dodecahedronGeometry args={[0.5]} />
-
-                            <meshStandardMaterial color="white" wireframe />
-                        </mesh>
-                    </Center>
-                </PivotControls>
-
-                <PivotControls
-                    anchor={[1, 1, 1]}
-                    rotation={[Math.PI, -Math.PI / 2, 0]}
-                    scale={0.75}
-                    visible={false}
-                >
-                    <Center top scale={1.5} position={[-0.5, 0, -1]}>
-                        <Cup>
-                            <meshStandardMaterial
-                                color="white"
-                                opacity={0}
-                                wireframe
-                                wireframeLinewidth={10}
-                            />
-                        </Cup>
-                    </Center>
-                </PivotControls>
-                <lineSegments>
-                    
-                    <lineBasicMaterial color={"#fff"}>
-                    <edgesGeometry>
-                        <boxGeometry args={[1, 1, 1]} />
-                    </edgesGeometry>
-                    </lineBasicMaterial>
-                </lineSegments>
- */}
-
-
-
-                <PivotControls
-                    rotation={[0, -Math.PI / 2, 0]}
-                    anchor={[0, 0, 0]}
-                    scale={75}
-                    depthTest={false}
-                    fixed
-                    lineWidth={2}
-                    visible={false}
-                >
-                    <Center top position={[1.5, 0, 0]}>
-                        <mesh castShadow receiveShadow>
-                            <lineSegments>
-                                <edgesGeometry>
-                                    <boxGeometry args={[1, 1, 1]} />
-                                </edgesGeometry>
-                                <lineBasicMaterial color={0x7b40f9} linewidth={1} />;
-                            </lineSegments>
-                        </mesh>
-                    </Center>
-                </PivotControls>
-
-
-                <lineSegments position={[1, 1, 1]} >
-                <mesh castShadow receiveShadow>
-                <edgesGeometry>
-                                    <boxGeometry args={[1, 1, 1]} />
-                                </edgesGeometry>
-                                </mesh>
-                <lineBasicMaterial color={0x7b40f9} linewidth={1} />;
-            </lineSegments>
-
-
-
-
-                <OrbitControls makeDefault />
+                {renderObject()}
+                <Guide />
+                <OrbitControls makeDefault autoRotate={autoRotate} />
             </Canvas>
         </div>
     );
