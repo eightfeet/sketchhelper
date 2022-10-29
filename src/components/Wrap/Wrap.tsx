@@ -4,9 +4,12 @@ import React from 'react';
 interface Props {
     children?: React.ReactNode;
     visible?: boolean;
+    onClick?: (data: any) => void;
+    onDoubleClick?: (data: any) => void;
 }
 
-const Wrap: React.FC<Props> = ({ children, visible = false }) => {
+const Wrap: React.FC<Props> = ({ children, onClick, onDoubleClick, ...other}) => {
+    const { visible = false } = other;
     return (
         <PivotControls
             rotation={[0, -Math.PI / 2, 0]}
@@ -20,7 +23,9 @@ const Wrap: React.FC<Props> = ({ children, visible = false }) => {
             lineWidth={2}
             visible={visible}
         >
-            {children}
+            <mesh onClick={() => onClick?.(other)} onDoubleClick={() => onDoubleClick?.(other)}>
+                {children}
+            </mesh>
         </PivotControls>
     );
 };

@@ -3,12 +3,18 @@ import React from 'react';
 
 import Wrap from '../Wrap';
 
-interface Props {}
+interface Props {
+    x?: boolean;
+    y?: boolean;
+    z?: boolean;
+}
 
-const Guide: React.FC<Props> = ({}) => {
+const Guide: React.FC<Props> = ({x= false, y=false, z= false}) => {
     return (
         <>
-            <Wrap>
+            {
+                x?
+                <Wrap visible>
                 <Line
                     points={[
                         [-100000, 0, 0.5],
@@ -37,9 +43,12 @@ const Guide: React.FC<Props> = ({}) => {
                     ]}
                     color="royalblue"
                 />
-            </Wrap>
+            </Wrap> : null
+            }
 
-            <Wrap>
+            {
+                z?
+                <Wrap>
                 <Line
                     points={[
                         [-0.5, -100000, 0.5],
@@ -68,8 +77,10 @@ const Guide: React.FC<Props> = ({}) => {
                     ]}
                     color="royalblue"
                 />
-            </Wrap>
-            <Wrap>
+            </Wrap> : null
+            }
+            {
+                y? <Wrap>
                 <Line
                     points={[
                         [-0.5, 1, -100000],
@@ -98,7 +109,8 @@ const Guide: React.FC<Props> = ({}) => {
                     ]}
                     color="royalblue"
                 />
-            </Wrap>
+            </Wrap> : null
+            }
         </>
     );
 };
