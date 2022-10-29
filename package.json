@@ -23,10 +23,15 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "start": "react-app-rewired start",
+    "build": "npm run build:uat",
+    "build:uat": "env-cmd -f .env.uat react-app-rewired build",
+    "build:prod": "env-cmd -f .env.prod react-app-rewired build",
+    "analyzer": "npm run build:prod -- --stats && npx webpack-bundle-analyzer ./build/bundle-stats.json",
+    "prettier": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +52,11 @@
     ]
   },
   "devDependencies": {
-    "@types/three": "^0.144.0"
+    "@types/three": "^0.144.0",
+    "customize-cra": "^1.0.0",
+    "postcss": "^8.4.18",
+    "postcss-pxtorem": "^5.1.1",
+    "react-app-rewire-postcss": "^3.0.2",
+    "react-app-rewired": "^2.2.1"
   }
 }

@@ -21,6 +21,8 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-  ]
+    "src",
+    "src/global.d.ts"
+  ],
+  "extends": "./tsconfig.base.json"
 }
