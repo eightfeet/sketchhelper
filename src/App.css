@@ -9,6 +9,14 @@
   width: 100vw;
 }
 
+.menulabel {
+  display: block;
+  width: 90px;
+  margin-right: 10px;
+  text-align: right;
+}
+
 :root:root {
   --adm-color-primary: #838383;
 }
+

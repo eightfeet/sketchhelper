@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
-import { Environment, OrbitControls, Plane } from '@react-three/drei'
+import { Environment, Line, OrbitControls, Plane } from '@react-three/drei'
 import { useSnapshot } from 'valtio'
 import { LayerMaterial, Depth, Noise } from 'lamina'
 import Wrap from '../Wrap'
@@ -12,13 +12,15 @@ import { store } from './proxyStilLife'
 import { Button, Form, Popup, Radio, Slider, Space, Switch } from 'antd-mobile'
 import { AddOutline, DeleteOutline, SetOutline } from 'antd-mobile-icons'
 import Cylinder from '../Cylinder'
+import Guide from '../Guide'
 
 export default function StilLife() {
   const data = useSnapshot(store)
   const [current, setCurrent] = useState<number>();
+  const [currentGuid, setCurrentGuid] = useState<number>();
   const [visibleSetting, setVisibleSetting] = useState(false);
   const [form] = Form.useForm();
-  
+
   const onClick = useCallback(
     (index: number, other: {
       opacity: number,
@@ -28,6 +30,20 @@ export default function StilLife() {
       store.list = store.list.map((item, ind) => ({ ...item, visible: item.visible ? false : index === ind }));
       store.list.some((el, ind) => {
         setCurrent(el.visible ? ind : undefined)
+        return el.visible
+      });
+    },
+    [],
+  )
+
+  const onClickGrid = useCallback(
+    (index: number, other: {
+      tag: number,
+      visible: boolean
+    }) => {
+      store.guide = store.guide.map((item, ind) => ({ ...item, visible: item.visible ? false : index === ind }));
+      store.guide.some((el, ind) => {
+        setCurrentGuid(el.visible ? ind : undefined)
         return el.visible
       });
     },
@@ -52,7 +68,7 @@ export default function StilLife() {
         name: 'box',
         opacity: 1,
         showEdige: false,
-        visible: false
+        visible: true
       })
     },
     [],
@@ -75,25 +91,51 @@ export default function StilLife() {
     [current],
   )
 
+  const deleteGuid = useCallback(
+    () => {
+      store.guide = store.guide.filter((item, ind) => ind !== currentGuid);
+      setCurrentGuid(undefined)
+    },
+    [currentGuid],
+  )
+
+
   const onFieldsChange = useCallback(
     () => {
       const data = form.getFieldsValue();
       console.log(data);
       if (current !== undefined) {
-        store.list = store.list.map((item, ind) => ({ ...item, ...ind === current ? data : {}}));
+        store.list = store.list.map((item, ind) => ({ ...item, ...ind === current ? data : {} }));
       }
     },
     [current, form],
+  )
+
+  const createGrid = useCallback(
+    () => {
+      store.guide.push({
+        tag: (store.guide.slice(-1)[0]?.tag || 0) + 1,
+        visible: true
+      })
+    },
+    [],
   )
   
 
   return (
     <>
       <div className='navbar' >
-        <Space>
+        <Space align="center" block>
+          <span className="menulabel">物体</span>
           <Button size="mini" fill='outline' onClick={createObj} ><AddOutline /></Button>
           {current !== undefined && <Button size="mini" fill='outline' onClick={setObj} ><SetOutline /></Button>}
           {current !== undefined && <Button size="mini" fill='outline' onClick={deleteObj} ><DeleteOutline /></Button>}
+        </Space>
+        <br />
+        <Space align="center"block>
+          <span className="menulabel">透视线</span>
+          <Button size="mini" fill='outline' onClick={createGrid} ><AddOutline /></Button>
+          {currentGuid !== undefined && <Button size="mini" fill='outline' onClick={deleteGuid} ><DeleteOutline /></Button>}
         </Space>
         <Popup
           visible={visibleSetting}
@@ -112,7 +154,7 @@ export default function StilLife() {
               label='模块类型'
               rules={[{ required: true, message: '请选择模块类型' }]}
             >
-              
+
               <Radio.Group>
                 <Space direction='vertical'>
                   <Radio value='box'>
@@ -121,7 +163,7 @@ export default function StilLife() {
                   <Radio value='sphere'>球</Radio>
                   <Radio value='cone'>园锥体</Radio>
                   <Radio value='cylinder'>园柱体</Radio>
-                  
+
                 </Space>
               </Radio.Group>
             </Form.Item>
@@ -163,11 +205,16 @@ export default function StilLife() {
         />
         {
           data.list.map(({ name, ...other }, index) => <Wrap key={index} onClick={() => onClick(index, other)} onDoubleClick={() => onDoubleClick(index, other)} {...other}>
-            {name === 'box' && <Box {...other}/>}
-            {name === 'cone' && <Cone {...other}/>}
-            {name === 'sphere' && <Sphere {...other}/>}
-            {name === 'cylinder' && <Cylinder {...other}/>}
+            {name === 'box' && <Box {...other} />}
+            {name === 'cone' && <Cone {...other} />}
+            {name === 'sphere' && <Sphere {...other} />}
+            {name === 'cylinder' && <Cylinder {...other} />}
           </Wrap>)
+        }
+        {
+          data.guide.map(
+            (item, index) => <Guide key={item.tag} {...item} onClick={() => onClickGrid(index, item)} />
+          )
         }
         <Plane
           receiveShadow

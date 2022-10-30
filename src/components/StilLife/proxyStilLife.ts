@@ -6,9 +6,14 @@ type ListType = {
     showEdige: boolean,
     visible: boolean
   }[]
+type GuideType = {
+  tag: number;
+  visible: boolean
+}[]
 
-export const store = proxy<{ list: ListType;}>({
+export const store = proxy<{ list: ListType; guide: GuideType}>({
   list: [],
+  guide: [],
 })
 
   

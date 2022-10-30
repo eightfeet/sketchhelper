@@ -4,114 +4,26 @@ import React from 'react';
 import Wrap from '../Wrap';
 
 interface Props {
-    x?: boolean;
-    y?: boolean;
-    z?: boolean;
+    onClick: () => void;
+    tag: number;
+    visible: boolean;
 }
 
-const Guide: React.FC<Props> = ({x= false, y=false, z= false}) => {
+const Guide: React.FC<Props> = ({ onClick, visible }) => {
     return (
-        <>
-            {
-                x?
-                <Wrap visible>
+        <Wrap visible={visible} onClick={onClick}>
+            <mesh>
                 <Line
                     points={[
-                        [-100000, 0, 0.5],
-                        [100000, 0, 0.5],
+                        [-100000, 0, 0],
+                        [100000, 0, 0],
                     ]}
                     color="royalblue"
                 />
-                <Line
-                    points={[
-                        [-100000, 1, 0.5],
-                        [100000, 1, 0.5],
-                    ]}
-                    color="royalblue"
-                />
-                <Line
-                    points={[
-                        [-100000, 0, -0.5],
-                        [100000, 0, -0.5],
-                    ]}
-                    color="royalblue"
-                />
-                <Line
-                    points={[
-                        [-100000, 1, -0.5],
-                        [100000, 1, -0.5],
-                    ]}
-                    color="royalblue"
-                />
-            </Wrap> : null
-            }
-
-            {
-                z?
-                <Wrap>
-                <Line
-                    points={[
-                        [-0.5, -100000, 0.5],
-                        [-0.5, 100000, 0.5],
-                    ]}
-                    color="royalblue"
-                />
-                <Line
-                    points={[
-                        [0.5, -100000, 0.5],
-                        [0.5, 100000, 0.5],
-                    ]}
-                    color="royalblue"
-                />
-                <Line
-                    points={[
-                        [-0.5, -100000, -0.5],
-                        [-0.5, 100000, -0.5],
-                    ]}
-                    color="royalblue"
-                />
-                <Line
-                    points={[
-                        [0.5, -100000, -0.5],
-                        [0.5, 100000, -0.5],
-                    ]}
-                    color="royalblue"
-                />
-            </Wrap> : null
-            }
-            {
-                y? <Wrap>
-                <Line
-                    points={[
-                        [-0.5, 1, -100000],
-                        [-0.5, 1, 100000],
-                    ]}
-                    color="royalblue"
-                />
-                <Line
-                    points={[
-                        [0.5, 0, -100000],
-                        [0.5, 0, 100000],
-                    ]}
-                    color="royalblue"
-                />
-                <Line
-                    points={[
-                        [-0.5, 0, -100000],
-                        [-0.5, 0, 100000],
-                    ]}
-                    color="royalblue"
-                />
-                <Line
-                    points={[
-                        [0.5, 1, -100000],
-                        [0.5, 1, 100000],
-                    ]}
-                    color="royalblue"
-                />
-            </Wrap> : null
-            }
-        </>
+                <sphereGeometry args={[0.05,20,20]} />
+                <meshStandardMaterial color="royalblue" transparent opacity={0.2} />
+            </mesh>
+        </Wrap>
     );
 };
 
