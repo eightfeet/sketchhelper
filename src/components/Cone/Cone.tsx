@@ -5,11 +5,12 @@ interface Props {
     position?: number[];
     opacity: number;
     showEdige?: boolean;
+    shadow?: boolean;
 }
 
-const Cone:React.FC<Props> = ({position, opacity, showEdige}) => {
+const Cone:React.FC<Props> = ({position, opacity, showEdige, shadow}) => {
     return (
-        <mesh castShadow receiveShadow position={position as any}>
+        <mesh castShadow={shadow} receiveShadow={shadow} position={position as any}>
             <coneGeometry args={[1,3,100]} />
             <meshStandardMaterial transparent opacity={opacity} metalness={0.1}/>
             {showEdige && <Edges

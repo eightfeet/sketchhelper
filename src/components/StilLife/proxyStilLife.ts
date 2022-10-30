@@ -4,7 +4,8 @@ type ListType = {
     name: 'box' | 'cone' | 'sphere' | 'cylinder',
     opacity: number,
     showEdige: boolean,
-    visible: boolean
+    visible: boolean,
+    shadow: boolean
   }[]
 type GuideType = {
   tag: number;

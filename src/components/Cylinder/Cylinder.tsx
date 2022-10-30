@@ -5,11 +5,12 @@ interface Props {
     position?: number[];
     opacity: number;
     showEdige?: boolean;
+    shadow?: boolean;
 }
 
-const Cylinder:React.FC<Props> = ({position, opacity, showEdige}) => {
+const Cylinder:React.FC<Props> = ({position, opacity, showEdige, shadow}) => {
     return (
-        <mesh castShadow receiveShadow position={position as any}>
+        <mesh castShadow={shadow} receiveShadow={shadow} position={position as any}>
             <cylinderGeometry args={[1,1,2,100]}/>
             <meshStandardMaterial transparent opacity={opacity} metalness={0.1}/>
             {showEdige && <Edges

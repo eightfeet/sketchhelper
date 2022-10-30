@@ -1,16 +1,16 @@
 import * as THREE from 'three'
-import { Canvas } from '@react-three/fiber'
-import { Environment, Line, OrbitControls, Plane } from '@react-three/drei'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { Environment, Html, Line, OrbitControls, OrbitControlsProps, PivotControls, Plane } from '@react-three/drei'
 import { useSnapshot } from 'valtio'
 import { LayerMaterial, Depth, Noise } from 'lamina'
 import Wrap from '../Wrap'
 import Box from '../Box'
 import Sphere from '../Sphere'
 import Cone from '../Cone';
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { store } from './proxyStilLife'
 import { Button, Form, Popup, Radio, Slider, Space, Switch } from 'antd-mobile'
-import { AddOutline, DeleteOutline, SetOutline } from 'antd-mobile-icons'
+import { AddOutline, DeleteOutline, RedoOutline, SetOutline } from 'antd-mobile-icons'
 import Cylinder from '../Cylinder'
 import Guide from '../Guide'
 
@@ -20,14 +20,18 @@ export default function StilLife() {
   const [currentGuid, setCurrentGuid] = useState<number>();
   const [visibleSetting, setVisibleSetting] = useState(false);
   const [form] = Form.useForm();
+  const [autoRotate, setAutoRotate] = useState(false);
+
 
   const onClick = useCallback(
     (index: number, other: {
       opacity: number,
       showEdige: boolean,
-      visible: boolean
+      visible: boolean,
+      shadow: boolean,
     }) => {
       store.list = store.list.map((item, ind) => ({ ...item, visible: item.visible ? false : index === ind }));
+      store.guide = store.guide.map((item, ind) => ({ ...item, visible: false }));
       store.list.some((el, ind) => {
         setCurrent(el.visible ? ind : undefined)
         return el.visible
@@ -42,6 +46,7 @@ export default function StilLife() {
       visible: boolean
     }) => {
       store.guide = store.guide.map((item, ind) => ({ ...item, visible: item.visible ? false : index === ind }));
+      store.list = store.list.map((item, ind) => ({ ...item, visible: false }));
       store.guide.some((el, ind) => {
         setCurrentGuid(el.visible ? ind : undefined)
         return el.visible
@@ -55,6 +60,7 @@ export default function StilLife() {
       opacity: number,
       showEdige: boolean,
       visible: boolean
+      shadow: boolean,
     }) => {
       setCurrent(index)
       store.list = store.list.filter((item, ind) => ind !== index)
@@ -64,11 +70,14 @@ export default function StilLife() {
 
   const createObj = useCallback(
     () => {
+      store.list = store.list.map((item, ind) => ({ ...item, visible: false }));
+      store.guide = store.guide.map((item, ind) => ({ ...item, visible: false }));
       store.list.push({
         name: 'box',
         opacity: 1,
         showEdige: false,
-        visible: true
+        visible: true,
+        shadow: true,
       })
     },
     [],
@@ -113,30 +122,55 @@ export default function StilLife() {
 
   const createGrid = useCallback(
     () => {
+      store.list = store.list.map((item, ind) => ({ ...item, visible: false }));
+      store.guide = store.guide.map((item, ind) => ({ ...item, visible: false }));
       store.guide.push({
         tag: (store.guide.slice(-1)[0]?.tag || 0) + 1,
-        visible: true
-      })
+        visible: false
+      });
+      setCurrentGuid(store.guide.length - 1)
     },
     [],
   )
-  
+
+  const onClickPlan = useCallback(
+    () => {
+      store.list = store.list.map((item, ind) => ({ ...item, visible: false }));
+      store.guide = store.guide.map((item, ind) => ({ ...item, visible: false }));
+      setCurrent(undefined);
+      setCurrentGuid(undefined);
+      setIsSetting(false)
+    },
+    [],
+  )
+
+  const [isSetting, setIsSetting] = useState(false)
+
 
   return (
     <>
       <div className='navbar' >
-        <Space align="center" block>
-          <span className="menulabel">物体</span>
-          <Button size="mini" fill='outline' onClick={createObj} ><AddOutline /></Button>
-          {current !== undefined && <Button size="mini" fill='outline' onClick={setObj} ><SetOutline /></Button>}
-          {current !== undefined && <Button size="mini" fill='outline' onClick={deleteObj} ><DeleteOutline /></Button>}
-        </Space>
         <br />
-        <Space align="center"block>
-          <span className="menulabel">透视线</span>
-          <Button size="mini" fill='outline' onClick={createGrid} ><AddOutline /></Button>
-          {currentGuid !== undefined && <Button size="mini" fill='outline' onClick={deleteGuid} ><DeleteOutline /></Button>}
-        </Space>
+        {!isSetting ? <Button size="mini" fill='none' onClick={() => setIsSetting(true)} ><SetOutline /></Button> :
+          <div>
+            <Space align="center" block>
+              <span className="menulabel">场景</span>
+              <Button size="mini" fill={!autoRotate ? 'outline' : 'solid'} onClick={() => setAutoRotate(res => !res)} ><RedoOutline /></Button>
+            </Space>
+            <br />
+            <Space align="center" block>
+              <span className="menulabel">物体</span>
+              <Button size="mini" fill='outline' onClick={createObj} ><AddOutline /></Button>
+              {current !== undefined && <Button size="mini" fill='outline' onClick={setObj} ><SetOutline /></Button>}
+              {current !== undefined && <Button size="mini" fill='outline' onClick={deleteObj} ><DeleteOutline /></Button>}
+            </Space>
+            <br />
+            <Space align="center" block>
+              <span className="menulabel">透视线</span>
+              <Button size="mini" fill='outline' onClick={createGrid} ><AddOutline /></Button>
+              {currentGuid !== undefined && <Button size="mini" fill='outline' onClick={deleteGuid} ><DeleteOutline /></Button>}
+            </Space>
+          </div>}
         <Popup
           visible={visibleSetting}
           onMaskClick={() => {
@@ -176,6 +210,13 @@ export default function StilLife() {
             >
               <Switch uncheckedText='关' checkedText='开' />
             </Form.Item>
+            <Form.Item
+              name='shadow'
+              label='显示/接受投影'
+            >
+              <Switch uncheckedText='关' checkedText='开' />
+            </Form.Item>
+
           </Form>
         </Popup>
       </div>
@@ -188,23 +229,32 @@ export default function StilLife() {
         <fog attach="fog" args={["#bbb", 0, 160]} />
         <color attach="background" args={['#bbb']} />
         <ambientLight intensity={0.3} />
-        <directionalLight
-          castShadow
-          position={[2.50, 8, 5]}
-          intensity={1}
-          shadow-mapSize={[1024, 1024]}
-        >
-          <orthographicCamera
-            attach="shadow-camera"
-            args={[-5, 5, 5, -5, 1, 50]}
+        {/**灯光 */}
+        <PivotControls rotation={[0, -Math.PI / 2, 0]} anchor={[0, 0, 0]} scale={75} depthTest={false} fixed lineWidth={2}>
+          <mesh position={[2.50, 8, 5]}>
+            <sphereGeometry args={[0.1, 20, 20]} />
+            <meshNormalMaterial />
+          </mesh>
+          <directionalLight
+            castShadow
+            position={[2.50, 8, 5]}
+            intensity={1}
+            shadow-mapSize={[1024, 1024]}
+          >
+            <orthographicCamera
+              attach="shadow-camera"
+              args={[-5, 5, 5, -5, 1, 50]}
+            />
+          </directionalLight>
+          <directionalLight
+            position={[-2.5, -8, -5]}
+            intensity={0.2}
           />
-        </directionalLight>
-        <directionalLight
-          position={[-2.5, -8, -5]}
-          intensity={0.5}
-        />
+        </PivotControls>
+
+
         {
-          data.list.map(({ name, ...other }, index) => <Wrap key={index} onClick={() => onClick(index, other)} onDoubleClick={() => onDoubleClick(index, other)} {...other}>
+          data.list.map(({ name, ...other }, index) => <Wrap key={index} onClick={() => { onClick(index, other) }} onDoubleClick={() => onDoubleClick(index, other)} {...other}>
             {name === 'box' && <Box {...other} />}
             {name === 'cone' && <Cone {...other} />}
             {name === 'sphere' && <Sphere {...other} />}
@@ -213,10 +263,11 @@ export default function StilLife() {
         }
         {
           data.guide.map(
-            (item, index) => <Guide key={item.tag} {...item} onClick={() => onClickGrid(index, item)} />
+            (item, index) => <Guide index={index} key={item.tag} {...item} onClick={() => onClickGrid(index, item)} />
           )
         }
         <Plane
+          onClick={onClickPlan}
           receiveShadow
           rotation={[-Math.PI / 2, 0, 0]}
           position={[0, -1, 0]}
@@ -224,8 +275,7 @@ export default function StilLife() {
         >
           <meshStandardMaterial attach="material" color="#ccc" />
         </Plane>
-        <OrbitControls makeDefault />
-
+        <OrbitControls makeDefault autoRotate={autoRotate} autoRotateSpeed={1} />
         <Environment background resolution={5}>
           {/* <Striplight position={[10, 2, 0]} scale={[1, 3, 10]} /> */}
           {/* <Striplight position={[-10, 2, 0]} scale={[1, 3, 10]} /> */}

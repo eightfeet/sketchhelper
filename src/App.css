@@ -20,3 +20,12 @@
   --adm-color-primary: #838383;
 }
 
+.xiaoshidian {
+  font-size: 30px;
+  width: 100px;
+  background: #000;
+  color: #fff;
+  padding: 10px 100px;
+  border-radius: 20px;
+  font-weight: bolder;
+}

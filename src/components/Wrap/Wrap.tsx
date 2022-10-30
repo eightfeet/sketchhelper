@@ -19,11 +19,14 @@ const Wrap: React.FC<Props> = ({ children, onClick, onDoubleClick, ...other}) =>
             disableAxes={!visible}
             disableRotations={!visible}
             disableSliders={!visible}
-            displayValues={!visible}
+            displayValues={true}
             lineWidth={2}
             visible={visible}
         >
-            <mesh onClick={() => onClick?.(other)} onDoubleClick={() => onDoubleClick?.(other)}>
+            <mesh onClick={(e) => {
+                e.stopPropagation();
+                onClick?.(other);
+            }} onDoubleClick={() => onDoubleClick?.(other)}>
                 {children}
             </mesh>
         </PivotControls>
@@ -31,3 +34,4 @@ const Wrap: React.FC<Props> = ({ children, onClick, onDoubleClick, ...other}) =>
 };
 
 export default Wrap;
+
