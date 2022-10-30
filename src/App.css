@@ -2,3 +2,13 @@
   width: 100vw;
   height: 100vh;
 }
+
+.navbar {
+  position: absolute;
+  z-index: 5;
+  width: 100vw;
+}
+
+:root:root {
+  --adm-color-primary: #838383;
+}

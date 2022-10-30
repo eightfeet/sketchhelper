@@ -9,18 +9,26 @@ import Sphere from '../Sphere'
 import Cone from '../Cone';
 import { useCallback, useState } from 'react'
 import { store } from './proxyStilLife'
+import { Button, Form, Popup, Radio, Selector, Slider, Space, Switch } from 'antd-mobile'
+import { AddOutline, DeleteOutline, SetOutline } from 'antd-mobile-icons'
 
 export default function StilLife() {
   const data = useSnapshot(store)
-  const [current, setCurrent] = useState<number>()
+  const [current, setCurrent] = useState<number>();
+  const [visibleSetting, setVisibleSetting] = useState(false);
+  const [form] = Form.useForm();
+  
   const onClick = useCallback(
     (index: number, other: {
       opacity: number,
       showEdige: boolean,
       visible: boolean
     }) => {
-      setCurrent(index)
-      store.list = store.list.map((item, ind) => ({...item, visible: item.visible ? false : index === ind }))
+      store.list = store.list.map((item, ind) => ({ ...item, visible: item.visible ? false : index === ind }));
+      store.list.some((el, ind) => {
+        setCurrent(el.visible ? ind : undefined)
+        return el.visible
+      });
     },
     [],
   )
@@ -37,17 +45,95 @@ export default function StilLife() {
     [],
   )
 
+  const createObj = useCallback(
+    () => {
+      store.list.push({
+        name: 'box',
+        opacity: 1,
+        showEdige: false,
+        visible: false
+      })
+    },
+    [],
+  )
+
+  const setObj = useCallback(
+    () => {
+      if (current === undefined) return;
+      setVisibleSetting(true);
+      form.setFieldsValue((store.list[current]))
+    },
+    [current, form],
+  )
+
+  const deleteObj = useCallback(
+    () => {
+      setCurrent(undefined)
+      store.list = store.list.filter((item, ind) => ind !== current)
+    },
+    [current],
+  )
+
+  const onFieldsChange = useCallback(
+    () => {
+      const data = form.getFieldsValue();
+      console.log(data);
+      if (current !== undefined) {
+        store.list = store.list.map((item, ind) => ({ ...item, ...ind === current ? data : {}}));
+      }
+    },
+    [current, form],
+  )
+  
+
   return (
     <>
-    <div onClick={() => store.list.push({
-      name: 'box',
-      opacity: 1,
-      showEdige: true,
-      visible: false
-    })}>
-      创建
-    </div>
-    {JSON.stringify(data.list)}
+      <div className='navbar' >
+        <Space>
+          <Button size="mini" fill='outline' onClick={createObj} ><AddOutline /></Button>
+          {current !== undefined && <Button size="mini" fill='outline' onClick={setObj} ><SetOutline /></Button>}
+          {current !== undefined && <Button size="mini" fill='outline' onClick={deleteObj} ><DeleteOutline /></Button>}
+        </Space>
+        <Popup
+          visible={visibleSetting}
+          onMaskClick={() => {
+            setVisibleSetting(false)
+          }}
+          position='top'
+        >
+          <Form
+            layout='horizontal'
+            form={form}
+            onFieldsChange={onFieldsChange}
+          >
+            <Form.Item
+              name='name'
+              label='模块类型'
+              rules={[{ required: true, message: '请选择模块类型' }]}
+            >
+              
+              <Radio.Group>
+                <Space direction='vertical'>
+                  <Radio value='box'>
+                    正方体
+                  </Radio>
+                  <Radio value='sphere'>球</Radio>
+                  <Radio value='cone'>园柱体</Radio>
+                </Space>
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item name='opacity' label='透明度' >
+              <Slider ticks step={0.1} min={0} max={1} />
+            </Form.Item>
+            <Form.Item
+              name='showEdige'
+              label='显示边框'
+            >
+              <Switch uncheckedText='关' checkedText='开' />
+            </Form.Item>
+          </Form>
+        </Popup>
+      </div>
       <Canvas
         linear
         shadows
@@ -74,9 +160,9 @@ export default function StilLife() {
         />
         {
           data.list.map(({ name, ...other }, index) => <Wrap key={index} onClick={() => onClick(index, other)} onDoubleClick={() => onDoubleClick(index, other)} {...other}>
-            {name === 'box' && <Box opacity={1} />}
-            {name === 'cone' && <Cone opacity={1} />}
-            {name === 'sphere' && <Sphere opacity={1} />}
+            {name === 'box' && <Box {...other}/>}
+            {name === 'cone' && <Cone {...other}/>}
+            {name === 'sphere' && <Sphere {...other}/>}
           </Wrap>)
         }
         <Plane
