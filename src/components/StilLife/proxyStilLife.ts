@@ -1,7 +1,7 @@
-import { proxy, useSnapshot } from 'valtio'
+import { proxy } from 'valtio'
 
 type ListType = {
-    name: 'box' | 'cone' | 'sphere',
+    name: 'box' | 'cone' | 'sphere' | 'cylinder',
     opacity: number,
     showEdige: boolean,
     visible: boolean

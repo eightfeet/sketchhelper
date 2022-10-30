@@ -9,8 +9,9 @@ import Sphere from '../Sphere'
 import Cone from '../Cone';
 import { useCallback, useState } from 'react'
 import { store } from './proxyStilLife'
-import { Button, Form, Popup, Radio, Selector, Slider, Space, Switch } from 'antd-mobile'
+import { Button, Form, Popup, Radio, Slider, Space, Switch } from 'antd-mobile'
 import { AddOutline, DeleteOutline, SetOutline } from 'antd-mobile-icons'
+import Cylinder from '../Cylinder'
 
 export default function StilLife() {
   const data = useSnapshot(store)
@@ -118,7 +119,9 @@ export default function StilLife() {
                     正方体
                   </Radio>
                   <Radio value='sphere'>球</Radio>
-                  <Radio value='cone'>园柱体</Radio>
+                  <Radio value='cone'>园锥体</Radio>
+                  <Radio value='cylinder'>园柱体</Radio>
+                  
                 </Space>
               </Radio.Group>
             </Form.Item>
@@ -145,7 +148,7 @@ export default function StilLife() {
         <ambientLight intensity={0.3} />
         <directionalLight
           castShadow
-          position={[2.5, 8, 5]}
+          position={[2.50, 8, 5]}
           intensity={1}
           shadow-mapSize={[1024, 1024]}
         >
@@ -163,6 +166,7 @@ export default function StilLife() {
             {name === 'box' && <Box {...other}/>}
             {name === 'cone' && <Cone {...other}/>}
             {name === 'sphere' && <Sphere {...other}/>}
+            {name === 'cylinder' && <Cylinder {...other}/>}
           </Wrap>)
         }
         <Plane
@@ -178,7 +182,7 @@ export default function StilLife() {
         <Environment background resolution={5}>
           {/* <Striplight position={[10, 2, 0]} scale={[1, 3, 10]} /> */}
           {/* <Striplight position={[-10, 2, 0]} scale={[1, 3, 10]} /> */}
-          <mesh scale={100}>
+          <mesh scale={1000}>
             <sphereGeometry args={[1, 64, 64]} />
             <LayerMaterial side={THREE.BackSide}>
               {/* <Base color="blue" alpha={1} mode="normal" /> */}
