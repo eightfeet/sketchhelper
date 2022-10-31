@@ -31,8 +31,6 @@ import Guide from '../Guide';
 import CoffeeCup from '../CoffeeCup';
 import Bust from '../Bust';
 
-// softShadows();
-
 export default function StilLife() {
     const data = useSnapshot(store);
     const [current, setCurrent] = useState<number>();
@@ -183,6 +181,7 @@ export default function StilLife() {
     }, []);
 
     const [isSetting, setIsSetting] = useState(false);
+    const [vLightCtrl, setVLightCtrl] = useState(false);
 
     return (
         <>
@@ -320,8 +319,9 @@ export default function StilLife() {
                     depthTest={false}
                     fixed
                     lineWidth={2}
+                    visible={vLightCtrl}
                 >
-                    <mesh position={[2.5, 8, 5]}>
+                    <mesh position={[2.5, 8, 5]} onClick={() => setVLightCtrl(status => !status)}>
                         <sphereGeometry args={[0.1, 20, 20]} />
                         <meshBasicMaterial
                             attach="material"
