@@ -1,7 +1,7 @@
 import { proxy } from 'valtio'
 
 type ListType = {
-    name: 'box' | 'cone' | 'sphere' | 'cylinder',
+    name: 'box' | 'cone' | 'sphere' | 'cylinder' | 'coffeeCup',
     opacity: number,
     showEdige: boolean,
     visible: boolean,

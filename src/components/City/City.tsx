@@ -12,7 +12,7 @@ interface MainCityProps {
 const MainCity: React.FC<MainCityProps> = ({ opacity, edgeColor, showEdige }) => {
 
     const group = useRef<any>()
-    const { nodes, materials } = useGLTF('/scene-draco.glb') as any
+    const { nodes, materials } = useGLTF('/glb/scene-draco.glb') as any
     useFrame(() => {
         if (group.current) {
             group.current.rotation.y += 0.001
