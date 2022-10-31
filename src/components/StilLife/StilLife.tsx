@@ -17,7 +17,7 @@ import Wrap from '../Wrap';
 import Box from '../Box';
 import Sphere from '../Sphere';
 import Cone from '../Cone';
-import { useCallback, useRef, useState } from 'react';
+import { Suspense, useCallback, useRef, useState } from 'react';
 import { store } from './proxyStilLife';
 import { Button, Form, Popup, Radio, Slider, Space, Switch } from 'antd-mobile';
 import {
@@ -285,6 +285,7 @@ export default function StilLife() {
                                     <Radio value="cone">园锥体</Radio>
                                     <Radio value="cylinder">园柱体</Radio>
                                     <Radio value="coffeeCup">咖啡杯</Radio>
+                                    <Radio value="bust">石膏像</Radio>
                                 </Space>
                             </Radio.Group>
                         </Form.Item>
@@ -301,13 +302,15 @@ export default function StilLife() {
                 </Popup>
             </div>
             <Canvas
+                dpr={[1,2]}
                 linear
+                legacy
                 shadows
                 raycaster={{ params: { Line: { threshold: 2 } } }}
-                camera={{ position: [-10, 10, 10], fov: 20 }}
+                camera={{ position: [-20, 20, 20], fov: 20 }}
             >
-                <fog attach="fog" args={['#bbb', 0, 160]} />
-                <color attach="background" args={['#bbb']} />
+                {/* <fog attach="fog" args={['#ccc', 0, 160]} />
+                <color attach="background" args={['#bbb']} /> */}
                 <ambientLight intensity={0.3} />
                 {/**灯光 */}
                 <PivotControls
@@ -320,10 +323,15 @@ export default function StilLife() {
                 >
                     <mesh position={[2.5, 8, 5]}>
                         <sphereGeometry args={[0.1, 20, 20]} />
-                        <meshNormalMaterial />
+                        <meshBasicMaterial
+                            attach="material"
+                            color="#fff"
+                            toneMapped={false}
+                        />
                     </mesh>
                     <directionalLight
                         castShadow
+                        shadowBias={-0.0001}
                         position={[2.5, 8, 5]}
                         intensity={1.5}
                         shadow-mapSize-width={1024}
@@ -344,9 +352,6 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
-                
-                <Bust opacity={1} />
-                
 
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
@@ -357,11 +362,14 @@ export default function StilLife() {
                         onDoubleClick={() => onDoubleClick(index, other)}
                         {...other}
                     >
-                        {name === 'box' && <Box {...other} />}
-                        {name === 'cone' && <Cone {...other} />}
-                        {name === 'sphere' && <Sphere {...other} />}
-                        {name === 'cylinder' && <Cylinder {...other} />}
-                        {name === 'coffeeCup' && <CoffeeCup {...other} />}
+                        <Suspense fallback={null}>
+                            {name === 'box' && <Box {...other} />}
+                            {name === 'cone' && <Cone {...other} />}
+                            {name === 'sphere' && <Sphere {...other} />}
+                            {name === 'cylinder' && <Cylinder {...other} />}
+                            {name === 'coffeeCup' && <CoffeeCup {...other} />}
+                            {name === 'bust' && <Bust {...other} />}
+                        </Suspense>
                     </Wrap>
                 ))}
                 {data.guide.map((item, index) => (
@@ -379,7 +387,7 @@ export default function StilLife() {
                     position={[0, -1, 0]}
                     args={[1000, 1000]}
                 >
-                    <meshStandardMaterial attach="material" color="#ccc" />
+                    <meshStandardMaterial attach="material" color="#888" />
                 </Plane>
                 <OrbitControls
                     makeDefault
@@ -387,15 +395,11 @@ export default function StilLife() {
                     autoRotateSpeed={1}
                 />
                 <Environment background resolution={5}>
-                    {/* <Striplight position={[10, 2, 0]} scale={[1, 3, 10]} /> */}
-                    {/* <Striplight position={[-10, 2, 0]} scale={[1, 3, 10]} /> */}
                     <mesh scale={1000}>
                         <sphereGeometry args={[1, 64, 64]} />
                         <LayerMaterial side={THREE.BackSide}>
-                            {/* <Base color="blue" alpha={1} mode="normal" /> */}
                             <Depth
-                                colorA="#00ffff"
-                                colorB="#ff8f00"
+                                colorA="#fff" colorB="#aaa"
                                 alpha={0.5}
                                 mode="normal"
                                 near={0}

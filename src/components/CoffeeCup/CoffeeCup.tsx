@@ -9,11 +9,11 @@ interface Props {
 }
 
 const CoffeeCup: React.FC<Props> = ({ position }) => {
-    const { nodes } = useGLTF('/glb/coffee-transformed.glb') as any;
+    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/coffee-transformed.glb`) as any;
     return (
         <Center top scale={1.5} position={[0, -1, 0]}>
             <mesh
-                receiveShadow
+                // receiveShadow
                 position={position as any}
                 castShadow
                 geometry={nodes.coffee_cup_top_16oz.geometry}
