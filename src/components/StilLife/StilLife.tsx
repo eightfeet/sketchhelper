@@ -28,6 +28,10 @@ import Guide from '../Guide';
 const Cylinder = React.lazy(() => import('../Cylinder'));
 const CoffeeCup = React.lazy(() => import('../CoffeeCup'));
 const Bust = React.lazy(() => import('../Bust'));
+const Apple = React.lazy(() => import('../Apple'));
+const Foot = React.lazy(() => import('../Foot'));
+const Venus = React.lazy(() => import('../Venus'));
+
 
 
 export default function StilLife() {
@@ -284,6 +288,9 @@ export default function StilLife() {
                                     <Radio value="cylinder">园柱体</Radio>
                                     <Radio value="coffeeCup">咖啡杯</Radio>
                                     <Radio value="bust">石膏像</Radio>
+                                    <Radio value="apple">苹果</Radio>
+                                    <Radio value="foot">脚</Radio>
+                                    <Radio value="venus">维纳斯</Radio>
                                 </Space>
                             </Radio.Group>
                         </Form.Item>
@@ -351,7 +358,6 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
-
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
                         key={index}
@@ -372,6 +378,9 @@ export default function StilLife() {
                             {name === 'cylinder' && <Cylinder {...other} />}
                             {name === 'coffeeCup' && <CoffeeCup {...other} />}
                             {name === 'bust' && <Bust {...other} />}
+                            {name === 'apple' && <Apple {...other} />}
+                            {name === 'foot' && <Foot {...other} />}
+                            {name === 'venus' && <Venus {...other} />}
                         </Suspense>
                     </Wrap>
                 ))}
