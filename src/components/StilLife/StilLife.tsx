@@ -1,15 +1,12 @@
+import React from 'react';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 import {
     Environment,
-    softShadows,
-    Line,
     OrbitControls,
-    OrbitControlsProps,
     PivotControls,
     Plane,
-    GizmoHelper,
-    GizmoViewcube,
+    Html,
 } from '@react-three/drei';
 import { useSnapshot } from 'valtio';
 import { LayerMaterial, Depth, Noise } from 'lamina';
@@ -17,19 +14,21 @@ import Wrap from '../Wrap';
 import Box from '../Box';
 import Sphere from '../Sphere';
 import Cone from '../Cone';
-import { Suspense, useCallback, useRef, useState } from 'react';
+import { Suspense, useCallback, useState } from 'react';
 import { store } from './proxyStilLife';
-import { Button, Form, Popup, Radio, Slider, Space, Switch } from 'antd-mobile';
+import { Button, DotLoading, Form, Popup, Radio, Slider, Space, Switch } from 'antd-mobile';
 import {
     AddOutline,
     DeleteOutline,
     RedoOutline,
     SetOutline,
 } from 'antd-mobile-icons';
-import Cylinder from '../Cylinder';
 import Guide from '../Guide';
-import CoffeeCup from '../CoffeeCup';
-import Bust from '../Bust';
+
+const Cylinder = React.lazy(() => import('../Cylinder'));
+const CoffeeCup = React.lazy(() => import('../CoffeeCup'));
+const Bust = React.lazy(() => import('../Bust'));
+
 
 export default function StilLife() {
     const data = useSnapshot(store);
@@ -362,7 +361,11 @@ export default function StilLife() {
                         onDoubleClick={() => onDoubleClick(index, other)}
                         {...other}
                     >
-                        <Suspense fallback={null}>
+                        <Suspense fallback={<Html>
+                            <div className="loading">
+                                <DotLoading />
+                            </div>
+                        </Html>}>
                             {name === 'box' && <Box {...other} />}
                             {name === 'cone' && <Cone {...other} />}
                             {name === 'sphere' && <Sphere {...other} />}

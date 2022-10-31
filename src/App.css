@@ -29,3 +29,19 @@
   border-radius: 20px;
   font-weight: bolder;
 }
+
+.loading{
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  z-index: 2000;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  border-radius: 10px;
+  left: 0;
+  top: 0;
+}
