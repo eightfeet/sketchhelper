@@ -1,4 +1,4 @@
-import { Center, Trail, useGLTF } from '@react-three/drei';
+import { Center, useGLTF } from '@react-three/drei';
 import React from 'react';
 
 interface Props {
@@ -13,7 +13,7 @@ const CoffeeCup: React.FC<Props> = ({ position, opacity }) => {
     return (
         <Center top scale={1.5} position={[0, -1, 0]}>
             <mesh
-                // receiveShadow
+                receiveShadow
                 position={position as any}
                 castShadow
                 geometry={nodes.coffee_cup_top_16oz.geometry}

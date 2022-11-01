@@ -25,6 +25,7 @@ import {
 } from 'antd-mobile-icons';
 import Guide from '../Guide';
 import KitchenGroup from '../KitchenGroup';
+import FruitsGroup from '../FruitsGroup';
 
 const Cylinder = React.lazy(() => import('../Cylinder'));
 const CoffeeCup = React.lazy(() => import('../CoffeeCup'));
@@ -279,6 +280,7 @@ export default function StilLife() {
                         <Form.Item
                             name="name"
                             label="模块类型"
+                            layout='vertical'
                             rules={[
                                 { required: true, message: '请选择模块类型' },
                             ]}
@@ -291,22 +293,25 @@ export default function StilLife() {
                                     <Radio value="cylinder">园柱体</Radio>
                                     <Radio value="coffeeCup">咖啡杯</Radio>
                                     <Radio value="bust">石膏像</Radio>
-                                    <Radio value="apple">苹果</Radio>
                                     <Radio value="foot">脚</Radio>
                                     <Radio value="bottle">瓶子</Radio>
                                     <Radio value="venus">维纳斯</Radio>
-                                    <Radio value='bowl'>bowl</Radio>
-                                    <Radio value='butterknife'>butterknife</Radio>
-                                    <Radio value='cup'>cup</Radio>
-                                    <Radio value='cuphandle'>cuphandle</Radio>
-                                    <Radio value='fork'>fork</Radio>
-                                    <Radio value='plate'>plate</Radio>
-                                    <Radio value='pot'>pot</Radio>
-                                    <Radio value='scoop'>scoop</Radio>
-                                    <Radio value='scoopstuff'>scoopstuff</Radio>
-                                    <Radio value='spatula'>spatula</Radio>
-                                    <Radio value='spoon'>spoon</Radio>
-                                    <Radio value='fryingpan'>fryingpan</Radio>
+                                    <Radio value='bowl'>碗</Radio>
+                                    <Radio value='butterknife'>黄油刀</Radio>
+                                    <Radio value='cup'>杯</Radio>
+                                    <Radio value='cuphandle'>手柄杯子</Radio>
+                                    <Radio value='fork'>叉子</Radio>
+                                    <Radio value='plate'>盘子</Radio>
+                                    <Radio value='pot'>锅</Radio>
+                                    <Radio value='scoop'>勺</Radio>
+                                    <Radio value='scoopstuff'>铲子</Radio>
+                                    <Radio value='spatula'>铲子</Radio>
+                                    <Radio value='spoon'>勺子</Radio>
+                                    <Radio value='fryingpan'>煎锅</Radio>
+                                    <Radio value="apple">苹果</Radio>
+                                    <Radio value='pear'>梨</Radio>
+                                    <Radio value='apricot'>杏子</Radio>
+                                    <Radio value='banana'>香蕉</Radio>
                                 </Space>
                             </Radio.Group>
                         </Form.Item>
@@ -374,7 +379,6 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
-
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
                         key={index}
@@ -399,6 +403,11 @@ export default function StilLife() {
                             {name === 'foot' && <Foot {...other} />}
                             {name === 'venus' && <Venus {...other} />}
                             {name === 'bottle' && <Bottle {...other} />}
+
+                            {name === 'apple' && <FruitsGroup name='Apple' {...other} />}
+                            {name === 'pear' && <FruitsGroup name='Pear' {...other} />}
+                            {name === 'apricot' && <FruitsGroup name='Apricot' {...other} />}
+                            {name === 'banana' && <FruitsGroup name='Banana' {...other} />}
                             {name === 'bowl' && <KitchenGroup name='Bowl' {...other} />}
                             {name === 'butterknife' && <KitchenGroup name='ButterKnife' {...other} />}
                             {name === 'cup' && <KitchenGroup name='Cup' {...other} />}

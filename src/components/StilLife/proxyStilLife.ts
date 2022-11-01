@@ -13,7 +13,12 @@ type ListType = {
     'scoopstuff' |
     'spatula' |
     'spoon' |
-    'fryingpan',
+    'fryingpan' |
+    'pear' |
+    'apricot' |
+    'banana' |
+    'pumpkin' |
+    'scene' ,
     opacity: number,
     showEdige: boolean,
     visible: boolean,
