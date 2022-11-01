@@ -24,6 +24,7 @@ import {
     SetOutline,
 } from 'antd-mobile-icons';
 import Guide from '../Guide';
+import KitchenGroup from '../KitchenGroup';
 
 const Cylinder = React.lazy(() => import('../Cylinder'));
 const CoffeeCup = React.lazy(() => import('../CoffeeCup'));
@@ -31,6 +32,8 @@ const Bust = React.lazy(() => import('../Bust'));
 const Apple = React.lazy(() => import('../Apple'));
 const Foot = React.lazy(() => import('../Foot'));
 const Venus = React.lazy(() => import('../Venus'));
+const Bottle = React.lazy(() => import('../Bottle'));
+
 
 
 
@@ -281,7 +284,7 @@ export default function StilLife() {
                             ]}
                         >
                             <Radio.Group>
-                                <Space direction="vertical">
+                                <Space direction="horizontal" wrap>
                                     <Radio value="box">正方体</Radio>
                                     <Radio value="sphere">球</Radio>
                                     <Radio value="cone">园锥体</Radio>
@@ -290,7 +293,20 @@ export default function StilLife() {
                                     <Radio value="bust">石膏像</Radio>
                                     <Radio value="apple">苹果</Radio>
                                     <Radio value="foot">脚</Radio>
+                                    <Radio value="bottle">瓶子</Radio>
                                     <Radio value="venus">维纳斯</Radio>
+                                    <Radio value='bowl'>bowl</Radio>
+                                    <Radio value='butterknife'>butterknife</Radio>
+                                    <Radio value='cup'>cup</Radio>
+                                    <Radio value='cuphandle'>cuphandle</Radio>
+                                    <Radio value='fork'>fork</Radio>
+                                    <Radio value='plate'>plate</Radio>
+                                    <Radio value='pot'>pot</Radio>
+                                    <Radio value='scoop'>scoop</Radio>
+                                    <Radio value='scoopstuff'>scoopstuff</Radio>
+                                    <Radio value='spatula'>spatula</Radio>
+                                    <Radio value='spoon'>spoon</Radio>
+                                    <Radio value='fryingpan'>fryingpan</Radio>
                                 </Space>
                             </Radio.Group>
                         </Form.Item>
@@ -307,7 +323,7 @@ export default function StilLife() {
                 </Popup>
             </div>
             <Canvas
-                dpr={[1,2]}
+                dpr={[1, 2]}
                 linear
                 legacy
                 shadows
@@ -358,6 +374,7 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
+
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
                         key={index}
@@ -381,6 +398,19 @@ export default function StilLife() {
                             {name === 'apple' && <Apple {...other} />}
                             {name === 'foot' && <Foot {...other} />}
                             {name === 'venus' && <Venus {...other} />}
+                            {name === 'bottle' && <Bottle {...other} />}
+                            {name === 'bowl' && <KitchenGroup name='Bowl' {...other} />}
+                            {name === 'butterknife' && <KitchenGroup name='ButterKnife' {...other} />}
+                            {name === 'cup' && <KitchenGroup name='Cup' {...other} />}
+                            {name === 'cuphandle' && <KitchenGroup name='CupHandle' {...other} />}
+                            {name === 'fork' && <KitchenGroup name='Fork' {...other} />}
+                            {name === 'plate' && <KitchenGroup name='Plate' {...other} />}
+                            {name === 'pot' && <KitchenGroup name='Pot' {...other} />}
+                            {name === 'scoop' && <KitchenGroup name='Scoop' {...other} />}
+                            {name === 'scoopstuff' && <KitchenGroup name='ScoopStuff' {...other} />}
+                            {name === 'spatula' && <KitchenGroup name='Spatula' {...other} />}
+                            {name === 'spoon' && <KitchenGroup name='Spoon' {...other} />}
+                            {name === 'fryingpan' && <KitchenGroup name='FryingPan' {...other} />}
                         </Suspense>
                     </Wrap>
                 ))}
