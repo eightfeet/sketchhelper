@@ -46,6 +46,7 @@ export default function StilLife() {
     const [form] = Form.useForm();
     const [autoRotate, setAutoRotate] = useState(false);
 
+
     const onClick = useCallback(
         (
             index: number,
@@ -169,6 +170,7 @@ export default function StilLife() {
         store.guide.push({
             tag: (store.guide.slice(-1)[0]?.tag || 0) + 1,
             visible: false,
+            showText: false
         });
         setCurrentGuid(store.guide.length - 1);
     }, []);
@@ -186,6 +188,15 @@ export default function StilLife() {
         setCurrentGuid(undefined);
         setIsSetting(false);
     }, []);
+
+    const showGridText = useCallback(
+        () => {
+            if (currentGuid !== undefined)
+            store.guide[currentGuid].showText = !store.guide[currentGuid].showText;
+        },
+        [currentGuid],
+    )
+
 
     const [isSetting, setIsSetting] = useState(false);
     const [vLightCtrl, setVLightCtrl] = useState(false);
@@ -253,11 +264,21 @@ export default function StilLife() {
                             >
                                 <AddOutline />
                             </Button>
+
                             {currentGuid !== undefined && (
                                 <Button
                                     size="mini"
-                                    fill="outline"
+                                    fill={!data.guide[currentGuid].showText ? 'outline' : 'solid'}
+                                    onClick={showGridText}
+                                >
+                                    Text
+                                </Button>
+                            )}
+                            {currentGuid !== undefined && (
+                                <Button
+                                    size="mini"
                                     onClick={deleteGuid}
+                                    fill="outline"
                                 >
                                     <DeleteOutline />
                                 </Button>
@@ -404,7 +425,6 @@ export default function StilLife() {
                 ))}
                 {data.guide.map((item, index) => (
                     <Guide
-                        index={index}
                         key={item.tag}
                         {...item}
                         onClick={() => onClickGrid(index, item)}

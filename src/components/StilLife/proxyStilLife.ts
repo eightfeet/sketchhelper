@@ -26,6 +26,7 @@ type ListType = {
   }[]
 type GuideType = {
   tag: number;
+  showText: boolean;
   visible: boolean
 }[]
 

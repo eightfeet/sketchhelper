@@ -7,10 +7,10 @@ interface Props {
     onClick: () => void;
     tag: number;
     visible: boolean;
-    index: number;
+    showText: boolean;
 }
 
-const Guide: React.FC<Props> = ({ onClick, visible, index }) => {
+const Guide: React.FC<Props> = ({ onClick, visible, showText }) => {
     return (
         <Wrap visible={visible} onClick={onClick}>
             <mesh>
@@ -22,7 +22,7 @@ const Guide: React.FC<Props> = ({ onClick, visible, index }) => {
                     color="royalblue"
                     lineWidth={3}
                 />
-                {index === 0 && <>
+                {showText && <>
                     <mesh position={[-900, 16, 28]}>
                         <Html>
                             <div className="xiaoshidian">消失点</div>
