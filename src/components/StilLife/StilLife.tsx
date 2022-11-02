@@ -289,7 +289,7 @@ export default function StilLife() {
                             <Radio.Group>
                                 <Space direction="horizontal" wrap>
                                     {
-                                        objList.map(item => <Radio key={item.name} value={item.name}><img src={'./glb/thumbnail/box.png'} className="thumbnail" alt={item.label} /></Radio>)
+                                        objList.map(item => <Radio key={item.name} value={item.name}><img src={`./glb/thumbnail/${item.name}.png`} className="thumbnail" alt={item.label} /></Radio>)
                                     }
                                 </Space>
                             </Radio.Group>

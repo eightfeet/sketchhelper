@@ -14,7 +14,7 @@ export const objList = [
     { name: 'cuphandle', label: '手柄杯子', thumbnail: './glb/thumbnail/cuphandle.png'  },
     { name: 'fork', label: '叉子', thumbnail: './glb/thumbnail/fork.png'  },
     { name: 'plate', label: '盘子', thumbnail: './glb/thumbnail/plate.png'  },
-    { name: 'pot', label: '锅', thumbnail: './glb/thumbnail/pot.png'  },
+    // { name: 'pot', label: '锅', thumbnail: './glb/thumbnail/pot.png'  },
     { name: 'scoop', label: '勺', thumbnail: './glb/thumbnail/scoop.png'  },
     { name: 'scoopstuff', label: '铲子', thumbnail: './glb/thumbnail/scoopstuff.png'  },
     { name: 'spatula', label: '铲子', thumbnail: './glb/thumbnail/spatula.png'  },
