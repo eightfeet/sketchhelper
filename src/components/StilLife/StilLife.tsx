@@ -1,6 +1,7 @@
 import React from 'react';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
+import { TwitterPicker } from 'react-color';
 import {
     Environment,
     OrbitControls,
@@ -192,7 +193,7 @@ export default function StilLife() {
     const showGridText = useCallback(
         () => {
             if (currentGuid !== undefined)
-            store.guide[currentGuid].showText = !store.guide[currentGuid].showText;
+                store.guide[currentGuid].showText = !store.guide[currentGuid].showText;
         },
         [currentGuid],
     )
@@ -403,7 +404,6 @@ export default function StilLife() {
                             {name === 'foot' && <Foot {...other} />}
                             {name === 'venus' && <Venus {...other} />}
                             {name === 'bottle' && <Bottle {...other} />}
-
                             {name === 'apple' && <FruitsGroup name='Apple' {...other} />}
                             {name === 'pear' && <FruitsGroup name='Pear' {...other} />}
                             {name === 'apricot' && <FruitsGroup name='Apricot' {...other} />}
@@ -430,15 +430,15 @@ export default function StilLife() {
                         onClick={() => onClickGrid(index, item)}
                     />
                 ))}
-                <Plane
-                    onClick={onClickPlan}
-                    receiveShadow
-                    rotation={[-Math.PI / 2, 0, 0]}
-                    position={[0, -1, 0]}
-                    args={[1000, 1000]}
-                >
-                    <meshStandardMaterial attach="material" color="#555" />
-                </Plane>
+                    <Plane
+                        onClick={onClickPlan}
+                        receiveShadow
+                        rotation={[-Math.PI / 2, 0, 0]}
+                        position={[0, -1, 0]}
+                        args={[10000, 10000]}
+                    >
+                        <meshStandardMaterial attach="material" color="#555" />
+                    </Plane>
                 <OrbitControls
                     makeDefault
                     autoRotate={autoRotate}

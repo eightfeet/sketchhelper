@@ -1,5 +1,5 @@
-import { Html, Line, BBAnchor, Text } from '@react-three/drei';
-import React, { useState } from 'react';
+import { Html, Line } from '@react-three/drei';
+import React from 'react';
 
 import Wrap from '../Wrap';
 

@@ -17,6 +17,7 @@
     "lamina": "^1.1.23",
     "leva": "^0.9.34",
     "react": "^18.2.0",
+    "react-color": "^2.19.3",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "sass": "^1.55.0",
@@ -58,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-color": "^3.0.6",
     "@types/three": "^0.144.0",
     "customize-cra": "^1.0.0",
     "env-cmd": "^10.1.0",
