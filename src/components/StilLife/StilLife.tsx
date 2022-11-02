@@ -26,6 +26,8 @@ import {
 import Guide from '../Guide';
 import KitchenGroup from '../KitchenGroup';
 import FruitsGroup from '../FruitsGroup';
+import { objList } from './objList';
+import s from './StilLife.module.scss';
 
 const Cylinder = React.lazy(() => import('../Cylinder'));
 const CoffeeCup = React.lazy(() => import('../CoffeeCup'));
@@ -34,8 +36,6 @@ const Apple = React.lazy(() => import('../Apple'));
 const Foot = React.lazy(() => import('../Foot'));
 const Venus = React.lazy(() => import('../Venus'));
 const Bottle = React.lazy(() => import('../Bottle'));
-
-
 
 
 export default function StilLife() {
@@ -273,6 +273,7 @@ export default function StilLife() {
                     position="top"
                 >
                     <Form
+                        className={s.listform}
                         layout="horizontal"
                         form={form}
                         onFieldsChange={onFieldsChange}
@@ -287,31 +288,9 @@ export default function StilLife() {
                         >
                             <Radio.Group>
                                 <Space direction="horizontal" wrap>
-                                    <Radio value="box">正方体</Radio>
-                                    <Radio value="sphere">球</Radio>
-                                    <Radio value="cone">园锥体</Radio>
-                                    <Radio value="cylinder">园柱体</Radio>
-                                    <Radio value="coffeeCup">咖啡杯</Radio>
-                                    <Radio value="bust">石膏像</Radio>
-                                    <Radio value="foot">脚</Radio>
-                                    <Radio value="bottle">瓶子</Radio>
-                                    <Radio value="venus">维纳斯</Radio>
-                                    <Radio value='bowl'>碗</Radio>
-                                    <Radio value='butterknife'>黄油刀</Radio>
-                                    <Radio value='cup'>杯</Radio>
-                                    <Radio value='cuphandle'>手柄杯子</Radio>
-                                    <Radio value='fork'>叉子</Radio>
-                                    <Radio value='plate'>盘子</Radio>
-                                    <Radio value='pot'>锅</Radio>
-                                    <Radio value='scoop'>勺</Radio>
-                                    <Radio value='scoopstuff'>铲子</Radio>
-                                    <Radio value='spatula'>铲子</Radio>
-                                    <Radio value='spoon'>勺子</Radio>
-                                    <Radio value='fryingpan'>煎锅</Radio>
-                                    <Radio value="apple">苹果</Radio>
-                                    <Radio value='pear'>梨</Radio>
-                                    <Radio value='apricot'>杏子</Radio>
-                                    <Radio value='banana'>香蕉</Radio>
+                                    {
+                                        objList.map(item => <Radio key={item.name} value={item.name}><img src={'./glb/thumbnail/box.png'} className="thumbnail" alt={item.label} /></Radio>)
+                                    }
                                 </Space>
                             </Radio.Group>
                         </Form.Item>
@@ -438,7 +417,7 @@ export default function StilLife() {
                     position={[0, -1, 0]}
                     args={[1000, 1000]}
                 >
-                    <meshStandardMaterial attach="material" color="#888" />
+                    <meshStandardMaterial attach="material" color="#555" />
                 </Plane>
                 <OrbitControls
                     makeDefault

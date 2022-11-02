@@ -22,7 +22,7 @@ module.exports = override(
   }),
   adjustStyleLoaders(({ use: [, css, postcss, resolve, processor] }) => {
     if (processor && processor.loader.includes("sass-loader")) {
-      processor.options.additionalData = `@import "~/style/variables.scss";`; // sass-loader
+      // processor.options.additionalData = `@import "~/style/variables.scss";`; // sass-loader
     }
   }),
   // multipleEntry.addMultiEntry,
