@@ -1,7 +1,6 @@
 import React from 'react';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
-import { TwitterPicker } from 'react-color';
 import {
     Environment,
     OrbitControls,
@@ -11,6 +10,7 @@ import {
 } from '@react-three/drei';
 import { useSnapshot } from 'valtio';
 import { LayerMaterial, Depth, Noise } from 'lamina';
+import ColorPicker from '../ColorPicker'
 import Wrap from '../Wrap';
 import Box from '../Box';
 import Sphere from '../Sphere';
@@ -171,7 +171,8 @@ export default function StilLife() {
         store.guide.push({
             tag: (store.guide.slice(-1)[0]?.tag || 0) + 1,
             visible: false,
-            showText: false
+            showText: false,
+            color: '#0693e3'
         });
         setCurrentGuid(store.guide.length - 1);
     }, []);
@@ -204,7 +205,7 @@ export default function StilLife() {
 
     return (
         <>
-            <div className="navbar">
+            <div className="navbar" onClick={e => e.stopPropagation()}>
                 <br />
                 {!isSetting ? (
                     <Button
@@ -265,7 +266,9 @@ export default function StilLife() {
                             >
                                 <AddOutline />
                             </Button>
-
+                            {currentGuid !== undefined && (
+                            <ColorPicker onChange={e => {store.guide[currentGuid].color = e}} color={data.guide[currentGuid].color} />
+                            )}
                             {currentGuid !== undefined && (
                                 <Button
                                     size="mini"
@@ -431,7 +434,7 @@ export default function StilLife() {
                     />
                 ))}
                     <Plane
-                        onClick={onClickPlan}
+                        // onClick={onClickPlan}
                         receiveShadow
                         rotation={[-Math.PI / 2, 0, 0]}
                         position={[0, -1, 0]}

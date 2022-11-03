@@ -27,7 +27,8 @@ type ListType = {
 type GuideType = {
   tag: number;
   showText: boolean;
-  visible: boolean
+  visible: boolean;
+  color: string;
 }[]
 
 export const store = proxy<{ list: ListType; guide: GuideType}>({

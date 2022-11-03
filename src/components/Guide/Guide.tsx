@@ -8,9 +8,10 @@ interface Props {
     tag: number;
     visible: boolean;
     showText: boolean;
+    color: string;
 }
 
-const Guide: React.FC<Props> = ({ onClick, visible, showText }) => {
+const Guide: React.FC<Props> = ({ onClick, visible, showText, color }) => {
     return (
         <Wrap visible={visible} onClick={onClick}>
             <mesh>
@@ -19,7 +20,7 @@ const Guide: React.FC<Props> = ({ onClick, visible, showText }) => {
                         [-100000, 0, 0],
                         [100000, 0, 0],
                     ]}
-                    color="royalblue"
+                    color={color}
                     lineWidth={3}
                 />
                 {showText && <>
