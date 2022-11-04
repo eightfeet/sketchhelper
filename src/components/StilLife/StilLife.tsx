@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 import {
@@ -7,19 +7,30 @@ import {
     PivotControls,
     Plane,
     Html,
+    Ring
 } from '@react-three/drei';
 import { useSnapshot } from 'valtio';
 import { LayerMaterial, Depth, Noise } from 'lamina';
-import ColorPicker from '../ColorPicker'
+import ColorPicker from '../ColorPicker';
 import Wrap from '../Wrap';
 import Box from '../Box';
 import Sphere from '../Sphere';
 import Cone from '../Cone';
 import { Suspense, useCallback, useState } from 'react';
 import { store } from './proxyStilLife';
-import { Button, DotLoading, Form, Popup, Radio, Slider, Space, Switch } from 'antd-mobile';
+import {
+    Button,
+    DotLoading,
+    Form,
+    Popup,
+    Radio,
+    Slider,
+    Space,
+    Switch,
+} from 'antd-mobile';
 import {
     AddOutline,
+    CloseOutline,
     DeleteOutline,
     RedoOutline,
     SetOutline,
@@ -29,6 +40,7 @@ import KitchenGroup from '../KitchenGroup';
 import FruitsGroup from '../FruitsGroup';
 import { objList } from './objList';
 import s from './StilLife.module.scss';
+import useKeyPress from '~/hooks/useKeyPress';
 
 const Cylinder = React.lazy(() => import('../Cylinder'));
 const CoffeeCup = React.lazy(() => import('../CoffeeCup'));
@@ -38,7 +50,6 @@ const Foot = React.lazy(() => import('../Foot'));
 const Venus = React.lazy(() => import('../Venus'));
 const Bottle = React.lazy(() => import('../Bottle'));
 
-
 export default function StilLife() {
     const data = useSnapshot(store);
     const [current, setCurrent] = useState<number>();
@@ -46,7 +57,7 @@ export default function StilLife() {
     const [visibleSetting, setVisibleSetting] = useState(false);
     const [form] = Form.useForm();
     const [autoRotate, setAutoRotate] = useState(false);
-
+    const willDelete = useKeyPress('Delete');
 
     const onClick = useCallback(
         (
@@ -172,40 +183,33 @@ export default function StilLife() {
             tag: (store.guide.slice(-1)[0]?.tag || 0) + 1,
             visible: false,
             showText: false,
-            color: '#0693e3'
+            color: '#0693e3',
         });
         setCurrentGuid(store.guide.length - 1);
     }, []);
 
-    const onClickPlan = useCallback(() => {
-        store.list = store.list.map((item, ind) => ({
-            ...item,
-            visible: false,
-        }));
-        store.guide = store.guide.map((item, ind) => ({
-            ...item,
-            visible: false,
-        }));
-        setCurrent(undefined);
-        setCurrentGuid(undefined);
-        setIsSetting(false);
-    }, []);
-
-    const showGridText = useCallback(
-        () => {
-            if (currentGuid !== undefined)
-                store.guide[currentGuid].showText = !store.guide[currentGuid].showText;
-        },
-        [currentGuid],
-    )
-
+    const showGridText = useCallback(() => {
+        if (currentGuid !== undefined)
+            store.guide[currentGuid].showText =
+                !store.guide[currentGuid].showText;
+    }, [currentGuid]);
 
     const [isSetting, setIsSetting] = useState(false);
     const [vLightCtrl, setVLightCtrl] = useState(false);
 
+    // 键盘删除
+    useEffect(() => {
+        if (current !== undefined && willDelete) {
+            deleteObj();
+        }
+        if (currentGuid !== undefined && willDelete) {
+            deleteGuid();
+        }
+    }, [current, currentGuid, deleteGuid, deleteObj, willDelete]);
+
     return (
         <>
-            <div className="navbar" onClick={e => e.stopPropagation()}>
+            <div className="navbar" onClick={(e) => e.stopPropagation()}>
                 <br />
                 {!isSetting ? (
                     <Button
@@ -267,12 +271,21 @@ export default function StilLife() {
                                 <AddOutline />
                             </Button>
                             {currentGuid !== undefined && (
-                            <ColorPicker onChange={e => {store.guide[currentGuid].color = e}} color={data.guide[currentGuid].color} />
+                                <ColorPicker
+                                    onChange={(e) => {
+                                        store.guide[currentGuid].color = e;
+                                    }}
+                                    color={data.guide[currentGuid].color}
+                                />
                             )}
                             {currentGuid !== undefined && (
                                 <Button
                                     size="mini"
-                                    fill={!data.guide[currentGuid].showText ? 'outline' : 'solid'}
+                                    fill={
+                                        !data.guide[currentGuid].showText
+                                            ? 'outline'
+                                            : 'solid'
+                                    }
                                     onClick={showGridText}
                                 >
                                     Text
@@ -287,6 +300,17 @@ export default function StilLife() {
                                     <DeleteOutline />
                                 </Button>
                             )}
+                        </Space>
+                        <br />
+                        <Space>
+                            <span className="menulabel">&nbsp;</span>
+                            <Button
+                                size="mini"
+                                fill="none"
+                                onClick={() => setIsSetting(false)}
+                            >
+                                <CloseOutline />
+                            </Button>
                         </Space>
                     </div>
                 )}
@@ -306,16 +330,25 @@ export default function StilLife() {
                         <Form.Item
                             name="name"
                             label="模块类型"
-                            layout='vertical'
+                            layout="vertical"
                             rules={[
                                 { required: true, message: '请选择模块类型' },
                             ]}
                         >
                             <Radio.Group>
                                 <Space direction="horizontal" wrap>
-                                    {
-                                        objList.map(item => <Radio key={item.name} value={item.name}><img src={`./glb/thumbnail/${item.name}.png`} className="thumbnail" alt={item.label} /></Radio>)
-                                    }
+                                    {objList.map((item) => (
+                                        <Radio
+                                            key={item.name}
+                                            value={item.name}
+                                        >
+                                            <img
+                                                src={`./glb/thumbnail/${item.name}.png`}
+                                                className="thumbnail"
+                                                alt={item.label}
+                                            />
+                                        </Radio>
+                                    ))}
                                 </Space>
                             </Radio.Group>
                         </Form.Item>
@@ -352,7 +385,10 @@ export default function StilLife() {
                     lineWidth={2}
                     visible={vLightCtrl}
                 >
-                    <mesh position={[2.5, 8, 5]} onClick={() => setVLightCtrl(status => !status)}>
+                    <mesh
+                        position={[2.5, 8, 5]}
+                        onClick={() => setVLightCtrl((status) => !status)}
+                    >
                         <sphereGeometry args={[0.1, 20, 20]} />
                         <meshBasicMaterial
                             attach="material"
@@ -392,11 +428,15 @@ export default function StilLife() {
                         onDoubleClick={() => onDoubleClick(index, other)}
                         {...other}
                     >
-                        <Suspense fallback={<Html>
-                            <div className="loading">
-                                <DotLoading />
-                            </div>
-                        </Html>}>
+                        <Suspense
+                            fallback={
+                                <Html>
+                                    <div className="loading">
+                                        <DotLoading />
+                                    </div>
+                                </Html>
+                            }
+                        >
                             {name === 'box' && <Box {...other} />}
                             {name === 'cone' && <Cone {...other} />}
                             {name === 'sphere' && <Sphere {...other} />}
@@ -407,22 +447,54 @@ export default function StilLife() {
                             {name === 'foot' && <Foot {...other} />}
                             {name === 'venus' && <Venus {...other} />}
                             {name === 'bottle' && <Bottle {...other} />}
-                            {name === 'apple' && <FruitsGroup name='Apple' {...other} />}
-                            {name === 'pear' && <FruitsGroup name='Pear' {...other} />}
-                            {name === 'apricot' && <FruitsGroup name='Apricot' {...other} />}
-                            {name === 'banana' && <FruitsGroup name='Banana' {...other} />}
-                            {name === 'bowl' && <KitchenGroup name='Bowl' {...other} />}
-                            {name === 'butterknife' && <KitchenGroup name='ButterKnife' {...other} />}
-                            {name === 'cup' && <KitchenGroup name='Cup' {...other} />}
-                            {name === 'cuphandle' && <KitchenGroup name='CupHandle' {...other} />}
-                            {name === 'fork' && <KitchenGroup name='Fork' {...other} />}
-                            {name === 'plate' && <KitchenGroup name='Plate' {...other} />}
-                            {name === 'pot' && <KitchenGroup name='Pot' {...other} />}
-                            {name === 'scoop' && <KitchenGroup name='Scoop' {...other} />}
-                            {name === 'scoopstuff' && <KitchenGroup name='ScoopStuff' {...other} />}
-                            {name === 'spatula' && <KitchenGroup name='Spatula' {...other} />}
-                            {name === 'spoon' && <KitchenGroup name='Spoon' {...other} />}
-                            {name === 'fryingpan' && <KitchenGroup name='FryingPan' {...other} />}
+                            {name === 'apple' && (
+                                <FruitsGroup name="Apple" {...other} />
+                            )}
+                            {name === 'pear' && (
+                                <FruitsGroup name="Pear" {...other} />
+                            )}
+                            {name === 'apricot' && (
+                                <FruitsGroup name="Apricot" {...other} />
+                            )}
+                            {name === 'banana' && (
+                                <FruitsGroup name="Banana" {...other} />
+                            )}
+                            {name === 'bowl' && (
+                                <KitchenGroup name="Bowl" {...other} />
+                            )}
+                            {name === 'butterknife' && (
+                                <KitchenGroup name="ButterKnife" {...other} />
+                            )}
+                            {name === 'cup' && (
+                                <KitchenGroup name="Cup" {...other} />
+                            )}
+                            {name === 'cuphandle' && (
+                                <KitchenGroup name="CupHandle" {...other} />
+                            )}
+                            {name === 'fork' && (
+                                <KitchenGroup name="Fork" {...other} />
+                            )}
+                            {name === 'plate' && (
+                                <KitchenGroup name="Plate" {...other} />
+                            )}
+                            {name === 'pot' && (
+                                <KitchenGroup name="Pot" {...other} />
+                            )}
+                            {name === 'scoop' && (
+                                <KitchenGroup name="Scoop" {...other} />
+                            )}
+                            {name === 'scoopstuff' && (
+                                <KitchenGroup name="ScoopStuff" {...other} />
+                            )}
+                            {name === 'spatula' && (
+                                <KitchenGroup name="Spatula" {...other} />
+                            )}
+                            {name === 'spoon' && (
+                                <KitchenGroup name="Spoon" {...other} />
+                            )}
+                            {name === 'fryingpan' && (
+                                <KitchenGroup name="FryingPan" {...other} />
+                            )}
                         </Suspense>
                     </Wrap>
                 ))}
@@ -433,15 +505,15 @@ export default function StilLife() {
                         onClick={() => onClickGrid(index, item)}
                     />
                 ))}
-                    <Plane
-                        // onClick={onClickPlan}
-                        receiveShadow
-                        rotation={[-Math.PI / 2, 0, 0]}
-                        position={[0, -1, 0]}
-                        args={[10000, 10000]}
-                    >
-                        <meshStandardMaterial attach="material" color="#555" />
-                    </Plane>
+                <Plane
+                    // onClick={onClickPlan}
+                    receiveShadow
+                    rotation={[-Math.PI / 2, 0, 0]}
+                    position={[0, -1, 0]}
+                    args={[10000, 10000]}
+                >
+                    <meshStandardMaterial attach="material" color="#555" />
+                </Plane>
                 <OrbitControls
                     makeDefault
                     autoRotate={autoRotate}
@@ -452,7 +524,8 @@ export default function StilLife() {
                         <sphereGeometry args={[1, 64, 64]} />
                         <LayerMaterial side={THREE.BackSide}>
                             <Depth
-                                colorA="#fff" colorB="#aaa"
+                                colorA="#fff"
+                                colorB="#aaa"
                                 alpha={0.5}
                                 mode="normal"
                                 near={0}
