@@ -6,9 +6,7 @@ import {
     OrbitControls,
     PivotControls,
     Plane,
-    Html,
-    Ring
-} from '@react-three/drei';
+    Html} from '@react-three/drei';
 import { useSnapshot } from 'valtio';
 import { LayerMaterial, Depth, Noise } from 'lamina';
 import ColorPicker from '../ColorPicker';
@@ -141,6 +139,7 @@ export default function StilLife() {
             visible: true,
             shadow: true,
         });
+        setCurrent(store.list.length - 1);
     }, []);
 
     const setObj = useCallback(() => {
@@ -191,7 +190,7 @@ export default function StilLife() {
     const showGridText = useCallback(() => {
         if (currentGuid !== undefined)
             store.guide[currentGuid].showText =
-                !store.guide[currentGuid].showText;
+                !store.guide[currentGuid]?.showText;
     }, [currentGuid]);
 
     const [isSetting, setIsSetting] = useState(false);
@@ -275,14 +274,14 @@ export default function StilLife() {
                                     onChange={(e) => {
                                         store.guide[currentGuid].color = e;
                                     }}
-                                    color={data.guide[currentGuid].color}
+                                    color={data.guide[currentGuid]?.color}
                                 />
                             )}
                             {currentGuid !== undefined && (
                                 <Button
                                     size="mini"
                                     fill={
-                                        !data.guide[currentGuid].showText
+                                        !data.guide[currentGuid]?.showText
                                             ? 'outline'
                                             : 'solid'
                                     }
