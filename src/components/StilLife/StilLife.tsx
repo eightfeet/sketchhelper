@@ -34,8 +34,6 @@ import {
     SetOutline,
 } from 'antd-mobile-icons';
 import Guide from '../Guide';
-import KitchenGroup from '../KitchenGroup';
-import FruitsGroup from '../FruitsGroup';
 import { objList } from './objList';
 import s from './StilLife.module.scss';
 import useKeyPress from '~/hooks/useKeyPress';
@@ -47,6 +45,9 @@ const Apple = React.lazy(() => import('../Apple'));
 const Foot = React.lazy(() => import('../Foot'));
 const Venus = React.lazy(() => import('../Venus'));
 const Bottle = React.lazy(() => import('../Bottle'));
+const KitchenGroup = React.lazy(() => import('../KitchenGroup'));
+const FruitsGroup = React.lazy(() => import('../FruitsGroup'));
+const Shape = React.lazy(() => import('../Shape'));
 
 export default function StilLife() {
     const data = useSnapshot(store);
@@ -440,6 +441,11 @@ export default function StilLife() {
                             {name === 'cone' && <Cone {...other} />}
                             {name === 'sphere' && <Sphere {...other} />}
                             {name === 'cylinder' && <Cylinder {...other} />}
+                            {name === 'shapea' && <Shape name="shapea" {...other} />}
+                            {name === 'shapeb' && <Shape name="shapeb" {...other} />}
+                            {name === 'shapec' && <Shape name="shapec" {...other} />}
+                            {name === 'shaped' && <Shape name="shaped" {...other} />}
+                            
                             {name === 'coffeeCup' && <CoffeeCup {...other} />}
                             {name === 'bust' && <Bust {...other} />}
                             {name === 'apple' && <Apple {...other} />}
