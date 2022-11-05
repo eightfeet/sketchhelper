@@ -6,6 +6,7 @@ import {
     OrbitControls,
     PivotControls,
     Plane,
+    softShadows,
     Html} from '@react-three/drei';
 import { useSnapshot } from 'valtio';
 import { LayerMaterial, Depth, Noise } from 'lamina';
@@ -20,6 +21,8 @@ import {
 } from 'antd-mobile';
 import Guide from '../Guide';
 import Setting from '../Setting';
+
+softShadows();
 
 const Cylinder = React.lazy(() => import('../Cylinder'));
 const CoffeeCup = React.lazy(() => import('../CoffeeCup'));
@@ -73,7 +76,6 @@ export default function StilLife() {
                     </mesh>
                     <directionalLight
                         castShadow
-                        shadowBias={-0.0001}
                         position={[2.5, 8, 5]}
                         intensity={1.5}
                         shadow-mapSize-width={1024}
@@ -86,7 +88,12 @@ export default function StilLife() {
                     >
                         <orthographicCamera
                             attach="shadow-camera"
-                            args={[-5, 5, 5, -5, 1, 50]}
+                            left={-4}
+                            right={4}
+                            top={4}
+                            bottom={-4}
+                            near={0}
+                            far={25}
                         />
                     </directionalLight>
                     <directionalLight
@@ -189,7 +196,7 @@ export default function StilLife() {
                     position={[0, -1, 0]}
                     args={[10000, 10000]}
                 >
-                    <meshStandardMaterial attach="material" color="#555" />
+                    <meshStandardMaterial fog color="#555" />
                 </Plane>
                 <OrbitControls
                     makeDefault
@@ -201,8 +208,8 @@ export default function StilLife() {
                         <sphereGeometry args={[1, 64, 64]} />
                         <LayerMaterial side={THREE.BackSide}>
                             <Depth
-                                colorA="#fff"
-                                colorB="#aaa"
+                                colorA="#000"
+                                colorB="#000"
                                 alpha={0.5}
                                 mode="normal"
                                 near={0}

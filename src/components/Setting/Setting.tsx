@@ -29,7 +29,7 @@ const Setting:React.FC<Props> = () => {
             visible: false,
         }));
         store.list.push({
-            name: 'shaped',
+            name: 'box',
             opacity: 1,
             showEdige: false,
             visible: true,
@@ -82,11 +82,13 @@ const Setting:React.FC<Props> = () => {
     const onFieldsChange = useCallback(() => {
         const data = form.getFieldsValue();
         console.log(data);
-        if (data.current !== undefined) {
+        if (store.current !== undefined) {
             store.list = store.list.map((item, ind) => ({
                 ...item,
-                ...(ind === data.current ? data : {}),
+                ...(ind === store.current ? data : {}),
             }));
+            console.log('store.list', );
+            
         }
     }, [form]);
 
