@@ -1,5 +1,7 @@
 import { Html, Line } from '@react-three/drei';
 import React from 'react';
+import { useSnapshot } from 'valtio';
+import { store } from '../StilLife/proxyStilLife';
 
 import Wrap from '../Wrap';
 
@@ -12,8 +14,9 @@ interface Props {
 }
 
 const Guide: React.FC<Props> = ({ onClick, visible, showText, color }) => {
+    const data = useSnapshot(store);
     return (
-        <Wrap visible={visible} onClick={onClick}>
+        <Wrap visible={visible && !data.hideGuide} onClick={onClick}>
             <mesh>
                 <Line
                     points={[
@@ -21,7 +24,7 @@ const Guide: React.FC<Props> = ({ onClick, visible, showText, color }) => {
                         [100000, 0, 0],
                     ]}
                     color={color}
-                    lineWidth={3}
+                    lineWidth={data.hideGuide ? 0 : data.guideWidth}
                 />
                 {showText && <>
                     <mesh position={[-900, 16, 28]}>

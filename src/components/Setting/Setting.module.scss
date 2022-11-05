@@ -31,3 +31,17 @@
         }
     }
 }
+
+.size {
+    background-color: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    border-radius: 10px;
+}
+
+.slide {
+    width: 200px;
+    margin-left: 0px;
+}
