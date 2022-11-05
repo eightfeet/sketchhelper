@@ -29,7 +29,7 @@ const Setting:React.FC<Props> = () => {
             visible: false,
         }));
         store.list.push({
-            name: 'box',
+            name: 'shaped',
             opacity: 1,
             showEdige: false,
             visible: true,
