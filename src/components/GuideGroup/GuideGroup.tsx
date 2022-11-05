@@ -85,6 +85,7 @@ const GuideGroup: React.FC<Props> = ({ radius=1, segments=60, color='#ff0', line
                 color={color}
                 lineWidth={lineWidth}
             />
+            
         </group>
     )
 }
