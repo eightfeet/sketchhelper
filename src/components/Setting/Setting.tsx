@@ -124,6 +124,14 @@ const Setting: React.FC<Props> = () => {
                         >
                             <RedoOutline />
                         </Button>
+                        <ColorPicker
+                                
+                                onChange={(e) => {
+                                    store.planeColor = e;
+                                }}
+                                color={data.planeColor}
+                                colors={['#222', '#333', '#555', '#666', '#777', '#888', '#999', '#AAA', '#CCC', '#eee']}
+                            />
                     </Space>
                     <br />
                     <Space align="center" block>
@@ -265,10 +273,10 @@ const Setting: React.FC<Props> = () => {
                     <Form.Item name="opacity" label="透明度">
                         <Slider ticks step={0.1} min={0} max={1} />
                     </Form.Item>
-                    <Form.Item name="showEdige" label="显示边框">
+                    <Form.Item name="showEdige" label="显示边框" valuePropName='checked'>
                         <Switch uncheckedText="关" checkedText="开" />
                     </Form.Item>
-                    <Form.Item name="shadow" label="显示/接受投影">
+                    <Form.Item name="shadow" label="显示/接受投影" valuePropName='checked'>
                         <Switch uncheckedText="关" checkedText="开" />
                     </Form.Item>
                 </Form>

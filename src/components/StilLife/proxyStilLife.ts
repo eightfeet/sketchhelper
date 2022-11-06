@@ -39,14 +39,16 @@ export const store = proxy<{
   autoRotate?: boolean;
   hideGuide: boolean;
   guideWidth: number;
+  planeColor: string;
 }>({
   list: [],
   current: undefined,
   currentGuid: undefined,
   guide: [],
   autoRotate: false,
-  hideGuide: true,
-  guideWidth: 1.5
+  hideGuide: false,
+  guideWidth: 1.5,
+  planeColor: '#666'
 })
 
 export const unvisibleData = () => {

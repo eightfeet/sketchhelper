@@ -196,7 +196,7 @@ export default function StilLife() {
                     position={[0, -1, 0]}
                     args={[10000, 10000]}
                 >
-                    <meshStandardMaterial fog color="#444" />
+                    <meshStandardMaterial fog color={data.planeColor} />
                 </Plane>
                 <OrbitControls
                     makeDefault

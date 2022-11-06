@@ -5,10 +5,11 @@ import s from './ColorPicker.module.scss';
 
 interface Props {
     color: string;
+    colors?: string[];
     onChange: (color:string) => void;
 }
 
-const ColorPicker:React.FC<Props> = ({ color, onChange }) => {
+const ColorPicker:React.FC<Props> = ({ color, onChange, colors }) => {
     const [displayColorPicker, setDisplayColorPicker] = useState(false);
     const handleCoveClick = useCallback(
       (e: React.MouseEvent<HTMLDivElement>) => {
@@ -32,7 +33,7 @@ const ColorPicker:React.FC<Props> = ({ color, onChange }) => {
             {displayColorPicker ? <div className={s.pickerwrap}>
                 <div className={s.cover} onClick={handleCoveClick} />
                 <br />
-                <TwitterPicker onChange={handleChange} />
+                <TwitterPicker colors={colors} onChange={handleChange} />
             </div> : null}
         </div>
     )
