@@ -1,7 +1,5 @@
 import { Center, Edges, useGLTF } from '@react-three/drei';
 import React from 'react';
-import GuideCircle from '../GuideCircle';
-import GuideGroup from '../GuideGroup';
 
 interface Props {
     position?: number[];
@@ -45,9 +43,6 @@ const Shape: React.FC<Props> = ({ position, opacity, showEdige, name }) => {
                         color="red"
                     />
                 )}
-                <group>
-                    <GuideCircle radius={1.5} />
-                </group>
             </mesh>
         </Center>
     );

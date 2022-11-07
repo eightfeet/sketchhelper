@@ -9,9 +9,12 @@ interface Props extends GroupProps {
     cross?: boolean;
     color?: string;
     outerRing?: boolean;
+    innerRing?: boolean;
     extend?: number;
+    extendRadius?: number;
     extendCone?: boolean;
     lineWidth?: number;
+    extendLine?: boolean;
 }
 
 const CircleCross: React.FC<Props> = ({
@@ -21,17 +24,21 @@ const CircleCross: React.FC<Props> = ({
     cross,
     color = '#000',
     outerRing,
+    extendRadius,
     extendCone,
-    lineWidth=1.5,
+    lineWidth = 1.5,
+    innerRing = true,
+    extendLine = true,
     ...other
 }) => {
     const points = new THREE.Path()
         .absarc(0, 0, radius, 0, Math.PI * 2, true)
         .getSpacedPoints(segments);
+
     const renderCross = useCallback(
-        () => {
-            if (points.length % 2 === 0 || cross !== true) return null;
-            const crossPoints = points.slice(1);
+        (p = points) => {
+            if (p.length % 2 === 0 || cross !== true) return null;
+            const crossPoints = p.slice(1);
             const linesNode: React.ReactNode[] = [];
             const half = crossPoints.length / 2;
             for (let index = 0; index < half; index++) {
@@ -55,36 +62,48 @@ const CircleCross: React.FC<Props> = ({
     );
 
     const renderOuterRing = useCallback(
-        () =>
+        (rad = radius) =>
             outerRing ? (
                 <Line
                     rotation={[0, 0, 0]}
                     points={new THREE.Path()
-                        .absarc(0, 0, radius, 0, Math.PI * 2, true)
+                        .absarc(0, 0, rad, 0, Math.PI * 2, true)
                         .getSpacedPoints(60)}
                     color={color}
                     lineWidth={lineWidth}
                 />
             ) : null,
-        [color, outerRing, radius, lineWidth]
+        [radius, outerRing, color, lineWidth]
     );
 
     const renderExtends = useCallback(() => {
         if (!extend) return null;
         const crossPoints = points.slice(1);
         const extendNode: React.ReactNode[] = [];
+        const extendPoints =
+            extendRadius !== undefined
+                ? new THREE.Path()
+                      .absarc(0, 0, extendRadius, 0, Math.PI * 2, true)
+                      .getSpacedPoints(segments)
+                : points;
+        const extendCrossPoints = extendPoints.slice(1);
+
         crossPoints.forEach((element, index) => {
-            extendNode.push(
-                <Line
-                    color={color}
-                    key={index}
-                    lineWidth={lineWidth}
-                    points={[
-                        [element.x, element.y, 0],
-                        [element.x, element.y, extend],
-                    ]}
-                />
-            );
+            const topItem = extendCrossPoints[index];
+            if (extendLine) {
+                extendNode.push(
+                    <Line
+                        color={color}
+                        key={index}
+                        lineWidth={lineWidth}
+                        points={[
+                            [element.x, element.y, 0],
+                            [topItem.x, topItem.y, extend],
+                        ]}
+                    />
+                );
+            }
+            
             if (extendCone) {
                 extendNode.push(
                     <Line
@@ -99,39 +118,47 @@ const CircleCross: React.FC<Props> = ({
                 );
             }
         });
-        extendNode.push(<Line
-            key={crossPoints.length + 1}
-            rotation={[0, 0, 0]}
-            points={[[0,0,0],[0,0,extend]]}
-            color={color}
-            lineWidth={lineWidth}
-        />)
+        cross && extendLine && extendNode.push(
+            <Line
+                key={crossPoints.length + 1}
+                rotation={[0, 0, 0]}
+                points={[
+                    [0, 0, 0],
+                    [0, 0, extend],
+                ]}
+                color={color}
+                lineWidth={lineWidth}
+            />
+        );
+
         extendNode.push(
-            <group key="extendcap" position={[0,0,extend]}>
-                {renderCross()}
-                {renderOuterRing()}
-                <Line
+            <group key="extendcap" position={[0, 0, extend]}>
+                {renderCross(extendPoints)}
+                {renderOuterRing(extendRadius)}
+                {innerRing && <Line
+                    rotation={[0, 0, 0]}
+                    points={extendPoints}
+                    color={color}
+                    lineWidth={lineWidth}
+                />}
+            </group>
+        );
+        return extendNode;
+    }, [extend, points, extendRadius, segments, cross, color, lineWidth, renderCross, renderOuterRing, innerRing, extendCone]);
+
+    return (
+        <group {...other}>
+            <group rotation={[-1.57, 0, 0]} position={[0,-1,0]}>
+                {innerRing && <Line
                     rotation={[0, 0, 0]}
                     points={points}
                     color={color}
                     lineWidth={lineWidth}
-                />
+                />}
+                {renderOuterRing()}
+                {renderCross()}
+                {renderExtends()}
             </group>
-        );
-        return extendNode;
-    }, [color, extend, extendCone, points, renderCross, renderOuterRing]);
-
-    return (
-        <group {...other}>
-            <Line
-                rotation={[0, 0, 0]}
-                points={points}
-                color={color}
-                lineWidth={lineWidth}
-            />
-            {renderOuterRing()}
-            {renderCross()}
-            {renderExtends()}
         </group>
     );
 };
