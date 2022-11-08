@@ -87,8 +87,6 @@ const Setting: React.FC<Props> = () => {
                 ...item,
                 ...(ind === store.current ? data : {}),
             }));
-            console.log('store.list',);
-
         }
     }, [form]);
 
