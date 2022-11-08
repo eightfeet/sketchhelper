@@ -3,6 +3,7 @@ export const objList = [
     { name: 'sphere', label: '球', thumbnail: './glb/thumbnail/sphere.png'  },
     { name: 'cone', label: '园锥体', thumbnail: './glb/thumbnail/cone.png'  },
     { name: 'cylinder', label: '园柱体', thumbnail: './glb/thumbnail/cylinder.png'  },
+    { name: 'cylindereight', label: '八棱柱体', thumbnail: './glb/thumbnail/cylinder.png'  },
     { name: 'shapea', label: '形状a', thumbnail: './glb/thumbnail/shapea.png'  },
     { name: 'shapeb', label: '形状b', thumbnail: './glb/thumbnail/shapeb.png'  },
     { name: 'shapec', label: '形状c', thumbnail: './glb/thumbnail/shapec.png'  },

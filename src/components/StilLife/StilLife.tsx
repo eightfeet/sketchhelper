@@ -21,6 +21,7 @@ import {
 } from 'antd-mobile';
 import Guide from '../Guide';
 import Setting from '../Setting';
+import CylinderEight from '../CylinderEight';
 
 softShadows();
 
@@ -120,6 +121,7 @@ export default function StilLife() {
                             {name === 'cone' && <Cone {...other} />}
                             {name === 'sphere' && <Sphere {...other} />}
                             {name === 'cylinder' && <Cylinder {...other} />}
+                            {name === 'cylindereight' && <CylinderEight {...other} />}
                             {name === 'shapea' && <Shape name="shapea" {...other} />}
                             {name === 'shapeb' && <Shape name="shapeb" {...other} />}
                             {name === 'shapec' && <Shape name="shapec" {...other} />}

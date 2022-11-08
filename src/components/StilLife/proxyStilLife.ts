@@ -1,7 +1,19 @@
 import { proxy } from 'valtio'
 
 type ListType = {
-  name: 'bottle' | 'box' | 'cone' | 'sphere' | 'shapea' | 'shapeb' | 'shapec' | 'shaped' | 'cylinder' | 'coffeeCup' | 'bust' | 'apple' | 'foot' | 'venus' |
+  name: 
+  'bottle' | 
+  'box' | 
+  'cone' | 
+  'sphere' | 
+  'shapea' | 
+  'shapeb' | 
+  'shapec' | 
+  'shaped' | 
+  'cylinder' | 
+  'cylindereight' |
+  'coffeeCup' | 
+  'bust' | 'apple' | 'foot' | 'venus' |
   'bowl' |
   'butterknife' |
   'cup' |
