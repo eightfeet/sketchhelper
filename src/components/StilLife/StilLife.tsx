@@ -102,6 +102,7 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
+                <Shape name={'shapea'} opacity={0.1} showEdige />
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
                         key={index}
