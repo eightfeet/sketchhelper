@@ -31,16 +31,17 @@ const CylinderEight: React.FC<Props> = ({
                     <CircleCross
                         lineWidth={2.5}
                         color="red"
+                        radius={1.01}
                         cross
                         extend={3}
                         position={[0, -0.5, 0]}
                     />
                     <CircleCross
-                        radius={0.94}
+                        radius={0.93}
                         color="#666"
                         innerRing={false}
                         outerRing={false}
-                        rotation={[0, 1.19, 0]}
+                        rotation={[0, 1.175, 0]}
                         lineWidth={2.5}
                         cross
                         extend={3}
