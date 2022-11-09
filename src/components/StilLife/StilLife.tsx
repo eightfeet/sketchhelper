@@ -37,6 +37,7 @@ const Bottle = React.lazy(() => import('../Bottle'));
 const KitchenGroup = React.lazy(() => import('../KitchenGroup'));
 const FruitsGroup = React.lazy(() => import('../FruitsGroup'));
 const Shape = React.lazy(() => import('../Shape'));
+const ConeCross = React.lazy(() => import('../obj/ConeCross'));
 
 export default function StilLife() {
     const data = useSnapshot(store);
@@ -135,6 +136,7 @@ export default function StilLife() {
                             {name === 'foot' && <Foot {...other} />}
                             {name === 'venus' && <Venus {...other} />}
                             {name === 'bottle' && <Bottle {...other} />}
+                            {name === 'conecross' && <ConeCross {...other} />}
                             {name === 'apple' && (
                                 <FruitsGroup name="Apple" {...other} />
                             )}

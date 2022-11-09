@@ -21,7 +21,7 @@ const Shape: React.FC<Props> = ({ position, opacity, showEdige, name, shadow }) 
     const groups = {
         shapea: [nodes.shapea.geometry, [0, 0, 0], 0.5],
         shapeb: [nodes.shapeb.geometry, [1.23, 0.72, 0.5], 0.5],
-        shapec: [nodes.shapec.geometry, [1.58, 0, 0.8], 0.5],
+        shapec: [nodes.shapec.geometry, [1.58, 0, 0.8]],
         shaped: [nodes.shaped.geometry, [0, 0, 0], 0.5],
     }
 
@@ -47,7 +47,7 @@ const Shape: React.FC<Props> = ({ position, opacity, showEdige, name, shadow }) 
                         <group scale={0.5} position={[0,-0.09,0]}>
                             <CircleCross radius={2.35} extendRadius={1.215} rotation={[0, 0.526, 0]} segments={6} position={[0, -1.8, 0]} color="red"  cross extend={2.1} lineWidth={2} />
                             <CircleCross radius={2.35} extendRadius={0} rotation={[0, 0.526, 0]} segments={6} position={[0, -1.8, 0]} color="red" extendCone cross extend={4.35} lineWidth={2} />
-                            <SquareCross color='gray' width={4.1} height={4.7} position={[0,-1.8,0]} />
+                            <SquareCross color='gray' cross={['diagonal']} diagonalExtend={false} extend={4.35} width={4.1} height={4.7} position={[0,-1.8,0]} />
                         </group>
                     }
                 </>

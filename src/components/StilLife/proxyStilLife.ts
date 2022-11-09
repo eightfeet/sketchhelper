@@ -5,6 +5,7 @@ type ListType = {
   'bottle' | 
   'box' | 
   'cone' | 
+  'conecross' |
   'sphere' | 
   'shapea' | 
   'shapeb' | 
