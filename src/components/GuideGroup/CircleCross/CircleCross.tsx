@@ -144,11 +144,11 @@ const CircleCross: React.FC<Props> = ({
             </group>
         );
         return extendNode;
-    }, [extend, points, extendRadius, segments, cross, color, lineWidth, renderCross, renderOuterRing, innerRing, extendCone]);
+    }, [extend, points, extendRadius, segments, cross, extendLine, color, lineWidth, renderCross, renderOuterRing, innerRing, extendCone]);
 
     return (
         <group {...other}>
-            <group rotation={[-1.57, 0, 0]} position={[0,-1,0]}>
+            <group rotation={[-1.57, 0, 0]} position={[0,0,0]}>
                 {innerRing && <Line
                     rotation={[0, 0, 0]}
                     points={points}

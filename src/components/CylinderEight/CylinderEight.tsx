@@ -34,7 +34,7 @@ const CylinderEight: React.FC<Props> = ({
                         radius={1.01}
                         cross
                         extend={3}
-                        position={[0, -0.5, 0]}
+                        position={[0, -1.5, 0]}
                     />
                     <CircleCross
                         radius={0.93}
@@ -45,7 +45,7 @@ const CylinderEight: React.FC<Props> = ({
                         lineWidth={2.5}
                         cross
                         extend={3}
-                        position={[0, -0.5, 0]}
+                        position={[0, -1.5, 0]}
                         segments={4}
                     />
                     <CircleCross
@@ -55,7 +55,7 @@ const CylinderEight: React.FC<Props> = ({
                         radius={1.32}
                         rotation={[0, 0.39, 0]}
                         segments={4}
-                        position={[0, -0.5, 0]}
+                        position={[0, -1.5, 0]}
                     />
                 </group>
             )}

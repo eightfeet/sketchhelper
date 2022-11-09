@@ -22,6 +22,8 @@ import {
 import Guide from '../Guide';
 import Setting from '../Setting';
 import CylinderEight from '../CylinderEight';
+import SquareCross from '../GuideGroup/SquareCross';
+import CircleCross from '../GuideGroup/CircleCross';
 
 softShadows();
 

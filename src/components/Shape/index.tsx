@@ -1,6 +1,7 @@
 import { Center, Line, useGLTF } from '@react-three/drei';
 import React from 'react';
 import CircleCross from '../GuideGroup/CircleCross';
+import SquareCross from '../GuideGroup/SquareCross';
 
 interface Props {
     position?: number[];
@@ -43,23 +44,10 @@ const Shape: React.FC<Props> = ({ position, opacity, showEdige, name, shadow }) 
             {!!showEdige && (
                 <>
                     {name === 'shapea' &&
-                        <group scale={0.5} position={[0,0.09,0]}>
-                            <CircleCross radius={2.35} extendRadius={1.215} rotation={[0, 0.526, 0]} segments={6} position={[0, -1.18, 0]} color="red"  cross extend={2.1} lineWidth={2} />
-                            <CircleCross radius={2.35} extendRadius={0} rotation={[0, 0.526, 0]} segments={6} position={[0, -1.18, 0]} color="red" extendCone cross extend={4.35} lineWidth={2} />
-                            <Line position={[2.045, -2.19, 0]}
-                                color="#666"
-                                lineWidth={2}
-                                points={[
-                                    [0, 0, -2.35],
-                                    [0, 0, 2.35],
-                                    [-4.09, 0, 2.35],
-                                    [-4.09, 0, -2.35],
-                                    [0, 0, -2.35],
-                                    [-4.09, 0, 2.35],
-                                    [-4.09, 0, -2.35],
-                                    [0, 0, 2.35],
-                                ]}
-                            />
+                        <group scale={0.5} position={[0,-0.09,0]}>
+                            <CircleCross radius={2.35} extendRadius={1.215} rotation={[0, 0.526, 0]} segments={6} position={[0, -1.8, 0]} color="red"  cross extend={2.1} lineWidth={2} />
+                            <CircleCross radius={2.35} extendRadius={0} rotation={[0, 0.526, 0]} segments={6} position={[0, -1.8, 0]} color="red" extendCone cross extend={4.35} lineWidth={2} />
+                            <SquareCross color='gray' width={4.1} height={4.7} position={[0,-1.8,0]} />
                         </group>
                     }
                 </>

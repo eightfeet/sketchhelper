@@ -29,7 +29,7 @@ const Cone: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
             <CircleCross
                 segments={4}
                 cross
-                position={[0, -0.245, 0]}
+                position={[0, -1.245, 0]}
                 color={'red'}
                 extend={2.5}
                 extendRadius={0}
@@ -41,7 +41,7 @@ const Cone: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
             <CircleCross
                 segments={4}
                 cross
-                position={[0, -0.245, 0]}
+                position={[0, -1.245, 0]}
                 color={'red'}
                 extend={1.2}
                 extendRadius={0.52}
@@ -54,7 +54,7 @@ const Cone: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
                 segments={4}
                 color={'#666'}
                 cross
-                position={[0, -0.245, 0]}
+                position={[0, -1.245, 0]}
                 rotation={[0,0.79,0]}
                 extend={2.5}
                 extendCone
@@ -65,7 +65,7 @@ const Cone: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
                 segments={4}
                 color={'#666'}
                 cross
-                position={[0, 0.955, 0]}
+                position={[0, -0.045, 0]}
                 rotation={[0,0.79,0]}
                 radius={0.735}
                 lineWidth={2}
