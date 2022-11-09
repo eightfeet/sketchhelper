@@ -1,6 +1,4 @@
-import { Line } from '@react-three/drei';
 import React from 'react';
-import GuideGroup from '../GuideGroup';
 import CircleCross from '../GuideGroup/CircleCross';
 
 interface Props {
