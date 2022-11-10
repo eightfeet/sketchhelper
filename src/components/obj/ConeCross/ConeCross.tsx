@@ -1,6 +1,7 @@
-import { Center, Line, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import React from 'react';
 import CircleCross from '~/components/GuideGroup/CircleCross';
+import SquareCross from '~/components/GuideGroup/SquareCross';
 
 interface Props {
     position?: number[];
@@ -47,8 +48,10 @@ const ConeCross: React.FC<Props> = ({ position, opacity, showEdige, shadow }) =>
             
             {!!showEdige && (
                 <>
-                    <CircleCross cross extendRadius={0} radius={1.01} extendCone innerRing={false} outerRing position={[0,-1,0]} extend={2.52} segments={4} />
-                    <CircleCross cross extendRadius={0} radius={1.01} extendCone innerRing={false} outerRing position={[0,-1,0]} extend={2.52} segments={4} />
+                    <CircleCross lineWidth={2.0} cross extendRadius={0} radius={1.01} extendCone innerRing={false} outerRing position={[0,-1,0]} extend={2.52} segments={4} />
+                    <SquareCross lineWidth={2.0} width={2.01} height={2.01} position={[0,-1,0]} extend={2.52} color="#777" />
+                    <SquareCross lineWidth={2.0} width={0.92} height={0.92} rotation={[1.57,0,0]} position={[0,0.26,-1]} extend={2.0} color="#777" />
+                    <CircleCross lineWidth={2.0} radius={0.465} cross rotation={[1.57,0,0]} innerRing={false} outerRing position={[0,0.26,-1]} extend={2.0} segments={4}  />
                 </>
             )}
         </>
