@@ -8,7 +8,7 @@ type ListType = {
   'conecross' |
   'sphere' | 
   'shapea' | 
-  'shapeb' | 
+  'conecrossfourside' | 
   'shapec' | 
   'shaped' | 
   'cylinder' | 

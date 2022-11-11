@@ -22,8 +22,6 @@ import {
 import Guide from '../Guide';
 import Setting from '../Setting';
 import CylinderEight from '../CylinderEight';
-import SquareCross from '../GuideGroup/SquareCross';
-import CircleCross from '../GuideGroup/CircleCross';
 
 softShadows();
 
@@ -38,6 +36,8 @@ const KitchenGroup = React.lazy(() => import('../KitchenGroup'));
 const FruitsGroup = React.lazy(() => import('../FruitsGroup'));
 const Shape = React.lazy(() => import('../Shape'));
 const ConeCross = React.lazy(() => import('../obj/ConeCross'));
+const ConeCrossFourSide = React.lazy(() => import('../obj/ConeCrossFourSide'));
+
 
 export default function StilLife() {
     const data = useSnapshot(store);
@@ -126,7 +126,7 @@ export default function StilLife() {
                             {name === 'cylinder' && <Cylinder {...other} />}
                             {name === 'cylindereight' && <CylinderEight {...other} />}
                             {name === 'shapea' && <Shape name="shapea" {...other} />}
-                            {name === 'shapeb' && <Shape name="shapeb" {...other} />}
+                            {name === 'conecrossfourside' && <ConeCrossFourSide {...other} />}
                             {name === 'shapec' && <Shape name="shapec" {...other} />}
                             {name === 'shaped' && <Shape name="shaped" {...other} />}
                             

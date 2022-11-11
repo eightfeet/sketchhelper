@@ -1,4 +1,4 @@
-import { Center, Line, useGLTF } from '@react-three/drei';
+import { Center, useGLTF } from '@react-three/drei';
 import React from 'react';
 import CircleCross from '../GuideGroup/CircleCross';
 import SquareCross from '../GuideGroup/SquareCross';
@@ -41,6 +41,43 @@ const Shape: React.FC<Props> = ({ position, opacity, showEdige, name, shadow }) 
                     <meshStandardMaterial transparent opacity={opacity} roughness={0.7} metalness={0.25} envMapIntensity={0.5} />
                 </mesh>
             </Center>
+
+            <CircleCross 
+                lineWidth={2.0} 
+                rotation={[0,1.195,0]}
+                cross 
+                extendRadius={0} 
+                radius={0.93} 
+                extendCone 
+                innerRing
+                outerRing={false} 
+                position={[0, -1.005, 0]} 
+                extend={2.3} color="gray" 
+                segments={4} 
+                />
+            {/* <SquareCross 
+                color='gray' 
+                cross={['diagonal']} 
+                diagonalExtend={false} 
+                extend={2.3} 
+                rotation={[0,0.41,0]}
+                width={1.33} 
+                height={1.33} 
+                position={[0,-1.015,0]} 
+                />
+                <group rotation={[0,0,0.9]}>
+                    <SquareCross 
+                        lineWidth={2.0} 
+                        width={0.62} 
+                        height={0.62} 
+                        rotation={[0, 0.4, 0]} 
+                        position={[0, 0, 0]} 
+                        extend={1.9} 
+                        color="#777" 
+                        />
+                </group> */}
+            
+
             {!!showEdige && (
                 <>
                     {name === 'shapea' &&
