@@ -7,7 +7,7 @@ export const objList = [
     { name: 'shapea', label: '形状a', thumbnail: './glb/thumbnail/shapea.png'  },
     { name: 'conecrossfourside', label: '形状b', thumbnail: './glb/thumbnail/shapeb.png'  },
     { name: 'conecross', label: '圆锥穿插体', thumbnail: './glb/thumbnail/shapec.png'  },
-    { name: 'shaped', label: '形状d', thumbnail: './glb/thumbnail/shaped.png'  },
+    { name: 'boxcross', label: '十字穿插体', thumbnail: './glb/thumbnail/shaped.png'  },
     { name: 'coffeeCup', label: '咖啡杯', thumbnail: './glb/thumbnail/coffeeCup.png'  },
     { name: 'bust', label: '石膏像', thumbnail: './glb/thumbnail/bust.png'  },
     { name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png'  },

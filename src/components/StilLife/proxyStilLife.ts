@@ -10,7 +10,7 @@ type ListType = {
   'shapea' | 
   'conecrossfourside' | 
   'shapec' | 
-  'shaped' | 
+  'boxcross' | 
   'cylinder' | 
   'cylindereight' |
   'coffeeCup' | 

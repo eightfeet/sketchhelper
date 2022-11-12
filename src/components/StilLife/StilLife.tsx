@@ -37,6 +37,7 @@ const FruitsGroup = React.lazy(() => import('../FruitsGroup'));
 const Shape = React.lazy(() => import('../Shape'));
 const ConeCross = React.lazy(() => import('../obj/ConeCross'));
 const ConeCrossFourSide = React.lazy(() => import('../obj/ConeCrossFourSide'));
+const BoxCross = React.lazy(() => import('../obj/BoxCross'));
 
 
 export default function StilLife() {
@@ -128,7 +129,7 @@ export default function StilLife() {
                             {name === 'shapea' && <Shape name="shapea" {...other} />}
                             {name === 'conecrossfourside' && <ConeCrossFourSide {...other} />}
                             {name === 'shapec' && <Shape name="shapec" {...other} />}
-                            {name === 'shaped' && <Shape name="shaped" {...other} />}
+                            {name === 'boxcross' && <BoxCross {...other} />}
                             
                             {name === 'coffeeCup' && <CoffeeCup {...other} />}
                             {name === 'bust' && <Bust {...other} />}

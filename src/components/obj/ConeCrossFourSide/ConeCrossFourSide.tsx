@@ -57,7 +57,7 @@ const ConeCrossFourSide: React.FC<Props> = ({
                     extendCone
                     position={[0, -1.45, 0]}
                     extend={2.77}
-                    color="#777"
+                    color="#f00"
                     segments={4}
                 />
                 <SquareCross
@@ -77,7 +77,7 @@ const ConeCrossFourSide: React.FC<Props> = ({
                     extendCone
                     position={[0, -1.45, 0]}
                     extend={2.77}
-                    color="#777"
+                    color="#f00"
                     segments={4}
                 />
                 <CircleCross
