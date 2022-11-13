@@ -29,4 +29,5 @@ export const objList = [
     { name: 'pear', label: '梨', thumbnail: './glb/thumbnail/pear.png'  },
     { name: 'apricot', label: '杏子', thumbnail: './glb/thumbnail/apricot.png'  },
     { name: 'banana', label: '香蕉', thumbnail: './glb/thumbnail/banana.png'  },
+    { name: 'goblet', label: '高脚杯', thumbnail: './glb/thumbnail/goblet.png'  },
 ];

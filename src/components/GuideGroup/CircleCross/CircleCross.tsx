@@ -6,7 +6,7 @@ import { GroupProps } from '@react-three/fiber';
 interface Props extends GroupProps {
     radius?: number;
     segments?: number;
-    cross?: boolean;
+    cross?: boolean | number;
     color?: string;
     outerRing?: boolean;
     innerRing?: boolean;
@@ -37,7 +37,7 @@ const CircleCross: React.FC<Props> = ({
 
     const renderCross = useCallback(
         (p = points) => {
-            if (p.length % 2 === 0 || cross !== true) return null;
+            if (p.length % 2 === 0 || !cross) return null;
             const crossPoints = p.slice(1);
             const linesNode: React.ReactNode[] = [];
             const half = crossPoints.length / 2;
@@ -68,7 +68,7 @@ const CircleCross: React.FC<Props> = ({
                     rotation={[0, 0, 0]}
                     points={new THREE.Path()
                         .absarc(0, 0, rad, 0, Math.PI * 2, true)
-                        .getSpacedPoints(60)}
+                        .getSpacedPoints(4)}
                     color={color}
                     lineWidth={lineWidth}
                 />

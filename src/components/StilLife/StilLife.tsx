@@ -22,6 +22,7 @@ import {
 import Guide from '../Guide';
 import Setting from '../Setting';
 import CylinderEight from '../CylinderEight';
+import WineBottle from '../obj/wineBottle';
 
 softShadows();
 
@@ -38,6 +39,7 @@ const Shape = React.lazy(() => import('../Shape'));
 const ConeCross = React.lazy(() => import('../obj/ConeCross'));
 const ConeCrossFourSide = React.lazy(() => import('../obj/ConeCrossFourSide'));
 const BoxCross = React.lazy(() => import('../obj/BoxCross'));
+const Goblet = React.lazy(() => import('../obj/Goblet'));
 
 
 export default function StilLife() {
@@ -106,6 +108,7 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
+                <WineBottle opacity={0.6}  />
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
                         key={index}
@@ -130,7 +133,8 @@ export default function StilLife() {
                             {name === 'conecrossfourside' && <ConeCrossFourSide {...other} />}
                             {name === 'shapec' && <Shape name="shapec" {...other} />}
                             {name === 'boxcross' && <BoxCross {...other} />}
-                            
+
+                            {name === 'goblet' && <Goblet {...other} />}
                             {name === 'coffeeCup' && <CoffeeCup {...other} />}
                             {name === 'bust' && <Bust {...other} />}
                             {name === 'apple' && <Apple {...other} />}

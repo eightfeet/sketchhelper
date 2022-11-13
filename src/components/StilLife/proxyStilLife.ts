@@ -31,7 +31,8 @@ type ListType = {
   'apricot' |
   'banana' |
   'pumpkin' |
-  'scene',
+  'scene' |
+  'goblet',
   opacity: number,
   showEdige: boolean,
   visible: boolean,

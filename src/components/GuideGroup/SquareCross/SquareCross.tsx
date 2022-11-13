@@ -65,6 +65,8 @@ const SquareCross:React.FC<Props> = ({
 
     const renderY = () => {
         return <group position={[0, 0, 0]}>
+            <Line lineWidth={lineWidth} color={color} points={[[width/2,0,height/2],[width/2,extend,height/2]]} />
+
             {
                 crossExtend &&
                 <>
@@ -78,7 +80,6 @@ const SquareCross:React.FC<Props> = ({
             {
                 diagonalExtend &&
                 <>
-                    <Line lineWidth={lineWidth} color={color} points={[[width/2,0,height/2],[width/2,extend,height/2]]} />
                     <Line lineWidth={lineWidth} color={color} points={[[width/2,0,height],[width/2,extend,height]]} />
                     <Line lineWidth={lineWidth} color={color} points={[[width/2,0,0],[width/2,extend,0]]} />
                     <Line lineWidth={lineWidth} color={color} points={[[0,0,height/2],[0,extend,height/2]]} />
