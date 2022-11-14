@@ -12,6 +12,7 @@ interface Props extends GroupProps {
     diagonalExtend?:boolean,
     color?: string,
     lineWidth?: number,
+    axis?: boolean,
 }
 
 const SquareCross:React.FC<Props> = ({
@@ -24,6 +25,7 @@ const SquareCross:React.FC<Props> = ({
     diagonalExtend = true,
     color="#555",
     lineWidth=2,
+    axis=true,
     ...other
 }) => {
     const renderSquare = () => {
@@ -65,7 +67,7 @@ const SquareCross:React.FC<Props> = ({
 
     const renderY = () => {
         return <group position={[0, 0, 0]}>
-            <Line lineWidth={lineWidth} color={color} points={[[width/2,0,height/2],[width/2,extend,height/2]]} />
+            {axis && <Line lineWidth={lineWidth} color={color} points={[[width/2,0,height/2],[width/2,extend,height/2]]} />}
 
             {
                 crossExtend &&
@@ -74,7 +76,6 @@ const SquareCross:React.FC<Props> = ({
                     <Line lineWidth={lineWidth} color={color} points={[[width,0,0],[width,extend,0]]} />
                     <Line lineWidth={lineWidth} color={color} points={[[width,0,height],[width,extend,height]]} />
                     <Line lineWidth={lineWidth} color={color} points={[[0,0,height],[0,extend,height]]} />
-                    <Line lineWidth={lineWidth} color={color} points={[[width/2,0,height/2],[width/2,extend,height/2]]} />
                 </>
             }
             {

@@ -22,7 +22,7 @@ import {
 import Guide from '../Guide';
 import Setting from '../Setting';
 import CylinderEight from '../CylinderEight';
-import WineBottle from '../obj/wineBottle';
+import CupHandle from '../obj/CupHandle';
 
 softShadows();
 
@@ -40,6 +40,7 @@ const ConeCross = React.lazy(() => import('../obj/ConeCross'));
 const ConeCrossFourSide = React.lazy(() => import('../obj/ConeCrossFourSide'));
 const BoxCross = React.lazy(() => import('../obj/BoxCross'));
 const Goblet = React.lazy(() => import('../obj/Goblet'));
+const WineBottle = React.lazy(() => import('../obj/WineBottle'));
 
 
 export default function StilLife() {
@@ -108,7 +109,6 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
-                <WineBottle opacity={0.6}  />
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
                         key={index}
@@ -133,7 +133,8 @@ export default function StilLife() {
                             {name === 'conecrossfourside' && <ConeCrossFourSide {...other} />}
                             {name === 'shapec' && <Shape name="shapec" {...other} />}
                             {name === 'boxcross' && <BoxCross {...other} />}
-
+                            {name === 'winebottle' && <WineBottle {...other} />}
+                            {name === 'cuphandle' && <CupHandle {...other} />}
                             {name === 'goblet' && <Goblet {...other} />}
                             {name === 'coffeeCup' && <CoffeeCup {...other} />}
                             {name === 'bust' && <Bust {...other} />}
@@ -162,9 +163,6 @@ export default function StilLife() {
                             )}
                             {name === 'cup' && (
                                 <KitchenGroup name="Cup" {...other} />
-                            )}
-                            {name === 'cuphandle' && (
-                                <KitchenGroup name="CupHandle" {...other} />
                             )}
                             {name === 'fork' && (
                                 <KitchenGroup name="Fork" {...other} />
