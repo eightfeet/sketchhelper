@@ -41,6 +41,7 @@ const ConeCrossFourSide = React.lazy(() => import('../obj/ConeCrossFourSide'));
 const BoxCross = React.lazy(() => import('../obj/BoxCross'));
 const Goblet = React.lazy(() => import('../obj/Goblet'));
 const WineBottle = React.lazy(() => import('../obj/WineBottle'));
+const Icosahedron = React.lazy(() => import('../obj/Icosahedron'));
 
 
 export default function StilLife() {
@@ -133,6 +134,9 @@ export default function StilLife() {
                             {name === 'conecrossfourside' && <ConeCrossFourSide {...other} />}
                             {name === 'shapec' && <Shape name="shapec" {...other} />}
                             {name === 'boxcross' && <BoxCross {...other} />}
+                            {name === 'icosahedron' && <Icosahedron {...other} />}
+
+                            
                             {name === 'winebottle' && <WineBottle {...other} />}
                             {name === 'cuphandle' && <CupHandle {...other} />}
                             {name === 'goblet' && <Goblet {...other} />}

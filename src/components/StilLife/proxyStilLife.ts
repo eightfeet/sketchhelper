@@ -1,19 +1,20 @@
 import { proxy } from 'valtio'
 
 type ListType = {
-  name: 
-  'bottle' | 
-  'box' | 
-  'cone' | 
+  name:
+  'bottle' |
+  'box' |
+  'cone' |
   'conecross' |
-  'sphere' | 
-  'shapea' | 
-  'conecrossfourside' | 
-  'shapec' | 
-  'boxcross' | 
-  'cylinder' | 
+  'sphere' |
+  'shapea' |
+  'conecrossfourside' |
+  'shapec' |
+  'boxcross' |
+  'icosahedron' |
+  'cylinder' |
   'cylindereight' |
-  'coffeeCup' | 
+  'coffeeCup' |
   'bust' | 'apple' | 'foot' | 'venus' |
   'bowl' |
   'butterknife' |
@@ -47,10 +48,10 @@ type GuideType = {
 }[]
 
 export const store = proxy<{
-  list: ListType; 
-  guide: GuideType, 
-  current?: number; 
-  currentGuid?: number; 
+  list: ListType;
+  guide: GuideType,
+  current?: number;
+  currentGuid?: number;
   autoRotate?: boolean;
   hideGuide: boolean;
   guideWidth: number;
