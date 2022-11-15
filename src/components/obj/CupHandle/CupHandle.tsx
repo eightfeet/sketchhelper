@@ -60,6 +60,16 @@ const CupHandle: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...gr
                         diagonalExtend={false}
                         position={[1.05, -0.75, 0.01]}
                         cross={[]} width={0.58} height={0.25} extend={1.12} />
+                    <SquareCross
+                        diagonalExtend={false}
+                        position={[1.08, -0.5, 0.13]}
+                        color="#eee"
+                        cross={[]} width={1} rotation={[0, 0, 0.8]} height={0} extend={0} />
+                    <SquareCross
+                        diagonalExtend={false}
+                        position={[1.08, -0.5, -0.13]}
+                        color="#eee"
+                        cross={[]} width={1} rotation={[0, 0, 0.8]} height={0} extend={0} />
 
                 </>
             )}
