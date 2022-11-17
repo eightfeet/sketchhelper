@@ -23,6 +23,7 @@ import Guide from '../Guide';
 import Setting from '../Setting';
 import CylinderEight from '../CylinderEight';
 import CupHandle from '../obj/CupHandle';
+import Test from '../obj/Test';
 
 softShadows();
 
@@ -110,6 +111,7 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
+                {/* <Test opacity={0.9} /> */}
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
                         key={index}

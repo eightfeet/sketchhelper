@@ -113,7 +113,7 @@ const Setting: React.FC<Props> = () => {
                 </Button>
             ) : (
                 <div>
-                    <Space align="center" block>
+                    <Space align="center" block wrap>
                         <span className="menulabel">场景</span>
                         <Button
                             size="mini"
@@ -123,16 +123,16 @@ const Setting: React.FC<Props> = () => {
                             <RedoOutline />
                         </Button>
                         <ColorPicker
-                                
-                                onChange={(e) => {
-                                    store.planeColor = e;
-                                }}
-                                color={data.planeColor}
-                                colors={['#222', '#333', '#555', '#666', '#777', '#888', '#999', '#AAA', '#CCC', '#eee']}
-                            />
+
+                            onChange={(e) => {
+                                store.planeColor = e;
+                            }}
+                            color={data.planeColor}
+                            colors={['#222', '#333', '#555', '#666', '#777', '#888', '#999', '#AAA', '#CCC', '#eee']}
+                        />
                     </Space>
                     <br />
-                    <Space align="center" block>
+                    <Space align="center" block wrap>
                         <span className="menulabel">物体</span>
                         <Button
                             size="mini"
@@ -161,7 +161,7 @@ const Setting: React.FC<Props> = () => {
                         )}
                     </Space>
                     <br />
-                    <Space align="center" block>
+                    <Space align="center" block wrap>
                         <span className="menulabel">透视线</span>
                         <Button
                             size="mini"
@@ -171,7 +171,7 @@ const Setting: React.FC<Props> = () => {
                             <AddOutline />
                         </Button>
                         <div className={s.size}>
-                        粗细<Slider value={data.guideWidth} onChange={(e) => store.guideWidth = e as number} className={s.slide} ticks step={0.5} min={0} max={5} />
+                            粗细<Slider value={data.guideWidth} onChange={(e) => store.guideWidth = e as number} className={s.slide} ticks step={0.5} min={0} max={5} />
                         </div>
                         <Button
                             size="mini"
@@ -186,36 +186,40 @@ const Setting: React.FC<Props> = () => {
                         >
                             {data.hideGuide ? '显示' : '隐藏'}
                         </Button>
-                        {data.currentGuid !== undefined && (
-                            <ColorPicker
-                                onChange={(e) => {
-                                    store.guide[data.currentGuid!].color = e;
-                                }}
-                                color={data.guide[data.currentGuid!]?.color}
-                            />
-                        )}
-                        {data.currentGuid !== undefined && (
-                            <Button
-                                size="mini"
-                                fill={
-                                    !data.guide[data.currentGuid!]?.showText
-                                        ? 'outline'
-                                        : 'solid'
-                                }
-                                onClick={showGridText}
-                            >
-                                Text
-                            </Button>
-                        )}
-                        {data.currentGuid !== undefined && (
-                            <Button
-                                size="mini"
-                                onClick={deleteGuid}
-                                fill="outline"
-                            >
-                                <DeleteOutline />
-                            </Button>
-                        )}
+                        <div className='subsetting'>
+                            <Space>
+                                {data.currentGuid !== undefined && (
+                                    <ColorPicker
+                                        onChange={(e) => {
+                                            store.guide[data.currentGuid!].color = e;
+                                        }}
+                                        color={data.guide[data.currentGuid!]?.color}
+                                    />
+                                )}
+                                {data.currentGuid !== undefined && (
+                                    <Button
+                                        size="mini"
+                                        fill={
+                                            !data.guide[data.currentGuid!]?.showText
+                                                ? 'outline'
+                                                : 'solid'
+                                        }
+                                        onClick={showGridText}
+                                    >
+                                        Text
+                                    </Button>
+                                )}
+                                {data.currentGuid !== undefined && (
+                                    <Button
+                                        size="mini"
+                                        onClick={deleteGuid}
+                                        fill="outline"
+                                    >
+                                        <DeleteOutline />
+                                    </Button>
+                                )}
+                            </Space>
+                        </div>
                     </Space>
                     <br />
                     <Space>

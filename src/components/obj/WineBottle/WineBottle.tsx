@@ -1,8 +1,9 @@
-import { useGLTF } from '@react-three/drei';
+import { Line, useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
 import SquareCross from '~/components/GuideGroup/SquareCross';
 import StandardCross from '~/components/GuideGroup/StandardCross';
+import Wrap from '~/components/Wrap';
 
 interface Props extends GroupProps {
     opacity: number;
@@ -26,8 +27,93 @@ const WineBottle: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...g
             >
                 <meshStandardMaterial transparent opacity={opacity} roughness={0.7} metalness={0.25} envMapIntensity={0.5} />
             </mesh>
+
             {!!showEdige && (
                 <>
+                    {/* <group position={[0, -0.98, 0]}>
+                        <Line points={[
+                            [0.21, 3.9, 0],
+                            [0.21, 3.8, 0],
+                            [0.25, 3.76, 0],
+                            [0.25, 3.68, 0],
+                            [0.23, 3.65, 0],
+                            [0.215, 2.72, 0],
+                            [0.215, 2.60, 0],
+                            [0.23, 2.50, 0],
+                            [0.255, 2.45, 0],
+                            [0.37, 2.35, 0],
+                            [0.54, 2.2, 0],
+                            [0.60, 2.14, 0],
+                            [0.665, 2.0, 0],
+                            [0.681, 1.9, 0],
+                            [0.685, 1.8, 0],
+                            [0.60, 0, 0]
+
+                        ]} lineWidth={3} color="#333" />
+                    </group>
+                    <group position={[0, -0.98, 0]} rotation={[0, 1.57, 0]}>
+                        <Line points={[
+                            [0.21, 3.9, 0],
+                            [0.21, 3.8, 0],
+                            [0.25, 3.76, 0],
+                            [0.25, 3.68, 0],
+                            [0.23, 3.65, 0],
+                            [0.215, 2.72, 0],
+                            [0.215, 2.60, 0],
+                            [0.23, 2.50, 0],
+                            [0.255, 2.45, 0],
+                            [0.37, 2.35, 0],
+                            [0.54, 2.2, 0],
+                            [0.60, 2.14, 0],
+                            [0.665, 2.0, 0],
+                            [0.681, 1.9, 0],
+                            [0.685, 1.8, 0],
+                            [0.60, 0, 0]
+
+                        ]} lineWidth={3} color="#333" />
+                    </group>
+                    <group position={[0, -0.98, 0]} rotation={[0, 1.57 * 2, 0]}>
+                        <Line points={[
+                            [0.21, 3.9, 0],
+                            [0.21, 3.8, 0],
+                            [0.25, 3.76, 0],
+                            [0.25, 3.68, 0],
+                            [0.23, 3.65, 0],
+                            [0.215, 2.72, 0],
+                            [0.215, 2.60, 0],
+                            [0.23, 2.50, 0],
+                            [0.255, 2.45, 0],
+                            [0.37, 2.35, 0],
+                            [0.54, 2.2, 0],
+                            [0.60, 2.14, 0],
+                            [0.665, 2.0, 0],
+                            [0.681, 1.9, 0],
+                            [0.685, 1.8, 0],
+                            [0.60, 0, 0]
+
+                        ]} lineWidth={3} color="#333" />
+                    </group>
+                    <group position={[0, -0.98, 0]} rotation={[0, 1.57 * 3, 0]}>
+                        <Line points={[
+                            [0.21, 3.9, 0],
+                            [0.21, 3.8, 0],
+                            [0.25, 3.76, 0],
+                            [0.25, 3.68, 0],
+                            [0.23, 3.65, 0],
+                            [0.215, 2.72, 0],
+                            [0.215, 2.60, 0],
+                            [0.23, 2.50, 0],
+                            [0.255, 2.45, 0],
+                            [0.37, 2.35, 0],
+                            [0.54, 2.2, 0],
+                            [0.60, 2.14, 0],
+                            [0.665, 2.0, 0],
+                            [0.681, 1.9, 0],
+                            [0.685, 1.8, 0],
+                            [0.60, 0, 0]
+
+                        ]} lineWidth={3} color="#333" />
+                    </group> */}
                     <SquareCross
                         crossExtend={false}
                         diagonalExtend={false}
