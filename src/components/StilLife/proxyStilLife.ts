@@ -47,40 +47,66 @@ type GuideType = {
   color: string;
 }[]
 
+type FrameworkType = {
+  tag: number;
+  showText: boolean;
+  visible: boolean;
+  color: string;
+}[]
+
 export const store = proxy<{
   list: ListType;
   guide: GuideType,
+  framework: FrameworkType;
   current?: number;
   currentGuid?: number;
+  currentFramework?: number;
   autoRotate?: boolean;
   hideGuide: boolean;
+  hideFramework: boolean;
   guideWidth: number;
+  frameworkWidth: number;
   planeColor: string;
 }>({
   list: [],
+  guide: [],
+  framework: [],
   current: undefined,
   currentGuid: undefined,
-  guide: [],
+  currentFramework: undefined,
   autoRotate: false,
   hideGuide: false,
+  hideFramework: false,
   guideWidth: 1.5,
+  frameworkWidth: 1.5,
   planeColor: '#666'
 })
 
 export const unvisibleData = () => {
-
+  store.list = store.list.map((item, ind) => ({
+    ...item,
+    visible: false,
+  }));
+  store.guide = store.guide.map((item, ind) => ({
+    ...item,
+    visible: false,
+  }));
+  store.framework = store.framework.map((item, ind) => ({
+    ...item,
+    visible: false,
+  }));
+  store.current = undefined;
+  store.currentGuid = undefined;
+  store.currentFramework = undefined;
 };
 
 export const pickObj = (
   index: number,
 ) => {
+  unvisibleData();
   store.list = store.list.map((item, ind) => ({
     ...item,
     visible: item.visible ? false : index === ind,
-  }));
-  store.guide = store.guide.map((item, ind) => ({
-    ...item,
-    visible: false,
   }));
   store.list.some((el, ind) => {
     store.current = el.visible ? ind : undefined;
@@ -91,16 +117,29 @@ export const pickObj = (
 export const pickGuid = (
   index: number,
 ) => {
+  unvisibleData();
   store.guide = store.guide.map((item, ind) => ({
     ...item,
     visible: item.visible ? false : index === ind,
   }));
-  store.list = store.list.map((item, ind) => ({
-    ...item,
-    visible: false,
-  }));
   store.guide.some((el, ind) => {
     store.currentGuid = el.visible ? ind : undefined;
+    return el.visible;
+  });
+  console.log('store.guide[index]', store.guide[index]);
+  
+}
+
+export const pickFramework = (
+  index: number,
+) => {
+  unvisibleData();
+  store.framework = store.framework.map((item, ind) => ({
+    ...item,
+    visible: item.visible ? false : index === ind,
+  }));
+  store.framework.some((el, ind) => {
+    store.currentFramework = el.visible ? ind : undefined;
     return el.visible;
   });
 }

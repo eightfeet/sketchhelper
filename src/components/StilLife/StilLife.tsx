@@ -15,7 +15,7 @@ import Box from '../Box';
 import Sphere from '../Sphere';
 import Cone from '../Cone';
 import { Suspense, useState } from 'react';
-import { pickGuid, pickObj, store } from './proxyStilLife';
+import { pickFramework, pickGuid, pickObj, store } from './proxyStilLife';
 import {
     DotLoading,
 } from 'antd-mobile';
@@ -202,6 +202,13 @@ export default function StilLife() {
                         key={item.tag}
                         {...item}
                         onClick={() => pickGuid(index)}
+                    />
+                ))}
+                {data.framework.map((item, index) => (
+                    <Guide
+                        key={item.tag}
+                        {...item}
+                        onClick={() => pickFramework(index)}
                     />
                 ))}
                 <Plane
