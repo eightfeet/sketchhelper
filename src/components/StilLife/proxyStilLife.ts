@@ -66,6 +66,7 @@ export const store = proxy<{
   hideFramework: boolean;
   guideWidth: number;
   frameworkWidth: number;
+  frameworkRaduis: number;
   planeColor: string;
 }>({
   list: [],
@@ -79,7 +80,8 @@ export const store = proxy<{
   hideFramework: false,
   guideWidth: 1.5,
   frameworkWidth: 1.5,
-  planeColor: '#666'
+  planeColor: '#666',
+  frameworkRaduis: 1,
 })
 
 export const unvisibleData = () => {
@@ -103,6 +105,11 @@ export const unvisibleData = () => {
 export const pickObj = (
   index: number,
 ) => {
+  if (store.list[index].visible === true) {
+    store.list[index].visible = false;
+    store.current = undefined;
+    return;
+  }
   unvisibleData();
   store.list = store.list.map((item, ind) => ({
     ...item,
@@ -117,6 +124,11 @@ export const pickObj = (
 export const pickGuid = (
   index: number,
 ) => {
+  if (store.guide[index].visible === true) {
+    store.guide[index].visible = false;
+    store.currentGuid = undefined;
+    return;
+  }
   unvisibleData();
   store.guide = store.guide.map((item, ind) => ({
     ...item,
@@ -133,6 +145,11 @@ export const pickGuid = (
 export const pickFramework = (
   index: number,
 ) => {
+  if (store.framework[index].visible === true) {
+    store.framework[index].visible = false;
+    store.currentFramework = undefined;
+    return;
+  }
   unvisibleData();
   store.framework = store.framework.map((item, ind) => ({
     ...item,

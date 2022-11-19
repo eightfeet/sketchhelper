@@ -24,6 +24,7 @@ import Setting from '../Setting';
 import CylinderEight from '../CylinderEight';
 import CupHandle from '../obj/CupHandle';
 import Test from '../obj/Test';
+import Framework from '../Framework';
 
 softShadows();
 
@@ -205,7 +206,7 @@ export default function StilLife() {
                     />
                 ))}
                 {data.framework.map((item, index) => (
-                    <Guide
+                    <Framework
                         key={item.tag}
                         {...item}
                         onClick={() => pickFramework(index)}

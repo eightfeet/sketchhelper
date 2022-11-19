@@ -29,7 +29,7 @@ const ColorPicker:React.FC<Props> = ({ color, onChange, colors }) => {
     
     return (
         <div className={s.root}>
-            <Button size="mini" style={{backgroundColor: color}} onClick={() => setDisplayColorPicker(true)}>&nbsp;</Button>
+            <Button size="mini" style={{backgroundColor: color}} onClick={() => setDisplayColorPicker(true)}>&nbsp;&nbsp;&nbsp;</Button>
             {displayColorPicker ? <div className={s.pickerwrap}>
                 <div className={s.cover} onClick={handleCoveClick} />
                 <br />

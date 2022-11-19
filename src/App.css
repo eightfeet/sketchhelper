@@ -9,6 +9,10 @@
   width: 100vw;
 }
 
+.navbar .adm-button{
+    padding: 15px;
+}
+
 .menulabel {
   display: block;
   width: 90px;

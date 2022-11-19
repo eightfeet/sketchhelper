@@ -22,6 +22,7 @@ const StandardCross: React.FC<Props> = ({ squareColor="red", lineWidth, color="r
                 color={color}
                 lineWidth={lineWidth} />
             <SquareCross color={squareColor}
+                lineWidth={lineWidth}
                 cross={['diagonal', 'cross']}
                 width={raduis * 2}
                 height={raduis * 2}

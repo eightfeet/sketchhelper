@@ -7,6 +7,8 @@ import {
     Slider,
     Switch,
     Picker,
+    Modal,
+    Input,
 } from 'antd-mobile';
 import {
     SetOutline,
@@ -47,7 +49,7 @@ const pickData = [
     ],
 ];
 
-interface Props {}
+interface Props { }
 
 const Setting: React.FC<Props> = () => {
     const [isSetting, setIsSetting] = useState(false);
@@ -57,6 +59,9 @@ const Setting: React.FC<Props> = () => {
     const willDelete = useKeyPress('Delete');
 
     const [form] = Form.useForm();
+    const radiusForm = Form.useForm()[0];
+
+
     const data = useSnapshot(store);
 
     const createObj = useCallback(() => {
@@ -148,6 +153,18 @@ const Setting: React.FC<Props> = () => {
         }
     }, [data, deleteFramework, deleteGuid, deleteObj, willDelete]);
 
+    const changeRaduis = useCallback(
+      () => {
+        const { frameworkRaduis } = radiusForm.getFieldsValue();
+        console.log('xiugailemaframeworkRaduis', frameworkRaduis);
+        if (!isNaN(Number(frameworkRaduis))) {
+            store.frameworkRaduis = Number(frameworkRaduis);
+        }
+      },
+      [radiusForm],
+    )
+    
+
     return (
         <div className="navbar" onClick={(e) => e.stopPropagation()}>
             <br />
@@ -224,6 +241,35 @@ const Setting: React.FC<Props> = () => {
                         </Button>
                         {data.currentFramework !== undefined && (
                             <Space>
+                                <Button
+                                    size="mini"
+                                    fill="outline"
+                                    onClick={() => {
+                                        Modal.alert({
+                                            title: '半径',
+                                            content: <Form form={radiusForm}
+                                            onFinish={changeRaduis}
+                                            >
+                                                <Form.Item label="结构线半径"
+                                                    name={'frameworkRaduis'}
+                                                    initialValue={data.frameworkRaduis.toString()}
+                                                >
+                                                    <Input
+                                                        placeholder='请输入数值'
+                                                        value={(data.frameworkRaduis).toString()}
+                                                        type="number" max={6}
+                                                        step={0.1}
+                                                    />
+                                                </Form.Item></Form>,
+                                            confirmText: '确定',
+                                            onConfirm: () => {
+                                                radiusForm.submit();
+                                            }
+                                        })
+                                    }}
+                                >
+                                    半径: {store.frameworkRaduis || 1}
+                                </Button>
                                 <Picker
                                     columns={pickData}
                                     value={[data.frameworkWidth.toString()]}
@@ -294,6 +340,15 @@ const Setting: React.FC<Props> = () => {
                         </Button>
                         {data.currentGuid !== undefined && (
                             <Space>
+                                <Button
+                                    size="mini"
+                                    fill="outline"
+                                    onClick={() => {
+                                        setVisibleGuide(true);
+                                    }}
+                                >
+                                    {data.guideWidth || 0}半径
+                                </Button>
                                 <Picker
                                     columns={pickData}
                                     value={[data.guideWidth.toString()]}
