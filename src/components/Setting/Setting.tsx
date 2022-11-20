@@ -106,6 +106,7 @@ const Setting: React.FC<Props> = () => {
             visible: true,
             showText: false,
             color: '#0693e3',
+            raduis: 1,
         });
         store.currentFramework = store.framework.length - 1;
     }, []);
@@ -154,16 +155,16 @@ const Setting: React.FC<Props> = () => {
     }, [data, deleteFramework, deleteGuid, deleteObj, willDelete]);
 
     const changeRaduis = useCallback(
-      () => {
-        const { frameworkRaduis } = radiusForm.getFieldsValue();
-        console.log('xiugailemaframeworkRaduis', frameworkRaduis);
-        if (!isNaN(Number(frameworkRaduis))) {
-            store.frameworkRaduis = Number(frameworkRaduis);
-        }
-      },
-      [radiusForm],
+        () => {
+            const { frameworkRaduis } = radiusForm.getFieldsValue();
+            console.log('xiugailemaframeworkRaduis', frameworkRaduis);
+            if (!isNaN(Number(frameworkRaduis)) && store.currentFramework) {
+                store.framework[store.currentFramework].raduis = Number(frameworkRaduis);
+            }
+        },
+        [radiusForm],
     )
-    
+
 
     return (
         <div className="navbar" onClick={(e) => e.stopPropagation()}>
@@ -248,15 +249,14 @@ const Setting: React.FC<Props> = () => {
                                         Modal.alert({
                                             title: '半径',
                                             content: <Form form={radiusForm}
-                                            onFinish={changeRaduis}
+                                                onFinish={changeRaduis}
                                             >
                                                 <Form.Item label="结构线半径"
                                                     name={'frameworkRaduis'}
-                                                    initialValue={data.frameworkRaduis.toString()}
+                                                    initialValue={store.currentFramework ? store.framework[store.currentFramework]?.raduis.toString() : null}
                                                 >
                                                     <Input
                                                         placeholder='请输入数值'
-                                                        value={(data.frameworkRaduis).toString()}
                                                         type="number" max={6}
                                                         step={0.1}
                                                     />
@@ -268,7 +268,7 @@ const Setting: React.FC<Props> = () => {
                                         })
                                     }}
                                 >
-                                    半径: {store.frameworkRaduis || 1}
+                                    半径: {store.currentFramework ? store.framework[store.currentFramework]?.raduis.toString() : '-'}
                                 </Button>
                                 <Picker
                                     columns={pickData}
@@ -296,20 +296,6 @@ const Setting: React.FC<Props> = () => {
                                 {/* <div className={s.size}>
                             粗细<Slider value={data.frameworkWidth} onChange={(e) => store.frameworkWidth = e as number} className={s.slide} ticks step={0.5} min={0} max={5} />
                         </div> */}
-                                <Button
-                                    size="mini"
-                                    onClick={() => {
-                                        store.hideFramework =
-                                            !data.hideFramework;
-                                    }}
-                                    fill={
-                                        !store.hideFramework
-                                            ? 'outline'
-                                            : 'solid'
-                                    }
-                                >
-                                    {data.hideFramework ? '显示' : '隐藏'}
-                                </Button>
 
                                 <ColorPicker
                                     onChange={(e) => {
@@ -331,6 +317,20 @@ const Setting: React.FC<Props> = () => {
                                 </Button>
                             </Space>
                         )}
+                        <Button
+                            size="mini"
+                            onClick={() => {
+                                store.hideFramework =
+                                    !data.hideFramework;
+                            }}
+                            fill={
+                                !store.hideFramework
+                                    ? 'outline'
+                                    : 'solid'
+                            }
+                        >
+                            {data.hideFramework ? '显示' : '隐藏'}
+                        </Button>
                     </Space>
                     <br />
                     <Space align="center" block wrap>
@@ -340,15 +340,6 @@ const Setting: React.FC<Props> = () => {
                         </Button>
                         {data.currentGuid !== undefined && (
                             <Space>
-                                <Button
-                                    size="mini"
-                                    fill="outline"
-                                    onClick={() => {
-                                        setVisibleGuide(true);
-                                    }}
-                                >
-                                    {data.guideWidth || 0}半径
-                                </Button>
                                 <Picker
                                     columns={pickData}
                                     value={[data.guideWidth.toString()]}
@@ -372,17 +363,6 @@ const Setting: React.FC<Props> = () => {
                                         </Button>
                                     )}
                                 </Picker>
-                                <Button
-                                    size="mini"
-                                    onClick={() => {
-                                        store.hideGuide = !data.hideGuide;
-                                    }}
-                                    fill={
-                                        !store.hideGuide ? 'outline' : 'solid'
-                                    }
-                                >
-                                    {data.hideGuide ? '显示' : '隐藏'}
-                                </Button>
                                 <ColorPicker
                                     onChange={(e) => {
                                         store.guide[data.currentGuid!].color =
@@ -410,6 +390,17 @@ const Setting: React.FC<Props> = () => {
                                 </Button>
                             </Space>
                         )}
+                        <Button
+                            size="mini"
+                            onClick={() => {
+                                store.hideGuide = !data.hideGuide;
+                            }}
+                            fill={
+                                !store.hideGuide ? 'outline' : 'solid'
+                            }
+                        >
+                            {data.hideGuide ? '显示' : '隐藏'}
+                        </Button>
                     </Space>
                     <br />
                     <Space>

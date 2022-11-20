@@ -34,7 +34,8 @@ type ListType = {
   'pumpkin' |
   'scene' |
   'goblet' |
-  'winebottle',
+  'winebottle' |
+  'dodecahedron',
   opacity: number,
   showEdige: boolean,
   visible: boolean,
@@ -52,6 +53,7 @@ type FrameworkType = {
   showText: boolean;
   visible: boolean;
   color: string;
+  raduis: number;
 }[]
 
 export const store = proxy<{
@@ -66,7 +68,6 @@ export const store = proxy<{
   hideFramework: boolean;
   guideWidth: number;
   frameworkWidth: number;
-  frameworkRaduis: number;
   planeColor: string;
 }>({
   list: [],
@@ -81,7 +82,6 @@ export const store = proxy<{
   guideWidth: 1.5,
   frameworkWidth: 1.5,
   planeColor: '#666',
-  frameworkRaduis: 1,
 })
 
 export const unvisibleData = () => {

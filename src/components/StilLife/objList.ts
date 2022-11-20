@@ -9,6 +9,7 @@ export const objList = [
     { name: 'conecross', label: '圆锥穿插体', thumbnail: './glb/thumbnail/shapec.png'  },
     { name: 'boxcross', label: '十字穿插体', thumbnail: './glb/thumbnail/shaped.png'  },
     { name: 'icosahedron', label: '多面', thumbnail: './glb/thumbnail/icosahedron.png'  },
+    { name: 'dodecahedron', label: '正十二面体', thumbnail: './glb/thumbnail/dodecahedron.png'  },
     { name: 'coffeeCup', label: '咖啡杯', thumbnail: './glb/thumbnail/coffeeCup.png'  },
     { name: 'bust', label: '石膏像', thumbnail: './glb/thumbnail/bust.png'  },
     { name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png'  },

@@ -23,8 +23,9 @@ import Guide from '../Guide';
 import Setting from '../Setting';
 import CylinderEight from '../CylinderEight';
 import CupHandle from '../obj/CupHandle';
-import Test from '../obj/Test';
+// import Test from '../obj/Test';
 import Framework from '../Framework';
+import CircleCross from '../GuideGroup/CircleCross';
 
 softShadows();
 
@@ -44,6 +45,7 @@ const BoxCross = React.lazy(() => import('../obj/BoxCross'));
 const Goblet = React.lazy(() => import('../obj/Goblet'));
 const WineBottle = React.lazy(() => import('../obj/WineBottle'));
 const Icosahedron = React.lazy(() => import('../obj/Icosahedron'));
+const Dodecahedron = React.lazy(() => import('../obj/Dodecahedron'));
 
 
 export default function StilLife() {
@@ -138,6 +140,7 @@ export default function StilLife() {
                             {name === 'shapec' && <Shape name="shapec" {...other} />}
                             {name === 'boxcross' && <BoxCross {...other} />}
                             {name === 'icosahedron' && <Icosahedron {...other} />}
+                            {name === 'dodecahedron' && <Dodecahedron {...other} />}
 
                             
                             {name === 'winebottle' && <WineBottle {...other} />}

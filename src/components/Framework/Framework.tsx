@@ -12,9 +12,10 @@ interface Props {
     visible: boolean;
     showText: boolean;
     color: string;
+    raduis: number;
 }
 
-const Framework: React.FC<Props> = ({ onClick, visible, showText, color }) => {
+const Framework: React.FC<Props> = ({ onClick, visible, showText, color, raduis }) => {
     const data = useSnapshot(store);
     return (
         <Wrap visible={visible && !data.hideFramework} onClick={onClick}>
@@ -23,7 +24,7 @@ const Framework: React.FC<Props> = ({ onClick, visible, showText, color }) => {
                     lineWidth={data.hideFramework ? 0 : data.frameworkWidth}
                     color={color}
                     squareColor={color}
-                    raduis={data.frameworkRaduis}
+                    raduis={raduis}
                 />
             </mesh>
             {/* <Line
