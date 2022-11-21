@@ -25,7 +25,6 @@ import CylinderEight from '../CylinderEight';
 import CupHandle from '../obj/CupHandle';
 // import Test from '../obj/Test';
 import Framework from '../Framework';
-import CircleCross from '../GuideGroup/CircleCross';
 
 softShadows();
 

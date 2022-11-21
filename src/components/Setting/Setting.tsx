@@ -106,7 +106,7 @@ const Setting: React.FC<Props> = () => {
             visible: true,
             showText: false,
             color: '#0693e3',
-            raduis: 1,
+            radius: 1,
         });
         store.currentFramework = store.framework.length - 1;
     }, []);
@@ -154,12 +154,11 @@ const Setting: React.FC<Props> = () => {
         }
     }, [data, deleteFramework, deleteGuid, deleteObj, willDelete]);
 
-    const changeRaduis = useCallback(
+    const changeradius = useCallback(
         () => {
-            const { frameworkRaduis } = radiusForm.getFieldsValue();
-            console.log('xiugailemaframeworkRaduis', frameworkRaduis);
-            if (!isNaN(Number(frameworkRaduis)) && store.currentFramework) {
-                store.framework[store.currentFramework].raduis = Number(frameworkRaduis);
+            const { frameworkradius } = radiusForm.getFieldsValue();
+            if (!isNaN(Number(frameworkradius)) && store.currentFramework !== undefined) {
+                store.framework[store.currentFramework].radius = Number(frameworkradius);
             }
         },
         [radiusForm],
@@ -246,14 +245,15 @@ const Setting: React.FC<Props> = () => {
                                     size="mini"
                                     fill="outline"
                                     onClick={() => {
+                                        radiusForm.setFieldsValue({frameworkradius: data.currentFramework ? store.framework[data.currentFramework!]?.radius : 1})
                                         Modal.alert({
                                             title: '半径',
                                             content: <Form form={radiusForm}
-                                                onFinish={changeRaduis}
+                                                onFinish={changeradius}
                                             >
                                                 <Form.Item label="结构线半径"
-                                                    name={'frameworkRaduis'}
-                                                    initialValue={store.currentFramework ? store.framework[store.currentFramework]?.raduis.toString() : null}
+                                                    name={'frameworkradius'}
+                                                    initialValue={store.framework[data.currentFramework!]?.radius.toString()}
                                                 >
                                                     <Input
                                                         placeholder='请输入数值'
@@ -268,7 +268,7 @@ const Setting: React.FC<Props> = () => {
                                         })
                                     }}
                                 >
-                                    半径: {store.currentFramework ? store.framework[store.currentFramework]?.raduis.toString() : '-'}
+                                    半径: {store.framework[data.currentFramework!]?.radius.toString()}
                                 </Button>
                                 <Picker
                                     columns={pickData}

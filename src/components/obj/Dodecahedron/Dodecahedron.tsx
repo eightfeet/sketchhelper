@@ -1,8 +1,5 @@
-import { Edges, Line } from '@react-three/drei';
+import { Edges } from '@react-three/drei';
 import * as THREE from 'three';
-import CircleCross from '~/components/GuideGroup/CircleCross';
-import SquareCross from '~/components/GuideGroup/SquareCross';
-import StandardCross from '~/components/GuideGroup/StandardCross';
 
 interface Props {
     position?: number[];

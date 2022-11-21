@@ -53,7 +53,7 @@ type FrameworkType = {
   showText: boolean;
   visible: boolean;
   color: string;
-  raduis: number;
+  radius: number;
 }[]
 
 export const store = proxy<{

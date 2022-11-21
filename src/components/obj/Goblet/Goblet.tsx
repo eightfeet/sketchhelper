@@ -32,39 +32,39 @@ const Goblet: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...group
                     <group scale={1} position={[0, 0, 0]}>
 
                         <StandardCross
-                            raduis={0.86}
+                            radius={0.86}
                             position={[0, -0.95, 0]}
                             squareColor="#666"
                         />
 
                         <StandardCross
-                            raduis={0.28}
+                            radius={0.28}
                             position={[0, -0.85, 0]}
                             squareColor="#666"
                         />
                         <StandardCross
-                            raduis={0.12}
+                            radius={0.12}
                             position={[0, -0.75, 0]}
                             squareColor="#666"
                         />
                         <StandardCross
-                            raduis={0.12}
+                            radius={0.12}
                             position={[0, 0, 0]}
                             squareColor="#666"
                         />
                         <StandardCross
-                            raduis={0.25}
+                            radius={0.25}
                             position={[0, 0.2, 0]}
                             squareColor="#666"
                         />
                         <StandardCross
-                            raduis={1.15}
+                            radius={1.15}
                             position={[0, 1.1, 0]}
                             squareColor="#666"
                         />
 
                         <StandardCross
-                            raduis={0.95}
+                            radius={0.95}
                             position={[0, 1.95, 0]}
                             squareColor="#666"
                         />

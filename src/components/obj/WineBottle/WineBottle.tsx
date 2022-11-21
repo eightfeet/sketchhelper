@@ -1,9 +1,8 @@
-import { Line, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
 import SquareCross from '~/components/GuideGroup/SquareCross';
 import StandardCross from '~/components/GuideGroup/StandardCross';
-import Wrap from '~/components/Wrap';
 
 interface Props extends GroupProps {
     opacity: number;
@@ -120,43 +119,43 @@ const WineBottle: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...g
                         position={[0, -0.95, 0]}
                         cross={[]} width={0} height={0} extend={4} />
                     <StandardCross
-                        raduis={0.6}
+                        radius={0.6}
                         position={[0, -0.98, 0]}
                         squareColor="#666"
                     />
 
                     <StandardCross
-                        raduis={0.69}
+                        radius={0.69}
                         position={[0, 0.9, 0]}
                         squareColor="#666"
                     />
 
                     <StandardCross
-                        raduis={0.56}
+                        radius={0.56}
                         position={[0, 1.2, 0]}
                         squareColor="#666"
                     />
 
                     <StandardCross
-                        raduis={0.22}
+                        radius={0.22}
                         position={[0, 1.56, 0]}
                         squareColor="#666"
                     />
 
                     <StandardCross
-                        raduis={0.22}
+                        radius={0.22}
                         position={[0, 2.6, 0]}
                         squareColor="#666"
                     />
 
                     <StandardCross
-                        raduis={0.24}
+                        radius={0.24}
                         position={[0, 2.69, 0]}
                         squareColor="#666"
                     />
 
                     <StandardCross
-                        raduis={0.19}
+                        radius={0.19}
                         position={[0, 2.92, 0]}
                         squareColor="#666"
                     />

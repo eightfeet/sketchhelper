@@ -40,17 +40,17 @@ const CupHandle: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...gr
 
                     />
                     <StandardCross
-                        raduis={0.7}
+                        radius={0.7}
                         position={[-0.035, -0.98, 0.01]}
                         squareColor="#666"
                     />
                     <StandardCross
-                        raduis={0.8}
+                        radius={0.8}
                         position={[-0.035, -0.8, 0.01]}
                         squareColor="#666"
                     />
                     <StandardCross
-                        raduis={0.8}
+                        radius={0.8}
                         position={[-0.035, 0.47, 0.01]}
                         squareColor="#666"
                     />

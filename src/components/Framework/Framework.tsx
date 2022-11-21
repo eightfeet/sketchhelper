@@ -1,4 +1,3 @@
-import { Html, Line } from '@react-three/drei';
 import React from 'react';
 import { useSnapshot } from 'valtio';
 import StandardCross from '../GuideGroup/StandardCross';
@@ -12,10 +11,10 @@ interface Props {
     visible: boolean;
     showText: boolean;
     color: string;
-    raduis: number;
+    radius: number;
 }
 
-const Framework: React.FC<Props> = ({ onClick, visible, showText, color, raduis }) => {
+const Framework: React.FC<Props> = ({ onClick, visible, showText, color, radius }) => {
     const data = useSnapshot(store);
     return (
         <Wrap visible={visible && !data.hideFramework} onClick={onClick}>
@@ -24,7 +23,7 @@ const Framework: React.FC<Props> = ({ onClick, visible, showText, color, raduis 
                     lineWidth={data.hideFramework ? 0 : data.frameworkWidth}
                     color={color}
                     squareColor={color}
-                    raduis={raduis}
+                    radius={radius}
                 />
             </mesh>
             {/* <Line
