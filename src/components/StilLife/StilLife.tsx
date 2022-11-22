@@ -23,7 +23,7 @@ import Guide from '../Guide';
 import Setting from '../Setting';
 import CylinderEight from '../CylinderEight';
 import CupHandle from '../obj/CupHandle';
-// import Test from '../obj/Test';
+import Test from '../obj/Test';
 import Framework from '../Framework';
 
 softShadows();
@@ -45,6 +45,7 @@ const Goblet = React.lazy(() => import('../obj/Goblet'));
 const WineBottle = React.lazy(() => import('../obj/WineBottle'));
 const Icosahedron = React.lazy(() => import('../obj/Icosahedron'));
 const Dodecahedron = React.lazy(() => import('../obj/Dodecahedron'));
+const JarA = React.lazy(() => import('../obj/JarA'));
 
 
 export default function StilLife() {
@@ -113,7 +114,9 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
-                {/* <Test opacity={0.9} /> */}
+                {/* <Wrap >
+                    <Test opacity={1}  shadow />
+                </Wrap> */}
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
                         key={index}
@@ -141,7 +144,7 @@ export default function StilLife() {
                             {name === 'icosahedron' && <Icosahedron {...other} />}
                             {name === 'dodecahedron' && <Dodecahedron {...other} />}
 
-                            
+                            {name === 'jara' && <JarA {...other} /> }
                             {name === 'winebottle' && <WineBottle {...other} />}
                             {name === 'cuphandle' && <CupHandle {...other} />}
                             {name === 'goblet' && <Goblet {...other} />}

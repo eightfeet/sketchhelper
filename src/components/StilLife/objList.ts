@@ -11,6 +11,7 @@ export const objList = [
     { name: 'icosahedron', label: '多面', thumbnail: './glb/thumbnail/icosahedron.png'  },
     { name: 'dodecahedron', label: '正十二面体', thumbnail: './glb/thumbnail/dodecahedron.png'  },
     { name: 'coffeeCup', label: '咖啡杯', thumbnail: './glb/thumbnail/coffeeCup.png'  },
+    { name: 'jara', label: '咖啡杯', thumbnail: './glb/thumbnail/jara.png'  },
     { name: 'bust', label: '石膏像', thumbnail: './glb/thumbnail/bust.png'  },
     { name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png'  },
     { name: 'bottle', label: '瓶子', thumbnail: './glb/thumbnail/bottle.png'  },
