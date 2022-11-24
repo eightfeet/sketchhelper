@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "https://www.eightfeet.cn/sketchhelper/static/css/main.c4a0568c.css",
-    "main.js": "https://www.eightfeet.cn/sketchhelper/static/js/main.8a4c414a.js",
+    "main.css": "https://www.eightfeet.cn/sketchhelper/static/css/main.cd7eab56.css",
+    "main.js": "https://www.eightfeet.cn/sketchhelper/static/js/main.c2b3629f.js",
     "static/js/533.68a7e09e.chunk.js": "https://www.eightfeet.cn/sketchhelper/static/js/533.68a7e09e.chunk.js",
     "static/js/301.3dd75bc0.chunk.js": "https://www.eightfeet.cn/sketchhelper/static/js/301.3dd75bc0.chunk.js",
     "static/js/703.cb0f5c71.chunk.js": "https://www.eightfeet.cn/sketchhelper/static/js/703.cb0f5c71.chunk.js",
@@ -19,11 +19,12 @@
     "static/js/867.cb4da1cd.chunk.js": "https://www.eightfeet.cn/sketchhelper/static/js/867.cb4da1cd.chunk.js",
     "static/js/323.e4a46082.chunk.js": "https://www.eightfeet.cn/sketchhelper/static/js/323.e4a46082.chunk.js",
     "static/js/713.f455e89c.chunk.js": "https://www.eightfeet.cn/sketchhelper/static/js/713.f455e89c.chunk.js",
+    "static/js/497.bb805a28.chunk.js": "https://www.eightfeet.cn/sketchhelper/static/js/497.bb805a28.chunk.js",
     "static/js/27.9af56876.chunk.js": "https://www.eightfeet.cn/sketchhelper/static/js/27.9af56876.chunk.js",
     "index.html": "https://www.eightfeet.cn/sketchhelper/index.html"
   },
   "entrypoints": [
-    "static/css/main.c4a0568c.css",
-    "static/js/main.8a4c414a.js"
+    "static/css/main.cd7eab56.css",
+    "static/js/main.c2b3629f.js"
   ]
 }
