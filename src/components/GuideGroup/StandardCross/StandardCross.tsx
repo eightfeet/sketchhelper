@@ -8,9 +8,10 @@ interface Props extends GroupProps {
     color?: string;
     radius?: number;
     squareColor?: string;
+    isSquare?: boolean;
 }
 
-const StandardCross: React.FC<Props> = ({ squareColor="red", lineWidth, color="red", radius=1, ...groups}) => {
+const StandardCross: React.FC<Props> = ({ squareColor = "red", isSquare = true, lineWidth, color = "red", radius = 1, ...groups }) => {
     return (
         <group
             {...groups}
@@ -20,12 +21,12 @@ const StandardCross: React.FC<Props> = ({ squareColor="red", lineWidth, color="r
                 segments={60}
                 color={color}
                 lineWidth={lineWidth} />
-            <SquareCross color={squareColor}
+            {isSquare && <SquareCross color={squareColor}
                 lineWidth={lineWidth}
                 cross={['diagonal', 'cross']}
                 width={radius * 2}
                 height={radius * 2}
-            />
+            />}
         </group>
     )
 }

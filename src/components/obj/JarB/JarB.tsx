@@ -1,7 +1,6 @@
-import { Center, Edges, useGLTF } from '@react-three/drei';
+import { Center, useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
-import CircleCross from '~/components/GuideGroup/CircleCross';
 import SquareCross from '~/components/GuideGroup/SquareCross';
 import StandardCross from '~/components/GuideGroup/StandardCross';
 
@@ -11,7 +10,7 @@ interface Props extends GroupProps {
     shadow?: boolean;
 }
 
-const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
+const JarB: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/jarB.glb`) as any;
     console.log(nodes);
 
@@ -52,4 +51,4 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
     );
 };
 
-export default Test;
+export default JarB;

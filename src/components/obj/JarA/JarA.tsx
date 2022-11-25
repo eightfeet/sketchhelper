@@ -69,10 +69,14 @@ const JarA: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
             </Center>
             {!!showEdige && (
                 <>
-                    <StandardCross radius={1.95} position={[0, 5.21, 0]} />
-                    <StandardCross color='blue' squareColor='blue' radius={2.2} position={[0, 4, 0]} />
-                    <StandardCross radius={2} position={[0, -0.95, 0]} />
-                    <StandardCross radius={2.8} position={[0, 3.4, 0]} />
+                    <StandardCross isSquare={false} radius={1.85} lineWidth={2.5} color="#111" position={[0, 5.2, 0]} />
+                    <StandardCross isSquare={false} radius={1.94} lineWidth={2.5} color="#111" position={[0, 5.2, 0]} />
+                    <StandardCross radius={1.86} lineWidth={2.5} color="#111" position={[0, 4.18, 0]} squareColor="#eee" />
+                    <StandardCross isSquare={false} radius={1.86} lineWidth={2.5} color="#111" position={[0, 5.0, 0]} />
+                    <StandardCross isSquare={false} radius={1.73} lineWidth={2.5} color="#111" position={[0, 4.82, 0]} />
+                    <StandardCross isSquare={false} radius={2.2} lineWidth={2.5}  color="#111" position={[0, 4, 0]} />
+                    <StandardCross radius={2} position={[0, -0.95, 0]}  lineWidth={2.5}  squareColor="#eee" color='#111' />
+                    <StandardCross radius={2.8} position={[0, 3.4, 0]}  lineWidth={2.5} squareColor="#eee" color='#111' />
                     <SquareCross width={0} height={0} position={[0, -0.95, 0]} extend={6.2} />
                 </>
             )}

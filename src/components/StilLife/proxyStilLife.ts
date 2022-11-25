@@ -36,7 +36,8 @@ type ListType = {
   'goblet' |
   'winebottle' |
   'dodecahedron' |
-  'jara',
+  'jara' |
+  'jarb',
   opacity: number,
   showEdige: boolean,
   visible: boolean,

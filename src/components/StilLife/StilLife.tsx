@@ -46,6 +46,7 @@ const WineBottle = React.lazy(() => import('../obj/WineBottle'));
 const Icosahedron = React.lazy(() => import('../obj/Icosahedron'));
 const Dodecahedron = React.lazy(() => import('../obj/Dodecahedron'));
 const JarA = React.lazy(() => import('../obj/JarA'));
+const JarB = React.lazy(() => import('../obj/JarB'));
 
 
 export default function StilLife() {
@@ -115,7 +116,7 @@ export default function StilLife() {
                     />
                 </PivotControls>
                 {/* <Wrap >
-                    <Test opacity={1}  shadow />
+                    <Test opacity={1}  shadow  />
                 </Wrap> */}
                 {data.list.map(({ name, ...other }, index) => (
                     <Wrap
@@ -145,6 +146,7 @@ export default function StilLife() {
                             {name === 'dodecahedron' && <Dodecahedron {...other} />}
 
                             {name === 'jara' && <JarA {...other} /> }
+                            {name === 'jarb' && <JarB {...other} /> }
                             {name === 'winebottle' && <WineBottle {...other} />}
                             {name === 'cuphandle' && <CupHandle {...other} />}
                             {name === 'goblet' && <Goblet {...other} />}
