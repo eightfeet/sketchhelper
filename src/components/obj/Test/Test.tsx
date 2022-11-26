@@ -12,12 +12,12 @@ interface Props extends GroupProps {
 }
 
 const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
-    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/jarB.glb`) as any;
+    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/cupa.glb`) as any;
     console.log(nodes);
 
     return (
         <group {...groups} >
-            <Center position={[0, 1.15, 0]}>
+            {/* <Center position={[0, 1.15, 0]}> */}
                 <group position={[0, 0, 0]} rotation={[Math.PI / 180 * -90, 0, 0]} scale={10}>
                     <mesh
                         scale={2}
@@ -25,7 +25,7 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
                         rotation={[0, 0, 0]}
                         position={[0, 0, 0]}
                         castShadow={shadow}
-                        geometry={nodes.Jarb.geometry}
+                        geometry={nodes.cup1.geometry}
                         dispose={null}
                     >
                         <meshStandardMaterial transparent opacity={opacity} roughness={0.7} metalness={0.25} envMapIntensity={0.5} />
@@ -33,7 +33,7 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
                     </mesh>
 
                 </group >
-            </Center>
+            {/* </Center> */}
 
             {!!showEdige && (
                 <>

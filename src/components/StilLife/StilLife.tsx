@@ -7,13 +7,14 @@ import {
     PivotControls,
     Plane,
     softShadows,
-    Html} from '@react-three/drei';
+    Html
+} from '@react-three/drei';
 import { useSnapshot } from 'valtio';
 import { LayerMaterial, Depth, Noise } from 'lamina';
 import Wrap from '../Wrap';
-import Box from '../Box';
-import Sphere from '../Sphere';
-import Cone from '../Cone';
+import Box from '../obj/Box';
+import Sphere from '../obj/Sphere';
+import Cone from '../obj/Cone';
 import { Suspense, useState } from 'react';
 import { pickFramework, pickGuid, pickObj, store } from './proxyStilLife';
 import {
@@ -21,33 +22,13 @@ import {
 } from 'antd-mobile';
 import Guide from '../Guide';
 import Setting from '../Setting';
-import CylinderEight from '../CylinderEight';
+import CylinderEight from '../obj/CylinderEight';
 import CupHandle from '../obj/CupHandle';
 import Test from '../obj/Test';
 import Framework from '../Framework';
+import { angleToRotation } from '~/core/helper';
 
 softShadows();
-
-const Cylinder = React.lazy(() => import('../Cylinder'));
-const CoffeeCup = React.lazy(() => import('../CoffeeCup'));
-const Bust = React.lazy(() => import('../Bust'));
-const Apple = React.lazy(() => import('../Apple'));
-const Foot = React.lazy(() => import('../Foot'));
-const Venus = React.lazy(() => import('../Venus'));
-const Bottle = React.lazy(() => import('../Bottle'));
-const KitchenGroup = React.lazy(() => import('../KitchenGroup'));
-const FruitsGroup = React.lazy(() => import('../FruitsGroup'));
-const Shape = React.lazy(() => import('../Shape'));
-const ConeCross = React.lazy(() => import('../obj/ConeCross'));
-const ConeCrossFourSide = React.lazy(() => import('../obj/ConeCrossFourSide'));
-const BoxCross = React.lazy(() => import('../obj/BoxCross'));
-const Goblet = React.lazy(() => import('../obj/Goblet'));
-const WineBottle = React.lazy(() => import('../obj/WineBottle'));
-const Icosahedron = React.lazy(() => import('../obj/Icosahedron'));
-const Dodecahedron = React.lazy(() => import('../obj/Dodecahedron'));
-const JarA = React.lazy(() => import('../obj/JarA'));
-const JarB = React.lazy(() => import('../obj/JarB'));
-
 
 export default function StilLife() {
     const data = useSnapshot(store);
@@ -115,96 +96,39 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
-                {/* <Wrap >
-                    <Test opacity={1}  shadow  />
+                {/* <Wrap visible>
+                    <Test opacity={1} scale={0.08} shadow  />
                 </Wrap> */}
-                {data.list.map(({ name, ...other }, index) => (
-                    <Wrap
-                        key={index}
-                        onClick={() => pickObj(index)}
-                        {...other}
-                    >
-                        <Suspense
-                            fallback={
-                                <Html>
-                                    <div className="loading">
-                                        <DotLoading />
-                                    </div>
-                                </Html>
-                            }
-                        >
-                            {name === 'box' && <Box {...other} />}
-                            {name === 'cone' && <Cone {...other} />}
-                            {name === 'sphere' && <Sphere {...other} />}
-                            {name === 'cylinder' && <Cylinder {...other} />}
-                            {name === 'cylindereight' && <CylinderEight {...other} />}
-                            {name === 'shapea' && <Shape name="shapea" {...other} />}
-                            {name === 'conecrossfourside' && <ConeCrossFourSide {...other} />}
-                            {name === 'shapec' && <Shape name="shapec" {...other} />}
-                            {name === 'boxcross' && <BoxCross {...other} />}
-                            {name === 'icosahedron' && <Icosahedron {...other} />}
-                            {name === 'dodecahedron' && <Dodecahedron {...other} />}
+                {/* <Wrap >
+                    <Apple opacity={0.5}   />
+                </Wrap>  */}
 
-                            {name === 'jara' && <JarA {...other} /> }
-                            {name === 'jarb' && <JarB {...other} /> }
-                            {name === 'winebottle' && <WineBottle {...other} />}
-                            {name === 'cuphandle' && <CupHandle {...other} />}
-                            {name === 'goblet' && <Goblet {...other} />}
-                            {name === 'coffeeCup' && <CoffeeCup {...other} />}
-                            {name === 'bust' && <Bust {...other} />}
-                            {name === 'apple' && <Apple {...other} />}
-                            {name === 'foot' && <Foot {...other} />}
-                            {name === 'venus' && <Venus {...other} />}
-                            {name === 'bottle' && <Bottle {...other} />}
-                            {name === 'conecross' && <ConeCross {...other} />}
-                            {name === 'apple' && (
-                                <FruitsGroup name="Apple" {...other} />
-                            )}
-                            {name === 'pear' && (
-                                <FruitsGroup name="Pear" {...other} />
-                            )}
-                            {name === 'apricot' && (
-                                <FruitsGroup name="Apricot" {...other} />
-                            )}
-                            {name === 'banana' && (
-                                <FruitsGroup name="Banana" {...other} />
-                            )}
-                            {name === 'bowl' && (
-                                <KitchenGroup name="Bowl" {...other} />
-                            )}
-                            {name === 'butterknife' && (
-                                <KitchenGroup name="ButterKnife" {...other} />
-                            )}
-                            {name === 'cup' && (
-                                <KitchenGroup name="Cup" {...other} />
-                            )}
-                            {name === 'fork' && (
-                                <KitchenGroup name="Fork" {...other} />
-                            )}
-                            {name === 'plate' && (
-                                <KitchenGroup name="Plate" {...other} />
-                            )}
-                            {name === 'pot' && (
-                                <KitchenGroup name="Pot" {...other} />
-                            )}
-                            {name === 'scoop' && (
-                                <KitchenGroup name="Scoop" {...other} />
-                            )}
-                            {name === 'scoopstuff' && (
-                                <KitchenGroup name="ScoopStuff" {...other} />
-                            )}
-                            {name === 'spatula' && (
-                                <KitchenGroup name="Spatula" {...other} />
-                            )}
-                            {name === 'spoon' && (
-                                <KitchenGroup name="Spoon" {...other} />
-                            )}
-                            {name === 'fryingpan' && (
-                                <KitchenGroup name="FryingPan" {...other} />
-                            )}
-                        </Suspense>
-                    </Wrap>
-                ))}
+                {/* <Wrap >
+                    <CupA opacity={1} showEdige shadow />
+                </Wrap> */}
+
+                {data.list.map(({ name, obj, ...other }, index) => {
+                    const Comp = React.lazy(() => import(`../obj/${obj.component}`));
+                    return (
+                        <Wrap
+                            key={index}
+                            onClick={() => pickObj(index)}
+                            {...other}
+                        >
+                            <Suspense
+                                fallback={
+                                    <Html>
+                                        <div className="loading">
+                                            <DotLoading />
+                                        </div>
+                                    </Html>
+                                }
+                            >
+                                <Comp {...other}/>
+                            </Suspense>
+                        </Wrap>
+                    )
+                })}
                 {data.guide.map((item, index) => (
                     <Guide
                         key={item.tag}

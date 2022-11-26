@@ -1,48 +1,19 @@
 import { proxy } from 'valtio'
 
 type ListType = {
-  name:
-  'bottle' |
-  'box' |
-  'cone' |
-  'conecross' |
-  'sphere' |
-  'shapea' |
-  'conecrossfourside' |
-  'shapec' |
-  'boxcross' |
-  'icosahedron' |
-  'cylinder' |
-  'cylindereight' |
-  'coffeeCup' |
-  'bust' | 'apple' | 'foot' | 'venus' |
-  'bowl' |
-  'butterknife' |
-  'cup' |
-  'cuphandle' |
-  'fork' |
-  'plate' |
-  'pot' |
-  'scoop' |
-  'scoopstuff' |
-  'spatula' |
-  'spoon' |
-  'fryingpan' |
-  'pear' |
-  'apricot' |
-  'banana' |
-  'pumpkin' |
-  'scene' |
-  'goblet' |
-  'winebottle' |
-  'dodecahedron' |
-  'jara' |
-  'jarb',
+  name: string,
+  obj: {
+    component: string;
+    name: string;
+    label: string;
+    thumbnail: string;
+  },
   opacity: number,
   showEdige: boolean,
   visible: boolean,
   shadow: boolean
 }[]
+
 type GuideType = {
   tag: number;
   showText: boolean;

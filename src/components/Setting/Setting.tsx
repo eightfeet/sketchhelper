@@ -72,6 +72,7 @@ const Setting: React.FC<Props> = () => {
             showEdige: false,
             visible: true,
             shadow: true,
+            obj: objList[0]
         });
         store.current = store.list.length - 1;
     }, []);
@@ -132,13 +133,16 @@ const Setting: React.FC<Props> = () => {
 
     const onFieldsChange = useCallback(() => {
         const data = form.getFieldsValue();
-        console.log(data);
         if (store.current !== undefined) {
+            console.log('data', data);
+            console.log('store.current', store.current);
+            
             store.list = store.list.map((item, ind) => ({
                 ...item,
-                ...(ind === store.current ? data : {}),
+                ...(ind === store.current ? { ...data, obj: objList.find(el => el.name === data.name) } : {}),
             }));
         }
+        console.log('storelist', store.list);
     }, [form]);
 
     // 键盘删除
@@ -245,7 +249,7 @@ const Setting: React.FC<Props> = () => {
                                     size="mini"
                                     fill="outline"
                                     onClick={() => {
-                                        radiusForm.setFieldsValue({frameworkradius: data.currentFramework ? store.framework[data.currentFramework!]?.radius : 1})
+                                        radiusForm.setFieldsValue({ frameworkradius: data.currentFramework ? store.framework[data.currentFramework!]?.radius : 1 })
                                         Modal.alert({
                                             title: '半径',
                                             content: <Form form={radiusForm}
