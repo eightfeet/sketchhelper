@@ -142,7 +142,7 @@ const CircleStepCross: React.FC<Props> = ({
                                     lineWidth={item.lineWidth ?? lineWidth}
                                     points={[
                                         [element.x, element.y, item.extend],
-                                        [topItem.x, topItem.y, nextItem?.extend || item.extend],
+                                        [topItem.x, topItem.y, nextItem?.extend ?? item.extend],
                                     ]}
                                 />
                             );
