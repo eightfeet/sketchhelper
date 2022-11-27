@@ -1,6 +1,7 @@
 import { Center, Edges, useGLTF } from '@react-three/drei';
 import React from 'react';
 import * as THREE from 'three';
+import { angleToRotation } from '~/core/helper';
 
 interface Props {
     position?: number[];
@@ -14,10 +15,10 @@ const Venus: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
     console.log(nodes);
 
     return (
-        <Center top scale={0.0025} position={[0, -1, 0.5]}>
+        <group rotation={[0, angleToRotation(0), 0]} position={[0,-1,0]}>
             <mesh
+                scale={0.003}
                 receiveShadow
-                rotation={[1.6, 0, 0.3]}
                 position={position as any}
                 castShadow
                 geometry={nodes.Venus.geometry}
@@ -32,7 +33,7 @@ const Venus: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
                     />
                 )}
             </mesh>
-        </Center>
+        </group>
     );
 };
 

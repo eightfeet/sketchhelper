@@ -20,6 +20,7 @@ export const objList = [
     { component: 'Goblet', name: 'goblet', label: '高脚杯', thumbnail: './glb/thumbnail/goblet.png' },
     { component: 'WineBottle', name: 'winebottle', label: '酒瓶', thumbnail: './glb/thumbnail/winebottle.png' },
     { component: 'Egg', name: 'egg', label: '鸡蛋', thumbnail: './glb/thumbnail/egg.png' },
+    { component: 'Pear', name: 'pear', label: '鸡蛋', thumbnail: './glb/thumbnail/pear.png' },
     { component: 'Apple', name: 'apple', label: '苹果', thumbnail: './glb/thumbnail/apple.png' },
     { component: 'JarA', name: 'jara', label: '坛子a', thumbnail: './glb/thumbnail/jara.png' },
     { component: 'JarB', name: 'jarb', label: '坛子b', thumbnail: './glb/thumbnail/jarb.png' },
@@ -30,5 +31,6 @@ export const objList = [
     { component: 'Bust', name: 'bust', label: '石膏像', thumbnail: './glb/thumbnail/bust.png' },
     { component: 'Foot', name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png' },
     { component: 'Venus', name: 'venus', label: '维纳斯', thumbnail: './glb/thumbnail/venus.png' },
+    
 ];
 

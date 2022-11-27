@@ -18,7 +18,7 @@ const WineBottle: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...g
     return (
         <group {...groups}>
             <mesh
-                scale={2}
+                scale={3}
                 receiveShadow={shadow}
                 rotation={[0, 0, 0]}
                 position={[0, -1, 0]}
@@ -30,7 +30,7 @@ const WineBottle: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...g
             </mesh>
 
             {!!showEdige && (
-                <>
+                <group scale={1.5} position={[0,0.5,0]}>
                     <CircleStepCross
                         cross={false}
                         rotation={[0,angleToRotation(7.8),0]}
@@ -166,7 +166,7 @@ const WineBottle: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...g
                         color='#000'
                     />
 
-                </>
+                </group>
             )}
         </group>
     );

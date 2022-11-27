@@ -20,7 +20,7 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
     return (
         <group {...groups} >
             {/* <Center position={[0, 1.15, 0]}> */}
-            <group position={[0, -0.6, 0]} rotation={[Math.PI / 180 * -90, 0, 0]} scale={0.2}>
+            <group position={[0, -0.48, 0]} rotation={[Math.PI / 180 * -90, 0, 0]} scale={0.25}>
                 <mesh
                     scale={2}
                     receiveShadow={shadow}
