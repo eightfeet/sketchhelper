@@ -1,5 +1,8 @@
 import { Line } from '@react-three/drei';
 import React from 'react';
+import CircleStepCross from '~/components/GuideGroup/CircleStepCross';
+import SquareCross from '~/components/GuideGroup/SquareCross';
+import { angleToRotation } from '~/core/helper';
 import GuideGroup from '../../GuideGroup';
 
 interface Props {
@@ -11,88 +14,40 @@ interface Props {
 
 const Cylinder: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
     return (
-        <mesh castShadow={shadow} receiveShadow={shadow} position={position as any}>
-            <cylinderGeometry args={[1, 1, 2, 100]} />
-            <meshStandardMaterial transparent opacity={opacity} metalness={0.1} />
+        <group position={[0,0.98,0]}>
+            <mesh castShadow={shadow} receiveShadow={shadow} position={position as any}>
+                <cylinderGeometry args={[1, 1, 4, 100]} />
+                <meshStandardMaterial transparent opacity={opacity} metalness={0.1} />
+
+            </mesh>
             {showEdige && <group>
-                <GuideGroup color='red' position={[0, 1, 0]} rotation={[1.57, 0, 0]} />
-                <GuideGroup color='red' position={[0, -1, 0]} rotation={[1.57, 0, 0]} />
-                <Line
-                    points={[
-                        [0, -1, 0],
-                        [0, 1, 0],
+                <CircleStepCross
+                    cross={false}
+                    rotation={[
+                        0,angleToRotation(7.45),0
                     ]}
-                    color={'gray'}
-                    lineWidth={1.5}
-                />
-                <Line
-                    points={[
-                        [1, -1, 1],
-                        [1, 1, 1],
+                    split={6}
+                    position={[0, -3, 0]}
+                    lineWidth={2}
+                    extendArray={[
+                        {
+                            extend: 1,
+                            radius: 1.01
+                        },
+                        {
+                            extend: 3,
+                            radius: 1.01,
+                            cross: true
+                        },
+                        {
+                            extend: 5.02,
+                            radius: 1.01
+                        },
                     ]}
-                    color={'yellow'}
-                    lineWidth={1.5}
                 />
-                <Line
-                    points={[
-                        [-1, -1, -1],
-                        [-1, 1, -1],
-                    ]}
-                    color={'yellow'}
-                    lineWidth={1.5}
-                />
-                <Line
-                    points={[
-                        [-1, -1, 1],
-                        [-1, 1, 1],
-                    ]}
-                    color={'yellow'}
-                    lineWidth={1.5}
-                />
-                <Line
-                    points={[
-                        [1, -1, -1],
-                        [1, 1, -1],
-                    ]}
-                    color={'yellow'}
-                    lineWidth={1.5}
-                />
-                <group>
-                    <Line
-                        points={[
-                            [1, -1, 0],
-                            [1, 1, 0],
-                        ]}
-                        color={'red'}
-                        lineWidth={1.5}
-                    />
-                    <Line
-                        points={[
-                            [0, -1, 1],
-                            [0, 1, 1],
-                        ]}
-                        color={'red'}
-                        lineWidth={1.5}
-                    />
-                    <Line
-                        points={[
-                            [0, -1, -1],
-                            [0, 1, -1],
-                        ]}
-                        color={'red'}
-                        lineWidth={1.5}
-                    />
-                    <Line
-                        points={[
-                            [-1, -1, 0],
-                            [-1, 1, 0],
-                        ]}
-                        color={'red'}
-                        lineWidth={1.5}
-                    />
-                </group>
+                <SquareCross color='#fff' width={2} height={2} position={[0,-2,0]} extend={4} />
             </group>}
-        </mesh>
+        </group>
     )
 }
 

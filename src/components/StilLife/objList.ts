@@ -11,7 +11,6 @@ export const objList = [
     { component: 'BoxCross', name: 'boxcross', label: '十字穿插体', thumbnail: './glb/thumbnail/shaped.png' },
     { component: 'Icosahedron', name: 'icosahedron', label: '多面', thumbnail: './glb/thumbnail/icosahedron.png' },
     { component: 'Dodecahedron', name: 'dodecahedron', label: '正十二面体', thumbnail: './glb/thumbnail/dodecahedron.png' },
-    { component: 'CoffeeCup', name: 'coffeeCup', label: '咖啡杯', thumbnail: './glb/thumbnail/coffeeCup.png' },
     { component: 'CupHandle', name: 'cupHandle', label: '手柄杯', thumbnail: './glb/thumbnail/cuphandle.png' },
     { component: 'CupHandleB', name: 'cupHandleB', label: '手柄杯2', thumbnail: './glb/thumbnail/cuphandleb.png' },
     { component: 'CupHandleC', name: 'cupHandleC', label: '手柄杯3', thumbnail: './glb/thumbnail/cuphandlec.png' },

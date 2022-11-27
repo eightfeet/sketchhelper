@@ -136,7 +136,7 @@ const Setting: React.FC<Props> = () => {
         if (store.current !== undefined) {
             console.log('data', data);
             console.log('store.current', store.current);
-            
+
             store.list = store.list.map((item, ind) => ({
                 ...item,
                 ...(ind === store.current ? { ...data, obj: objList.find(el => el.name === data.name) } : {}),
@@ -243,6 +243,29 @@ const Setting: React.FC<Props> = () => {
                         >
                             <AddOutline />
                         </Button>
+                        <Picker
+                            columns={pickData}
+                            value={[data.frameworkWidth.toString()]}
+                            visible={visibleFramework}
+                            onConfirm={() => setVisibleFramework(false)}
+                            onSelect={([v]) => {
+                                if (Number(v)) {
+                                    store.frameworkWidth = Number(v);
+                                }
+                            }}
+                        >
+                            {(_, actions) => (
+                                <Button
+                                    size="mini"
+                                    fill="outline"
+                                    onClick={() => {
+                                        setVisibleFramework(true);
+                                    }}
+                                >
+                                    {data.frameworkWidth}像素
+                                </Button>
+                            )}
+                        </Picker>
                         {data.currentFramework !== undefined && (
                             <Space>
                                 <Button
@@ -274,29 +297,6 @@ const Setting: React.FC<Props> = () => {
                                 >
                                     半径: {store.framework[data.currentFramework!]?.radius.toString()}
                                 </Button>
-                                <Picker
-                                    columns={pickData}
-                                    value={[data.frameworkWidth.toString()]}
-                                    visible={visibleFramework}
-                                    onConfirm={() => setVisibleFramework(false)}
-                                    onSelect={([v]) => {
-                                        if (Number(v)) {
-                                            store.frameworkWidth = Number(v);
-                                        }
-                                    }}
-                                >
-                                    {(_, actions) => (
-                                        <Button
-                                            size="mini"
-                                            fill="outline"
-                                            onClick={() => {
-                                                setVisibleFramework(true);
-                                            }}
-                                        >
-                                            {data.frameworkWidth}像素
-                                        </Button>
-                                    )}
-                                </Picker>
                                 {/* <div className={s.size}>
                             粗细<Slider value={data.frameworkWidth} onChange={(e) => store.frameworkWidth = e as number} className={s.slide} ticks step={0.5} min={0} max={5} />
                         </div> */}
@@ -342,31 +342,32 @@ const Setting: React.FC<Props> = () => {
                         <Button size="mini" fill="outline" onClick={createGrid}>
                             <AddOutline />
                         </Button>
-                        {data.currentGuid !== undefined && (
-                            <Space>
-                                <Picker
-                                    columns={pickData}
-                                    value={[data.guideWidth.toString()]}
-                                    visible={visibleGuide}
-                                    onConfirm={() => setVisibleGuide(false)}
-                                    onSelect={([v]) => {
-                                        if (Number(v)) {
-                                            store.guideWidth = Number(v);
-                                        }
+                        <Picker
+                            columns={pickData}
+                            value={[data.guideWidth.toString()]}
+                            visible={visibleGuide}
+                            onConfirm={() => setVisibleGuide(false)}
+                            onSelect={([v]) => {
+                                if (Number(v)) {
+                                    store.guideWidth = Number(v);
+                                }
+                            }}
+                        >
+                            {(_, actions) => (
+                                <Button
+                                    size="mini"
+                                    fill="outline"
+                                    onClick={() => {
+                                        setVisibleGuide(true);
                                     }}
                                 >
-                                    {(_, actions) => (
-                                        <Button
-                                            size="mini"
-                                            fill="outline"
-                                            onClick={() => {
-                                                setVisibleGuide(true);
-                                            }}
-                                        >
-                                            {data.guideWidth || 0}像素
-                                        </Button>
-                                    )}
-                                </Picker>
+                                    {data.guideWidth || 0}像素
+                                </Button>
+                            )}
+                        </Picker>
+                        {data.currentGuid !== undefined && (
+                            <Space>
+
                                 <ColorPicker
                                     onChange={(e) => {
                                         store.guide[data.currentGuid!].color =
