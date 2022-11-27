@@ -1,5 +1,9 @@
 import { Edges, Line } from '@react-three/drei';
 import * as THREE from 'three';
+import CircleCross from '~/components/GuideGroup/CircleCross';
+import CircleStepCross from '~/components/GuideGroup/CircleStepCross';
+import SquareCross from '~/components/GuideGroup/SquareCross';
+import { angleToRotation } from '~/core/helper';
 
 interface Props {
     position?: number[];
@@ -25,53 +29,26 @@ const Box: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
                 envMapIntensity={0.5}
             />
             {!!showEdige && (
-                <>
-                    <Edges
-                        threshold={15} // Display edges only when the angle between two faces exceeds this value (default=15 degrees)
-                        color="red"
-                    />
-                    <Line
-                        rotation={[0, 0, 0]}
-                        points={[
-                            [1, 1, -1],
-                            [-1, 1, 1],
+                <group>
+                    {/* <CircleStepCross
+                        position={[0, -1, 0]}
+                        rotation={[0, angleToRotation(45), 0]}
+                        segments={4}
+                        lineWidth={2}
+                        extendArray={[
+                            {
+                                extend: 0,
+                                radius: 1.42
+                            },
+                            {
+                                extend: 2,
+                                radius: 1.42
+                            }
                         ]}
-                        color="red"
-                    />
-                    <Line
-                        rotation={[0, 0, 0]}
-                        points={[
-                            [1, 1, 1],
-                            [-1, 1, -1],
-                        ]}
-                        color="red"
-                    />
-
-                    <Line
-                        rotation={[0, 0, 0]}
-                        points={[
-                            [1, -1, -1],
-                            [-1, -1, 1],
-                        ]}
-                        color="red"
-                    />
-                    <Line
-                        rotation={[0, 0, 0]}
-                        points={[
-                            [-1, -1, -1],
-                            [1, -1, 1],
-                        ]}
-                        color="red"
-                    />
-                    <Line
-                        rotation={[0, 0, 0]}
-                        points={[
-                            [0, -1, 0],
-                            [0, 1, 0],
-                        ]}
-                        color="gray"
-                    />
-                </>
+                    /> */}
+                    <SquareCross position={[0, -1, 0]} width={2} height={2} extend={2} color="#000" />
+                    <SquareCross rotation={[0,0,angleToRotation(90)]} lineWidth={0.3} position={[1, 0, 0]} width={2} height={2} extend={2} color="#000" />
+                </group>
             )}
         </mesh>
     );
