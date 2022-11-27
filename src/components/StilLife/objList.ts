@@ -25,6 +25,8 @@ export const objList = [
     { component: 'JarA', name: 'jara', label: '坛子a', thumbnail: './glb/thumbnail/jara.png' },
     { component: 'JarB', name: 'jarb', label: '坛子b', thumbnail: './glb/thumbnail/jarb.png' },
     { component: 'Vasea', name: 'vasea', label: '花瓶a', thumbnail: './glb/thumbnail/vasea.png' },
+    { component: 'Vaseb', name: 'vaseb', label: '花瓶a', thumbnail: './glb/thumbnail/vaseb.png' },
+    { component: 'Vasec', name: 'vasec', label: '花瓶a', thumbnail: './glb/thumbnail/vasec.png' },
     
     { component: 'Bust', name: 'bust', label: '石膏像', thumbnail: './glb/thumbnail/bust.png' },
     { component: 'Foot', name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png' },

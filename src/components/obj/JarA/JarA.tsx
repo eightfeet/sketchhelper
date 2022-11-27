@@ -15,7 +15,7 @@ const JarA: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
     return (
         <group {...groups} >
             <Center position={[0, 2.1, 0]}>
-                <group rotation={[Math.PI / 180 * -90, 0, 0]} scale={10}>
+                <group rotation={[Math.PI / 180 * -180, 0, 0]} scale={10}>
                     <mesh
                         scale={2}
                         receiveShadow={shadow}

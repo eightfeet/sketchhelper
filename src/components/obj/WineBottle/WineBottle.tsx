@@ -1,8 +1,10 @@
 import { useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
+import CircleStepCross from '~/components/GuideGroup/CircleStepCross';
 import SquareCross from '~/components/GuideGroup/SquareCross';
 import StandardCross from '~/components/GuideGroup/StandardCross';
+import { angleToRotation } from '~/core/helper';
 
 interface Props extends GroupProps {
     opacity: number;
@@ -29,90 +31,105 @@ const WineBottle: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...g
 
             {!!showEdige && (
                 <>
-                    {/* <group position={[0, -0.98, 0]}>
-                        <Line points={[
-                            [0.21, 3.9, 0],
-                            [0.21, 3.8, 0],
-                            [0.25, 3.76, 0],
-                            [0.25, 3.68, 0],
-                            [0.23, 3.65, 0],
-                            [0.215, 2.72, 0],
-                            [0.215, 2.60, 0],
-                            [0.23, 2.50, 0],
-                            [0.255, 2.45, 0],
-                            [0.37, 2.35, 0],
-                            [0.54, 2.2, 0],
-                            [0.60, 2.14, 0],
-                            [0.665, 2.0, 0],
-                            [0.681, 1.9, 0],
-                            [0.685, 1.8, 0],
-                            [0.60, 0, 0]
-
-                        ]} lineWidth={3} color="#333" />
-                    </group>
-                    <group position={[0, -0.98, 0]} rotation={[0, 1.57, 0]}>
-                        <Line points={[
-                            [0.21, 3.9, 0],
-                            [0.21, 3.8, 0],
-                            [0.25, 3.76, 0],
-                            [0.25, 3.68, 0],
-                            [0.23, 3.65, 0],
-                            [0.215, 2.72, 0],
-                            [0.215, 2.60, 0],
-                            [0.23, 2.50, 0],
-                            [0.255, 2.45, 0],
-                            [0.37, 2.35, 0],
-                            [0.54, 2.2, 0],
-                            [0.60, 2.14, 0],
-                            [0.665, 2.0, 0],
-                            [0.681, 1.9, 0],
-                            [0.685, 1.8, 0],
-                            [0.60, 0, 0]
-
-                        ]} lineWidth={3} color="#333" />
-                    </group>
-                    <group position={[0, -0.98, 0]} rotation={[0, 1.57 * 2, 0]}>
-                        <Line points={[
-                            [0.21, 3.9, 0],
-                            [0.21, 3.8, 0],
-                            [0.25, 3.76, 0],
-                            [0.25, 3.68, 0],
-                            [0.23, 3.65, 0],
-                            [0.215, 2.72, 0],
-                            [0.215, 2.60, 0],
-                            [0.23, 2.50, 0],
-                            [0.255, 2.45, 0],
-                            [0.37, 2.35, 0],
-                            [0.54, 2.2, 0],
-                            [0.60, 2.14, 0],
-                            [0.665, 2.0, 0],
-                            [0.681, 1.9, 0],
-                            [0.685, 1.8, 0],
-                            [0.60, 0, 0]
-
-                        ]} lineWidth={3} color="#333" />
-                    </group>
-                    <group position={[0, -0.98, 0]} rotation={[0, 1.57 * 3, 0]}>
-                        <Line points={[
-                            [0.21, 3.9, 0],
-                            [0.21, 3.8, 0],
-                            [0.25, 3.76, 0],
-                            [0.25, 3.68, 0],
-                            [0.23, 3.65, 0],
-                            [0.215, 2.72, 0],
-                            [0.215, 2.60, 0],
-                            [0.23, 2.50, 0],
-                            [0.255, 2.45, 0],
-                            [0.37, 2.35, 0],
-                            [0.54, 2.2, 0],
-                            [0.60, 2.14, 0],
-                            [0.665, 2.0, 0],
-                            [0.681, 1.9, 0],
-                            [0.685, 1.8, 0],
-                            [0.60, 0, 0]
-
-                        ]} lineWidth={3} color="#333" />
-                    </group> */}
+                    <CircleStepCross
+                        cross={false}
+                        rotation={[0,angleToRotation(7.8),0]}
+                        split={6}
+                        lineWidth={2}
+                        extendArray={[
+                            {
+                                extend: -0.98,
+                                radius: 0.58,
+                            },
+                            {
+                                extend: -0.94,
+                                radius: 0.61,
+                            },
+                            {
+                                extend: 0.7,
+                                radius: 0.68,
+                            },
+                            {
+                                extend: 0.9,
+                                radius: 0.69,
+                            },
+                            {
+                                extend: 1,
+                                radius: 0.67,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 1.05,
+                                radius: 0.65,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 1.1,
+                                radius: 0.63,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 1.22,
+                                radius: 0.55,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 1.3,
+                                radius: 0.46,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 1.4,
+                                radius: 0.33,
+                                // innerRing: false,
+                            },
+                            {
+                                extend: 1.5,
+                                radius: 0.24,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 1.55,
+                                radius: 0.225,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 1.58,
+                                radius: 0.22,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 1.7,
+                                radius: 0.22,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 2.68,
+                                radius: 0.22,
+                                innerRing: false,
+                            },
+                            {
+                                extend: 2.69,
+                                radius: 0.245,
+                            },
+                            {
+                                extend: 2.8,
+                                radius: 0.242,
+                            },
+                            {
+                                extend: 2.82,
+                                radius: 0.21,
+                            },
+                            {
+                                extend: 2.93,
+                                radius: 0.2,
+                            },
+                            {
+                                extend: 2.93,
+                                radius: 0.14,
+                            },
+                        ]}
+                    />
                     <SquareCross
                         crossExtend={false}
                         diagonalExtend={false}
@@ -121,44 +138,34 @@ const WineBottle: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...g
                     <StandardCross
                         radius={0.6}
                         position={[0, -0.98, 0]}
-                        squareColor="#666"
+                        squareColor="#fff"
+                        color='#000'
+                        lineWidth={2}
                     />
 
                     <StandardCross
                         radius={0.69}
                         position={[0, 0.9, 0]}
-                        squareColor="#666"
+                        squareColor="#fff"
+                        color='#000'
+                        lineWidth={2}
                     />
 
                     <StandardCross
                         radius={0.56}
                         position={[0, 1.2, 0]}
-                        squareColor="#666"
+                        squareColor="#fff"
+                        color='#000'
+                        lineWidth={2}
                     />
 
                     <StandardCross
-                        radius={0.22}
+                        radius={0.225}
                         position={[0, 1.56, 0]}
-                        squareColor="#666"
+                        squareColor="#fff"
+                        color='#000'
                     />
 
-                    <StandardCross
-                        radius={0.22}
-                        position={[0, 2.6, 0]}
-                        squareColor="#666"
-                    />
-
-                    <StandardCross
-                        radius={0.24}
-                        position={[0, 2.69, 0]}
-                        squareColor="#666"
-                    />
-
-                    <StandardCross
-                        radius={0.19}
-                        position={[0, 2.92, 0]}
-                        squareColor="#666"
-                    />
                 </>
             )}
         </group>

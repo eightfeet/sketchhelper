@@ -45,7 +45,7 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
                         position={[0,0.05,0]}
                         rotation={[0,angleToRotation(8),0]}
                         split={6}
-                        lineWidth={2.5}
+                        lineWidth={2}
                         extendArray={[
                             {
                                 radius: 0.05,
@@ -78,7 +78,8 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
                             },
                             {
                                 radius: 0.4,
-                                extend: -0.5
+                                extend: -0.5,
+                                innerRing: false,
                             },
                             {
                                 radius: 0.4,
@@ -96,7 +97,8 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
                             },
                             {
                                 radius: 0.3,
-                                extend: -0.9
+                                extend: -0.9,
+                                innerRing: false,
                             },
                             {
                                 radius: 0.22,
@@ -106,6 +108,7 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
                             {
                                 radius: 0.1,
                                 extend: -1.04,
+                                innerRing: false,
                             },
                             {
                                 radius: 0,
