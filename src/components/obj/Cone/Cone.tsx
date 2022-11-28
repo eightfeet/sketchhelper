@@ -28,10 +28,11 @@ const Cone: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
             {showEdige && <>
                 <CircleCross
                     segments={4}
-                    color={'#fff'}
+                    color={'#000'}
                     cross
                     position={[0, -1.248, 0]}
                     rotation={[0, 0.79, 0]}
+                    lineWidth={0.5}
                     extend={2.5}
                     // extendCone
                     radius={1.45}
@@ -39,7 +40,7 @@ const Cone: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
                 <CircleStepCross
                     position={[0, -1.25, 0]}
                     rotation={[0,angleToRotation(52),0]}
-                    lineWidth={2}
+                    lineWidth={1.5}
                     split={6}
                     extendArray={[
                         {

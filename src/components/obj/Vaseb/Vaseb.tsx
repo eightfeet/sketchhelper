@@ -123,6 +123,7 @@ const Vaseb: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups
                             {
                                 extend: 1.25,
                                 radius: 1.4,
+                                cross: true,
                                 innerRing: false
                             }
                         ]}
@@ -153,7 +154,9 @@ const Vaseb: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups
                             },
                             {
                                 extend: 0.04,
-                                radius: 0.84
+                                radius: 0.84,
+                                cross: true,
+
                             },
                             {
                                 extend: 1,

@@ -38,7 +38,7 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
             {/* </Center> */}
 
             {!!showEdige && (
-                <>
+                <group scale={1.25} position={[0,0.265,0]}>
                     <SquareCross color='#fff' position={[0, -0.98, 0]} width={0.81} height={0.81} extend={1.07} diagonalExtend={false} />
                     <CircleStepCross
                         cross={false}
@@ -117,7 +117,7 @@ const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups 
                                 cross: true
                             },
                         ]} />
-                </>
+                </group>
             )}
         </group>
     );
