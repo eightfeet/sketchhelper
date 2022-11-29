@@ -1,10 +1,7 @@
-import { Center, Edges, useGLTF } from '@react-three/drei';
+import { Edges, useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
-import CircleCross from '~/components/GuideGroup/CircleCross';
 import CircleStepCross from '~/components/GuideGroup/CircleStepCross';
-import SquareCross from '~/components/GuideGroup/SquareCross';
-import StandardCross from '~/components/GuideGroup/StandardCross';
 import { angleToRotation } from '~/core/helper';
 
 interface Props extends GroupProps {
