@@ -42,6 +42,7 @@ export const store = proxy<{
   guideWidth: number;
   frameworkWidth: number;
   planeColor: string;
+  light: 'point' | 'directional'
 }>({
   list: [],
   guide: [],
@@ -55,6 +56,7 @@ export const store = proxy<{
   guideWidth: 1.5,
   frameworkWidth: 1.5,
   planeColor: '#666',
+  light: 'directional'
 })
 
 export const unvisibleData = () => {
@@ -112,7 +114,7 @@ export const pickGuid = (
     return el.visible;
   });
   console.log('store.guide[index]', store.guide[index]);
-  
+
 }
 
 export const pickFramework = (

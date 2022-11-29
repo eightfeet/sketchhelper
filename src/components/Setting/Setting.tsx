@@ -25,29 +25,15 @@ import { objList } from '../StilLife/objList';
 import { store, unvisibleData } from '../StilLife/proxyStilLife';
 import s from './Setting.module.scss';
 
-const pickData = [
-    [
-        { label: '1像素', value: '1' },
-        { label: '1.5像素', value: '1.5' },
-        { label: '2像素', value: '2' },
-        { label: '2.5像素', value: '2.5' },
-        { label: '3像素', value: '3' },
-        { label: '3.5像素', value: '3.5' },
-        { label: '4像素', value: '4' },
-        { label: '4.5像素', value: '4.5' },
-        { label: '5像素', value: '5' },
-        { label: '5.5像素', value: '5.5' },
-        { label: '6像素', value: '6' },
-        { label: '6.5像素', value: '6.5' },
-        { label: '7像素', value: '7' },
-        { label: '7.5像素', value: '7.5' },
-        { label: '8像素', value: '8' },
-        { label: '8.5像素', value: '8.5' },
-        { label: '9像素', value: '9' },
-        { label: '9.5像素', value: '9.5' },
-        { label: '10像素', value: '10' },
-    ],
-];
+const pickData = (() => {
+    const data: { label: string; value: string }[][] = [[]];
+    for (let index = 1; index < 20; index++) {
+        data[0].push({
+            label: `${index * .5}像素`, value: `${index * .5}`
+        })
+    }
+    return data
+})();
 
 interface Props { }
 
@@ -193,6 +179,16 @@ const Setting: React.FC<Props> = () => {
                         >
                             <RedoOutline />
                         </Button>
+                        <Button
+                            size="mini"
+                            fill="outline"
+                            onClick={() => {
+                                (store.light === 'directional' ? store.light = 'point' : store.light = 'directional')
+                            }}
+                        >
+                            {data.light === 'directional' && '平行光'}
+                            {data.light === 'point' && '点光源'}
+                        </Button>
                         <ColorPicker
                             onChange={(e) => {
                                 store.planeColor = e;
@@ -248,6 +244,7 @@ const Setting: React.FC<Props> = () => {
                             value={[data.frameworkWidth.toString()]}
                             visible={visibleFramework}
                             onConfirm={() => setVisibleFramework(false)}
+                            onCancel={() => setVisibleFramework(false)}
                             onSelect={([v]) => {
                                 if (Number(v)) {
                                     store.frameworkWidth = Number(v);
@@ -347,6 +344,7 @@ const Setting: React.FC<Props> = () => {
                             value={[data.guideWidth.toString()]}
                             visible={visibleGuide}
                             onConfirm={() => setVisibleGuide(false)}
+                            onCancel={() => setVisibleGuide(false)}
                             onSelect={([v]) => {
                                 if (Number(v)) {
                                     store.guideWidth = Number(v);
