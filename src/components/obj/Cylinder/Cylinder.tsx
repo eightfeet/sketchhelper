@@ -45,7 +45,7 @@ const Cylinder: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => 
                         },
                     ]}
                 />
-                <SquareCross color='#fff' width={2} height={2} position={[0,-2,0]} extend={4} />
+                <SquareCross color='#000' lineWidth={0.5} width={2} height={2} position={[0,-2,0]} extend={4} />
             </group>}
         </group>
     )

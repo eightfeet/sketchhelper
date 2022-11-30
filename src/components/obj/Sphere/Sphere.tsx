@@ -139,6 +139,7 @@ const Sphere: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
                         }
                     ]}
                 />
+                <SquareCross position={[0,-1,0]} color='#000' lineWidth={0.5} width={2} height={2} extend={2} />
             </mesh>
             }
         </>

@@ -42,7 +42,8 @@ export const store = proxy<{
   guideWidth: number;
   frameworkWidth: number;
   planeColor: string;
-  light: 'point' | 'directional'
+  light: 'point' | 'directional',
+  fixedPointLight: boolean,
 }>({
   list: [],
   guide: [],
@@ -56,7 +57,8 @@ export const store = proxy<{
   guideWidth: 1.5,
   frameworkWidth: 1.5,
   planeColor: '#666',
-  light: 'directional'
+  light: 'directional',
+  fixedPointLight: false
 })
 
 export const unvisibleData = () => {

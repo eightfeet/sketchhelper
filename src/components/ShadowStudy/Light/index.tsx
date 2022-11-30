@@ -1,6 +1,8 @@
 import { PivotControls, Html, Line } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import React, { useRef, useState } from 'react';
+import { useSnapshot } from 'valtio';
+import { store } from '~/components/StilLife/proxyStilLife';
 import s from './Light.module.scss';
 
 interface Props {
@@ -8,11 +10,13 @@ interface Props {
 
 const Light: React.FC<Props> = ({ }) => {
     const [vLightCtrl, setVLightCtrl] = useState(false);
+    const data = useSnapshot(store);
+
 
     const lightGroup = useRef<any>()
     useFrame(() => {
         if (lightGroup.current) {
-            lightGroup.current.rotation.y += 0.005;
+            lightGroup.current.rotation.y += data.fixedPointLight ? 0 : 0.005;
         }
     })
     return (
@@ -25,6 +29,7 @@ const Light: React.FC<Props> = ({ }) => {
                 fixed
                 lineWidth={2}
                 visible={vLightCtrl}
+                rotationLimits={[[0, 0],[0, 0],[0, 0]]}
             >
                 <mesh
                     position={[2.5, 8, 3]}
@@ -38,8 +43,8 @@ const Light: React.FC<Props> = ({ }) => {
                     <sphereGeometry args={[0.1, 20, 20]} />
                     <meshBasicMaterial
                         attach="material"
+                        opacity={1}
                         color="#ff0"
-                        toneMapped={false}
                     />
                 </mesh>
                 <directionalLight
@@ -47,7 +52,7 @@ const Light: React.FC<Props> = ({ }) => {
                     intensity={1}
                 >
                 </directionalLight>
-                <Line points={[[2.5, 8, 3], [2.5, -20, 4]]} color={'#f00'} />
+                <Line points={[[2.5, 8, 3], [2.5, -20, 3]]} color={'#f00'} />
                 <pointLight
                     castShadow
                     position={[2.5, 8, 3]}

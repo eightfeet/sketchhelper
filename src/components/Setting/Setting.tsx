@@ -38,7 +38,7 @@ const pickData = (() => {
 interface Props { }
 
 const Setting: React.FC<Props> = () => {
-    const [isSetting, setIsSetting] = useState(false);
+    const [isSetting, setIsSetting] = useState(true);
     const [visibleSetting, setVisibleSetting] = useState(false);
     const [visibleFramework, setVisibleFramework] = useState(false);
     const [visibleGuide, setVisibleGuide] = useState(false);
@@ -183,12 +183,24 @@ const Setting: React.FC<Props> = () => {
                             size="mini"
                             fill="outline"
                             onClick={() => {
-                                (store.light === 'directional' ? store.light = 'point' : store.light = 'directional')
+                                (data.light === 'directional' ? store.light = 'point' : store.light = 'directional')
                             }}
                         >
-                            {data.light === 'directional' && '平行光'}
-                            {data.light === 'point' && '点光源'}
+                            {data.light === 'directional' && '切换到点光源'}
+                            {data.light === 'point' && '切换到平行光'}
                         </Button>
+                        {
+                            data.light === 'point' &&
+                            <Button
+                                size="mini"
+                                fill="outline"
+                                onClick={() =>
+                                    (store.fixedPointLight = !data.fixedPointLight)
+                                }
+                            >
+                                {data.fixedPointLight ? '旋转光源' : '固定光源'}
+                            </Button>
+                        }
                         <ColorPicker
                             onChange={(e) => {
                                 store.planeColor = e;
