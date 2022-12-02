@@ -189,6 +189,15 @@ const Setting: React.FC<Props> = () => {
                             {data.light === 'directional' && '平行光'}
                             {data.light === 'point' && '点光源'}
                         </Button>
+                        <Button
+                            size="mini"
+                            fill="outline"
+                            onClick={() => {
+                                (store.wideAngle = !data.wideAngle)
+                            }}
+                        >
+                            {!data.wideAngle ? '切换到广角镜头' : '切换到标准镜头'}
+                        </Button>
                         <ColorPicker
                             onChange={(e) => {
                                 store.planeColor = e;
