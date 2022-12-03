@@ -39,11 +39,12 @@ export default function StilLife() {
             <Setting />
             <Canvas
                 dpr={[1, 2]}
+                key={`${data.wideAngle}`}
                 linear
                 legacy
                 shadows
                 raycaster={{ params: { Line: { threshold: 2 } } }}
-                camera={{ position: [-20, 20, 20], fov: 20 }}
+                camera={{ position: [-20, 20, 20], fov: data.wideAngle ? 130 : 20 }}
             >
                 {/* <fog attach="fog" args={['#ccc', 0, 160]} />
                 <color attach="background" args={['#bbb']} /> */}
