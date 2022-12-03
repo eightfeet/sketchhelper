@@ -32,6 +32,8 @@ export const objList = [
     { component: 'Bust', name: 'bust', label: '石膏像', thumbnail: './glb/thumbnail/bust.png' },
     { component: 'Foot', name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png' },
     { component: 'Venus', name: 'venus', label: '维纳斯', thumbnail: './glb/thumbnail/venus.png' },
+    { component: 'FemaleBody', name: 'femalebody', label: '女性身体', thumbnail: './glb/thumbnail/femalebody.png' },
+
     
 ];
 
