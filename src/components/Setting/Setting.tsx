@@ -463,7 +463,7 @@ const Setting: React.FC<Props> = () => {
                                 {objList.map((item) => (
                                     <Radio key={item.name} value={item.name}>
                                         <img
-                                            src={`./glb/thumbnail/${item.name}.png`}
+                                            src={item.thumbnail}
                                             className="thumbnail"
                                             alt={item.label}
                                         />
