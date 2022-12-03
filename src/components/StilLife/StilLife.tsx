@@ -65,7 +65,7 @@ export default function StilLife() {
                         <sphereGeometry args={[0.1, 20, 20]} />
                         <meshBasicMaterial
                             attach="material"
-                            color="#fff"
+                            color="#ff0"
                             toneMapped={false}
                         />
                     </mesh>

@@ -58,7 +58,7 @@ export const store = proxy<{
   frameworkWidth: 1.5,
   planeColor: '#666',
   light: 'directional',
-  fixedPointLight: false
+  fixedPointLight: true
 })
 
 export const unvisibleData = () => {
