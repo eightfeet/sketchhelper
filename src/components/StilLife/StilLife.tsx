@@ -12,9 +12,6 @@ import {
 import { useSnapshot } from 'valtio';
 import { LayerMaterial, Depth, Noise } from 'lamina';
 import Wrap from '../Wrap';
-import Box from '../obj/Box';
-import Sphere from '../obj/Sphere';
-import Cone from '../obj/Cone';
 import { Suspense, useState } from 'react';
 import { pickFramework, pickGuid, pickObj, store } from './proxyStilLife';
 import {
@@ -22,11 +19,8 @@ import {
 } from 'antd-mobile';
 import Guide from '../Guide';
 import Setting from '../Setting';
-import CylinderEight from '../obj/CylinderEight';
-import CupHandle from '../obj/CupHandle';
 import Test from '../obj/Test';
 import Framework from '../Framework';
-import { angleToRotation } from '~/core/helper';
 
 softShadows();
 
@@ -66,7 +60,7 @@ export default function StilLife() {
                         <sphereGeometry args={[0.1, 20, 20]} />
                         <meshBasicMaterial
                             attach="material"
-                            color="#ff0"
+                            color="#fff"
                             toneMapped={false}
                         />
                     </mesh>
@@ -97,9 +91,9 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
-                {/* <Wrap visible>
-                    <Test opacity={1} scale={0.08} shadow  />
-                </Wrap> */}
+                {/* {<Wrap visible>
+                    <Test opacity={0.7} scale={0.08} shadow showEdige  />
+                </Wrap>} */}
                 {/* <Wrap >
                     <Apple opacity={0.5}   />
                 </Wrap>  */}

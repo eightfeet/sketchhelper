@@ -17,7 +17,7 @@ const Venus: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
     return (
         <group rotation={[0, angleToRotation(0), 0]} position={[0,-1,0]}>
             <mesh
-                scale={0.003}
+                scale={0.004}
                 receiveShadow
                 position={position as any}
                 castShadow
@@ -28,8 +28,7 @@ const Venus: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
 
                 {!!showEdige && (
                     <Edges
-                        threshold={1} // Display edges only when the angle between two faces exceeds this value (default=15 degrees)
-                        color="red"
+                        threshold={3} // Display edges only when the angle between two faces exceeds this value (default=15 degrees)
                     />
                 )}
             </mesh>

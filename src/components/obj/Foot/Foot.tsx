@@ -11,7 +11,6 @@ interface Props {
 
 const Foot: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/foot.glb`) as any;
-    console.log(nodes);
 
     return (
         <Center top scale={0.01} position={[0, -1, 0]}>
@@ -27,8 +26,7 @@ const Foot: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
 
                 {!!showEdige && (
                     <Edges
-                        threshold={1} // Display edges only when the angle between two faces exceeds this value (default=15 degrees)
-                        color="red"
+                        threshold={3} // Display edges only when the angle between two faces exceeds this value (default=15 degrees)
                     />
                 )}
             </mesh>
