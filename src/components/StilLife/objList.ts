@@ -6,9 +6,9 @@ export const objList = [
     { component: 'Cylinder', name: 'cylinder', label: '园柱体', thumbnail: './glb/thumbnail/cylinder.png' },
     { component: 'CylinderEight', name: 'cylindereight', label: '八棱柱体', thumbnail: './glb/thumbnail/cylinder.png' },
     { component: 'ShapeA', name: 'shapea', label: '形状a', thumbnail: './glb/thumbnail/shapea.png' },
-    { component: 'ConeCrossFourSide', name: 'conecrossfourside', label: '形状b', thumbnail: './glb/thumbnail/ConeCrossFourSide.png' },
-    { component: 'ConeCross', name: 'conecross', label: '圆锥穿插体', thumbnail: './glb/thumbnail/ConeCross.png' },
-    { component: 'BoxCross', name: 'boxcross', label: '十字穿插体', thumbnail: './glb/thumbnail/BoxCross.png' },
+    { component: 'ConeCrossFourSide', name: 'conecrossfourside', label: '形状b', thumbnail: './glb/thumbnail/conecrossfourside.png' },
+    { component: 'ConeCross', name: 'conecross', label: '圆锥穿插体', thumbnail: './glb/thumbnail/conecross.png' },
+    { component: 'BoxCross', name: 'boxcross', label: '十字穿插体', thumbnail: './glb/thumbnail/boxcross.png' },
     { component: 'Icosahedron', name: 'icosahedron', label: '多面', thumbnail: './glb/thumbnail/icosahedron.png' },
     { component: 'Dodecahedron', name: 'dodecahedron', label: '正十二面体', thumbnail: './glb/thumbnail/dodecahedron.png' },
     { component: 'CupHandle', name: 'cupHandle', label: '手柄杯', thumbnail: './glb/thumbnail/cuphandle.png' },
@@ -27,13 +27,11 @@ export const objList = [
     { component: 'Vasea', name: 'vasea', label: '花瓶a', thumbnail: './glb/thumbnail/vasea.png' },
     { component: 'Vaseb', name: 'vaseb', label: '花瓶a', thumbnail: './glb/thumbnail/vaseb.png' },
     { component: 'Vasec', name: 'vasec', label: '花瓶a', thumbnail: './glb/thumbnail/vasec.png' },
-    
     { component: 'Eye', name: 'eye', label: '眼睛', thumbnail: './glb/thumbnail/eye.png' },
     { component: 'Bust', name: 'bust', label: '石膏像', thumbnail: './glb/thumbnail/bust.png' },
     { component: 'Foot', name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png' },
     { component: 'Venus', name: 'venus', label: '维纳斯', thumbnail: './glb/thumbnail/venus.png' },
     { component: 'FemaleBody', name: 'femalebody', label: '女性身体', thumbnail: './glb/thumbnail/femalebody.png' },
-
-    
+    { component: 'MaleBody', name: 'malebody', label: '男性身体', thumbnail: './glb/thumbnail/malebody.png' },
 ];
 
