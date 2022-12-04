@@ -7,7 +7,10 @@ import {
     PivotControls,
     Plane,
     softShadows,
-    Html
+    Html,
+    GizmoHelper,
+    GizmoViewport,
+    GizmoViewcube
 } from '@react-three/drei';
 import { useSnapshot } from 'valtio';
 import { LayerMaterial, Depth, Noise } from 'lamina';
@@ -119,7 +122,7 @@ export default function StilLife() {
                                     </Html>
                                 }
                             >
-                                <Comp {...other}/>
+                                <Comp {...other} />
                             </Suspense>
                         </Wrap>
                     )
@@ -152,28 +155,12 @@ export default function StilLife() {
                     autoRotate={data.autoRotate}
                     autoRotateSpeed={1}
                 />
-                <Environment background resolution={5}>
-                    <mesh scale={1000}>
-                        <sphereGeometry args={[1, 64, 64]} />
-                        <LayerMaterial side={THREE.BackSide}>
-                            <Depth
-                                colorA="#000"
-                                colorB="#000"
-                                alpha={0.5}
-                                mode="normal"
-                                near={0}
-                                far={300}
-                                origin={[100, 100, 100]}
-                            />
-                            <Noise
-                                mapping="local"
-                                type="cell"
-                                scale={0.5}
-                                mode="softlight"
-                            />
-                        </LayerMaterial>
-                    </mesh>
-                </Environment>
+                <GizmoHelper
+                    alignment="bottom-right" // widget alignment within scene
+                    margin={[80, 80]} // widget margins (X, Y)
+                >
+                    <GizmoViewcube />
+                </GizmoHelper>
             </Canvas>
         </>
     );
