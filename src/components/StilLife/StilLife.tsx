@@ -106,7 +106,10 @@ export default function StilLife() {
                 </Wrap> */}
 
                 {data.list.map(({ name, obj, ...other }, index) => {
+                    console.log(111, `../obj/${obj.component}`);
                     const Comp = React.lazy(() => import(`../obj/${obj.component}`));
+                    console.log(222, Comp);
+                    
                     return (
                         <Wrap
                             key={index}
