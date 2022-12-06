@@ -169,6 +169,27 @@ const Setting: React.FC<Props> = () => {
             ) : (
                 <div>
                     <Space align="center" block wrap>
+                        <span className="menulabel">物体</span>
+                        <Button size="mini" fill="outline" style={{background: '#000', color: '#fff'}} onClick={createObj}>
+                            <AddOutline />
+                        </Button>
+                        {data.current !== undefined && (
+                            <Button size="mini" fill="outline" onClick={setObj}>
+                                <SetOutline />
+                            </Button>
+                        )}
+                        {data.current !== undefined && (
+                            <Button
+                                size="mini"
+                                fill="outline"
+                                onClick={deleteObj}
+                            >
+                                <DeleteOutline />
+                            </Button>
+                        )}
+                    </Space>
+                    <br />
+                    <Space align="center" block wrap>
                         <span className="menulabel">场景</span>
                         <Button
                             size="mini"
@@ -228,27 +249,6 @@ const Setting: React.FC<Props> = () => {
                                 '#eee',
                             ]}
                         />
-                    </Space>
-                    <br />
-                    <Space align="center" block wrap>
-                        <span className="menulabel">物体</span>
-                        <Button size="mini" fill="outline" onClick={createObj}>
-                            <AddOutline />
-                        </Button>
-                        {data.current !== undefined && (
-                            <Button size="mini" fill="outline" onClick={setObj}>
-                                <SetOutline />
-                            </Button>
-                        )}
-                        {data.current !== undefined && (
-                            <Button
-                                size="mini"
-                                fill="outline"
-                                onClick={deleteObj}
-                            >
-                                <DeleteOutline />
-                            </Button>
-                        )}
                     </Space>
                     <br />
                     <Space align="center" block wrap>

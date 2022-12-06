@@ -11,3 +11,5 @@ declare module '*.module.scss' {
   export default classes;
 }
 
+
+declare module 'extend'
