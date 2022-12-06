@@ -13,3 +13,5 @@ declare module '*.module.scss' {
 
 
 declare module 'extend'
+
+declare module 'license-key-gen'

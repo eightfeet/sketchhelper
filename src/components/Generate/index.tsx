@@ -4,33 +4,34 @@ import dayjs from 'dayjs';
 import { request } from '~/core/request';
 import s from './Generate.module.scss';
 import { dtop, ptod } from '~/core/helper';
+import { generateKey } from '~/core/pwd';
+import licenseKey from 'license-key-gen';
 
 interface Props {}
+const useInfo = {
+    // mobile: '13800101001'
+    // date: 2022
+};
 
-function genPassword() {
-    var chars =
-        '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var passwordLength = 6;
-    var password = '';
-    for (var i = 0; i <= passwordLength; i++) {
-        var randomNumber = Math.floor(Math.random() * chars.length);
-        password += chars.substring(randomNumber, randomNumber + 1);
-    }
-    return [password, dayjs().format('YYYY-MM-DD')];
-}
-const test = 'WlRaeGRHaDVTaXd5TURJeUxURXlMVEEyLFpUWnhkR2g1U2l3eU1ESXlMVEV5TFRBMixXbXh0V1U1R1J5d3lNREl5TFRFeUxUQTI=';
+const userLicense = {
+    info: useInfo,
+    prodCode: 'ART',
+    appVersion: '1.0',
+    osType: 'IOS8',
+};
 
 const Generate: React.FC<Props> = ({}) => {
-    const [data, setData] = useState()
+    const [data, setData] = useState();
     const createPwd = useCallback(async () => {
-        // const data = await request.get('./az.json');
-        ptod()
-        const allpwds = dtop(test)
+        try{
+            const license = licenseKey.createLicense(userLicense);
+            const validate = licenseKey.validateLicense(userLicense, "W0247-4RXD3-6TW0F-0FD63-64EFD-38180");
+            console.log('验证', validate);
+        }catch(err){
+            console.log(err);
+        }
 
-        const pwds = genPassword(); 
-        console.log(pwds);
 
-        console.log(allpwds);
     }, []);
 
     return (
