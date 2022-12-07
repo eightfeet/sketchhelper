@@ -29,7 +29,7 @@ export const objList = [
     { component: 'Vasec', name: 'vasec', label: '花瓶a', thumbnail: './glb/thumbnail/vasec.png' },
     { component: 'body/Eye', name: 'eye', label: '眼睛', thumbnail: './glb/thumbnail/eye.png' },
     { component: 'Bust', name: 'bust', label: '石膏像', thumbnail: './glb/thumbnail/bust.png' },
-    { component: 'Foot', name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png' },
+    { component: 'body/Foot', name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png' },
     { component: 'Venus', name: 'venus', label: '维纳斯', thumbnail: './glb/thumbnail/venus.png' },
     { component: 'body/FemaleBody', name: 'femalebody', label: '女性身体', thumbnail: './glb/thumbnail/femalebody.png' },
     { component: 'MaleBody', name: 'malebody', label: '男性身体', thumbnail: './glb/thumbnail/malebody.png' },

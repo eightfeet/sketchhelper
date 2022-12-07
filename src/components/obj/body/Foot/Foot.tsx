@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Foot: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
-    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/foot.glb`) as any;
+    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/foot.glb`) as any;
 
     return (
         <Center top scale={0.01} position={[0, -1, 0]}>
