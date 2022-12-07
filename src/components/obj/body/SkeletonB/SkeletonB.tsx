@@ -19,8 +19,8 @@ const SkeletonB: React.FC<Props> = ({ visible, opacity=1, showEdige, shadow, ...
 
     return (
         <group {...groups} >
-            <Center position={[0, 2.25, 0]}>
-                <group position={[0, 8, 0]} rotation={[angleToRotation(90), angleToRotation(0), 0]} scale={0.16}>
+            <Center position={[0, 2.55, 0]}>
+                <group position={[0, 8, 0]} rotation={[angleToRotation(90), angleToRotation(0), 0]} scale={0.174}>
                     <mesh
                         receiveShadow={shadow}
                         rotation={[0, 0, 0]}
@@ -35,7 +35,7 @@ const SkeletonB: React.FC<Props> = ({ visible, opacity=1, showEdige, shadow, ...
             </Center>
 
             {!!showEdige && (
-                <group rotation={[0, angleToRotation(-5), 0]} position={[0.6, -0.98, 0]}>
+                <group rotation={[0, angleToRotation(-85), 0]} position={[0, -0.98, -0.4]}>
                     <SquareCross width={0} height={4} cross={[]} extend={7.10 / 4 * 1} />
                     <mesh position={[-0, 7.10 / 4 * 1, 2]}>
                         <Html>

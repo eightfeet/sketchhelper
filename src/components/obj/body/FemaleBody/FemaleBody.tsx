@@ -19,7 +19,7 @@ const FemaleBody: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...g
 
     return (
         <group {...groups} >
-            <Center position={[0, 2.7, 0]}>
+            <Center position={[0, 2.7, 0]} rotation={[0,angleToRotation(90),0]}>
                 <group position={[0, 8, 0]} rotation={[angleToRotation(0), angleToRotation(-90), 0]} scale={0.03}>
                     <mesh
                         receiveShadow={shadow}

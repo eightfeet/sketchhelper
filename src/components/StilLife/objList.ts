@@ -27,14 +27,15 @@ export const objList = [
     { component: 'Vasea', name: 'vasea', label: '花瓶a', thumbnail: './glb/thumbnail/vasea.png' },
     { component: 'Vaseb', name: 'vaseb', label: '花瓶a', thumbnail: './glb/thumbnail/vaseb.png' },
     { component: 'Vasec', name: 'vasec', label: '花瓶a', thumbnail: './glb/thumbnail/vasec.png' },
-    { component: 'Eye', name: 'eye', label: '眼睛', thumbnail: './glb/thumbnail/eye.png' },
+    { component: 'body/Eye', name: 'eye', label: '眼睛', thumbnail: './glb/thumbnail/eye.png' },
     { component: 'Bust', name: 'bust', label: '石膏像', thumbnail: './glb/thumbnail/bust.png' },
     { component: 'Foot', name: 'foot', label: '脚', thumbnail: './glb/thumbnail/foot.png' },
     { component: 'Venus', name: 'venus', label: '维纳斯', thumbnail: './glb/thumbnail/venus.png' },
-    { component: 'FemaleBody', name: 'femalebody', label: '女性身体', thumbnail: './glb/thumbnail/femalebody.png' },
+    { component: 'body/FemaleBody', name: 'femalebody', label: '女性身体', thumbnail: './glb/thumbnail/femalebody.png' },
     { component: 'MaleBody', name: 'malebody', label: '男性身体', thumbnail: './glb/thumbnail/malebody.png' },
     { component: 'Skeleton', name: 'skeleton', label: '骷髅', thumbnail: './glb/thumbnail/skeleton.png' },
     { component: 'body/SkeletonB', name: 'skeleton_b', label: '骷髅', thumbnail: './glb/thumbnail/body/skeleton_b.png' },
     { component: 'LoomisHead', name: 'loomis_head', label: 'loomis_head', thumbnail: './glb/thumbnail/loomis_head.png' },
+    { component: 'body/SkeletonHead', name: 'skeleton_head', label: 'skeleton_head', thumbnail: './glb/thumbnail/skeleton_head.png' },
 ];
 

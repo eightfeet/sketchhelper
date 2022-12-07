@@ -11,12 +11,12 @@ interface Props extends GroupProps {
 }
 
 const Eye: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
-    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/eye-v1.glb`) as any;
+    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/eye-v1.glb`) as any;
     console.log(nodes);
 
     return (
         <group {...groups} >
-            <Center position={[0,0.8,0.4]}>
+            <Center position={[0,0.8,0.4]} rotation={[0,angleToRotation(-90),0]}>
                 <group position={[0, 8, 0]} rotation={[angleToRotation(180), angleToRotation(-90), 0]} scale={0.5}>
                     <mesh
                         scale={2}
