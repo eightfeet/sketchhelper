@@ -37,5 +37,7 @@ export const objList = [
     { component: 'body/LoomisHead', name: 'loomis_head', label: '简易结构', thumbnail: './glb/thumbnail/body/loomis_head.png' },
     { component: 'body/SkeletonHead', name: 'skeleton_head', label: '骷髅头', thumbnail: './glb/thumbnail/body/skeleton_head.png' },
     { component: 'body/HeadReference', name: 'head_reference', label: '头部块面', thumbnail: './glb/thumbnail/body/head_reference.png' },
+    { component: 'body/SculptureBustOfRozaLoewenfeld', name: 'sculpture_bust_of_roza_loewenfeld', label: '雕塑_胸像_罗扎_卢文菲尔德', thumbnail: './glb/thumbnail/body/sculpture_bust_of_roza_loewenfeld.png' },
+    { component: 'body/SkullProportionsKeyLandmarks', name: 'skull_proportions_key_landmarks', label: '概况骷髅头', thumbnail: './glb/thumbnail/body/skull_proportions_key_landmarks.png' },
 ];
 
