@@ -44,19 +44,27 @@
 }
 
 .loading{
-  width: 100px;
-  height: 100px;
-  margin-left: -50px;
-  margin-top: -50px;
+  width: 150px;
+  height: 80px;
+  padding: 20px;
+  margin-left: -75px;
+  margin-top: -40px;
   z-index: 2000;
   position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #000;
+  flex-direction: column;
   border-radius: 10px;
+  opacity: 0.7;
   left: 0;
   top: 0;
+}
+
+.loading span {
+  margin-top: 10px;
+  color: #a2a2a2
 }
 
 .thumbnail {

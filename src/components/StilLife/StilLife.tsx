@@ -1,19 +1,15 @@
 import React from 'react';
-import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 import {
-    Environment,
     OrbitControls,
     PivotControls,
     Plane,
     softShadows,
     Html,
     GizmoHelper,
-    GizmoViewport,
     GizmoViewcube
 } from '@react-three/drei';
 import { useSnapshot } from 'valtio';
-import { LayerMaterial, Depth, Noise } from 'lamina';
 import Wrap from '../Wrap';
 import { Suspense, useState } from 'react';
 import { pickFramework, pickGuid, pickObj, store } from './proxyStilLife';
@@ -22,7 +18,6 @@ import {
 } from 'antd-mobile';
 import Guide from '../Guide';
 import Setting from '../Setting';
-import Test from '../obj/Test';
 import Framework from '../Framework';
 
 softShadows();
@@ -94,22 +89,8 @@ export default function StilLife() {
                         intensity={0.2}
                     />
                 </PivotControls>
-                {/* {<Wrap visible>
-                    <Test opacity={0.7} scale={0.08} shadow showEdige  />
-                </Wrap>} */}
-                {/* <Wrap >
-                    <Apple opacity={0.5}   />
-                </Wrap>  */}
-
-                {/* <Wrap >
-                    <CupA opacity={1} showEdige shadow />
-                </Wrap> */}
-
                 {data.list.map(({ name, obj, ...other }, index) => {
-                    console.log(111, `../obj/${obj.component}`);
                     const Comp = React.lazy(() => import(`../obj/${obj.component}`));
-                    console.log(222, Comp);
-                    
                     return (
                         <Wrap
                             key={index}
@@ -121,6 +102,7 @@ export default function StilLife() {
                                     <Html>
                                         <div className="loading">
                                             <DotLoading />
+                                            <span>模型加载中</span>
                                         </div>
                                     </Html>
                                 }
