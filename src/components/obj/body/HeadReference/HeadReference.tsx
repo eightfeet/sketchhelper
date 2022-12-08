@@ -28,7 +28,7 @@ const HeadReference: React.FC<Props> = ({ visible, opacity, showEdige, shadow, .
                         dispose={null}
                     >
                         <meshStandardMaterial transparent opacity={opacity} roughness={0.7} metalness={0.25} envMapIntensity={0.5} />
-                        {!!showEdige && (<Edges threshold={5} />)}
+                        {/* {!!showEdige && (<Edges threshold={6} />)} */}
                     </mesh>
                     <mesh
                         scale={2}
@@ -40,7 +40,7 @@ const HeadReference: React.FC<Props> = ({ visible, opacity, showEdige, shadow, .
                         dispose={null}
                     >
                         <meshStandardMaterial transparent opacity={opacity} roughness={0.7} metalness={0.25} envMapIntensity={0.5} />
-                        {!!showEdige && (<Edges threshold={5} />)}
+                        {!!showEdige && (<Edges threshold={6} />)}
                     </mesh>
                     <mesh
                         scale={2}
@@ -52,7 +52,7 @@ const HeadReference: React.FC<Props> = ({ visible, opacity, showEdige, shadow, .
                         dispose={null}
                     >
                         <meshStandardMaterial transparent opacity={opacity} roughness={0.7} metalness={0.25} envMapIntensity={0.5} />
-                        {!!showEdige && (<Edges threshold={5} />)}
+                        {!!showEdige && (<Edges threshold={6} />)}
                     </mesh>
                     <mesh
                         scale={2}
@@ -64,7 +64,7 @@ const HeadReference: React.FC<Props> = ({ visible, opacity, showEdige, shadow, .
                         dispose={null}
                     >
                         <meshStandardMaterial transparent opacity={opacity} roughness={0.7} metalness={0.25} envMapIntensity={0.5} />
-                        {!!showEdige && (<Edges threshold={5} />)}
+                        {!!showEdige && (<Edges threshold={6} />)}
                     </mesh>
                 </group >
                 {!!showEdige && (
