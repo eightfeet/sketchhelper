@@ -21,7 +21,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import useKeyPress from '~/hooks/useKeyPress';
 import ColorPicker from '../ColorPicker';
-import { objList } from '../StilLife/objList';
+import { objList } from '~/core/objList';
 import { store, unvisibleData } from '../StilLife/proxyStilLife';
 import s from './Setting.module.scss';
 
