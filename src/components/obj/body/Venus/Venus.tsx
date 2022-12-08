@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Venus: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
-    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/venus.glb`) as any;
+    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/venus.glb`) as any;
     console.log(nodes);
 
     return (

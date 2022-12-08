@@ -14,13 +14,13 @@ interface Props extends GroupProps {
 }
 
 const Skeleton: React.FC<Props> = ({ visible, opacity=1, showEdige, shadow, ...groups }) => {
-    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/skeleton.glb`) as any;
+    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/skeleton.glb`) as any;
     console.log(nodes);
 
     return (
         <group {...groups} >
             <Center position={[0, 2.54, 0]}>
-                <group position={[0, 8, 0]} rotation={[angleToRotation(0), angleToRotation(-90), 0]} scale={0.00415}>
+                <group position={[0, 8, 0]} rotation={[angleToRotation(0), angleToRotation(-0), 0]} scale={0.00415}>
                     <mesh
                         receiveShadow={shadow}
                         rotation={[0, 0, 0]}
@@ -90,7 +90,7 @@ const Skeleton: React.FC<Props> = ({ visible, opacity=1, showEdige, shadow, ...g
             </Center>
 
             {!!showEdige && (
-                <group rotation={[0, angleToRotation(-5), 0]} position={[0.6, -0.98, 0]}>
+                <group rotation={[0, angleToRotation(-95), 0]} position={[0, -0.98, 0]}>
                     <SquareCross width={0} height={4} cross={[]} extend={7.10 / 4 * 1} />
                     <mesh position={[-0, 7.10 / 4 * 1, 2]}>
                         <Html>

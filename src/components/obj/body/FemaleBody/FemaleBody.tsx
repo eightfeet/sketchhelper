@@ -37,7 +37,7 @@ const FemaleBody: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...g
             </Center>
 
             {!!showEdige && (
-                <group rotation={[0, angleToRotation(-5), 0]} position={[0.6, -0.75, 0]}>
+                <group rotation={[0, angleToRotation(90), 0]} position={[-.0, -0.75, -.6]}>
                     <SquareCross width={0} height={4} cross={[]} extend={7.10 / 4 * 1} />
                     <mesh position={[-0, 7.10 / 4 * 1, 2]}>
                         <Html>

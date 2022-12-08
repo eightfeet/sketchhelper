@@ -10,13 +10,13 @@ interface Props extends GroupProps {
 }
 
 const MaleBody: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
-    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/bodymale.glb`) as any;
+    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/bodymale.glb`) as any;
     console.log(nodes);
 
     return (
         <group {...groups} >
             <Center position={[0, 2.7, 0]}>
-                <group position={[0, 8, 0]} rotation={[angleToRotation(0), angleToRotation(-90), 0]} scale={0.03}>
+                <group position={[0, 8, 0]} rotation={[angleToRotation(0), angleToRotation(0), 0]} scale={0.03}>
                     <mesh
                         receiveShadow={shadow}
                         rotation={[0, 0, 0]}

@@ -10,6 +10,8 @@ interface Props extends GroupProps {
     cross?:('diagonal' | 'cross')[],
     crossExtend?:boolean,
     diagonalExtend?:boolean,
+    diagonalColor?: string,
+    crossColor?: string,
     color?: string,
     lineWidth?: number,
     axis?: boolean,
@@ -23,6 +25,8 @@ const SquareCross:React.FC<Props> = ({
     cross=['diagonal', 'cross'],
     crossExtend = true,
     diagonalExtend = true,
+    diagonalColor,
+    crossColor,
     color="#555",
     lineWidth=2,
     axis=true,
@@ -72,19 +76,19 @@ const SquareCross:React.FC<Props> = ({
             {
                 crossExtend &&
                 <>
-                    <Line lineWidth={lineWidth} color={color} points={[[0,0,0],[0,extend,0]]} />
-                    <Line lineWidth={lineWidth} color={color} points={[[width,0,0],[width,extend,0]]} />
-                    <Line lineWidth={lineWidth} color={color} points={[[width,0,height],[width,extend,height]]} />
-                    <Line lineWidth={lineWidth} color={color} points={[[0,0,height],[0,extend,height]]} />
+                    <Line lineWidth={lineWidth} color={crossColor || color} points={[[0,0,0],[0,extend,0]]} />
+                    <Line lineWidth={lineWidth} color={crossColor || color} points={[[width,0,0],[width,extend,0]]} />
+                    <Line lineWidth={lineWidth} color={crossColor || color} points={[[width,0,height],[width,extend,height]]} />
+                    <Line lineWidth={lineWidth} color={crossColor || color} points={[[0,0,height],[0,extend,height]]} />
                 </>
             }
             {
                 diagonalExtend &&
                 <>
-                    <Line lineWidth={lineWidth} color={color} points={[[width/2,0,height],[width/2,extend,height]]} />
-                    <Line lineWidth={lineWidth} color={color} points={[[width/2,0,0],[width/2,extend,0]]} />
-                    <Line lineWidth={lineWidth} color={color} points={[[0,0,height/2],[0,extend,height/2]]} />
-                    <Line lineWidth={lineWidth} color={color} points={[[width,0,height/2],[width,extend,height/2]]} />
+                    <Line lineWidth={lineWidth} color={diagonalColor || color} points={[[width/2,0,height],[width/2,extend,height]]} />
+                    <Line lineWidth={lineWidth} color={diagonalColor || color} points={[[width/2,0,0],[width/2,extend,0]]} />
+                    <Line lineWidth={lineWidth} color={diagonalColor || color} points={[[0,0,height/2],[0,extend,height/2]]} />
+                    <Line lineWidth={lineWidth} color={diagonalColor || color} points={[[width,0,height/2],[width,extend,height/2]]} />
                 </>
             }
             
