@@ -34,8 +34,8 @@ export const objList = [
     { component: 'body/MaleBody', name: 'malebody', label: '男性身体', thumbnail: './glb/thumbnail/body/malebody.png' },
     { component: 'body/Skeleton', name: 'skeleton', label: '骷髅', thumbnail: './glb/thumbnail/body/skeleton.png' },
     { component: 'body/SkeletonB', name: 'skeleton_b', label: '骷髅', thumbnail: './glb/thumbnail/body/skeleton_b.png' },
-    { component: 'body/LoomisHead', name: 'loomis_head', label: 'loomis_head', thumbnail: './glb/thumbnail/body/loomis_head.png' },
-    { component: 'body/SkeletonHead', name: 'skeleton_head', label: 'skeleton_head', thumbnail: './glb/thumbnail/body/skeleton_head.png' },
-    { component: 'body/HeadReference', name: 'head_reference', label: 'head_reference', thumbnail: './glb/thumbnail/body/head_reference.png' },
+    { component: 'body/LoomisHead', name: 'loomis_head', label: '简易结构', thumbnail: './glb/thumbnail/body/loomis_head.png' },
+    { component: 'body/SkeletonHead', name: 'skeleton_head', label: '骷髅头', thumbnail: './glb/thumbnail/body/skeleton_head.png' },
+    { component: 'body/HeadReference', name: 'head_reference', label: '头部块面', thumbnail: './glb/thumbnail/body/head_reference.png' },
 ];
 
