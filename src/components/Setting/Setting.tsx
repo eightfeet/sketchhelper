@@ -466,6 +466,7 @@ const Setting: React.FC<Props> = () => {
                                             src={item.thumbnail}
                                             className="thumbnail"
                                             alt={item.label}
+                                            
                                         />
                                     </Radio>
                                 ))}

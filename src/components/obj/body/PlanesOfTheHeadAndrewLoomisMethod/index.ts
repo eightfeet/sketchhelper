@@ -1,0 +1,3 @@
+import PlanesOfTheHeadAndrewLoomisMethod from "./PlanesOfTheHeadAndrewLoomisMethod";
+
+export default PlanesOfTheHeadAndrewLoomisMethod;
