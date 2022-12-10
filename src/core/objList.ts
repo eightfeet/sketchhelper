@@ -42,6 +42,7 @@ export const objList = [
     { component: 'body/SkullProportionsKeyLandmarks', name: 'skull_proportions_key_landmarks', label: '概况骷髅头', thumbnail: './glb/thumbnail/body/skull_proportions_key_landmarks.png' },
     { component: 'body/PlanesOfTheHeadAndrewLoomisMethod', name: 'planes_of_the_head_andrew_loomis_method', label: '模型比列', thumbnail: './glb/thumbnail/body/planes_of_the_head_andrew_loomis_method.png' },
     { component: 'body/SkeletonHeadC', name: 'skeleton_head_c', label: '模型比列2', thumbnail: './glb/thumbnail/body/skeleton_head_c.png' },
+    { component: 'body/HeadOfDavid', name: 'head_of_david', label: '大卫头像', thumbnail: './glb/thumbnail/body/head_of_david.png' },
     
 ];
 
