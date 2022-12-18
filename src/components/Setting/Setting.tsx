@@ -9,6 +9,8 @@ import {
     Picker,
     Modal,
     Input,
+    Toast,
+    Dialog,
 } from 'antd-mobile';
 import {
     SetOutline,
@@ -17,7 +19,7 @@ import {
     DeleteOutline,
     CloseOutline,
 } from 'antd-mobile-icons';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import useKeyPress from '~/hooks/useKeyPress';
 import ColorPicker from '../ColorPicker';
@@ -46,6 +48,7 @@ const Setting: React.FC<Props> = () => {
 
     const [form] = Form.useForm();
     const radiusForm = Form.useForm()[0];
+    const authForm = Form.useForm()[0];
 
 
     const data = useSnapshot(store);
@@ -120,13 +123,17 @@ const Setting: React.FC<Props> = () => {
     const onFieldsChange = useCallback(() => {
         const data = form.getFieldsValue();
         if (store.current !== undefined) {
-            console.log('data', data);
-            console.log('store.current', store.current);
 
-            store.list = store.list.map((item, ind) => ({
-                ...item,
-                ...(ind === store.current ? { ...data, obj: objList.find(el => el.name === data.name) } : {}),
-            }));
+            store.list = store.list.map((item, ind) => {
+                if (item.obj.checkedlocked && !store.auth) {
+                    return {...item}
+                }
+
+                return {
+                    ...item,
+                    ...(ind === store.current ? { ...data, obj: objList.find(el => el.name === data.name) } : {}),
+                }
+            });
         }
         console.log('storelist', store.list);
     }, [form]);
@@ -154,6 +161,59 @@ const Setting: React.FC<Props> = () => {
         [radiusForm],
     )
 
+    const refDialog = useRef<any>();
+
+
+    const authFormSubmit = useCallback(
+        () => {
+            const values = authForm.getFieldsValue();
+            console.log(values);
+            store.auth = true;
+            Toast.show('激活成功！')
+            refDialog.current?.close();
+        },
+        [authForm],
+    )
+
+
+
+    const checkAuth = useCallback(
+        () => {
+            refDialog.current = Dialog.show({
+                title: '暂无访问权限，请输入账户名与激活码',
+                content: <Form form={authForm}
+                    onFinish={authFormSubmit}
+                >
+                    <Form.Item label="账户名" name="name"
+                        rules={[{ required: true, message: '请输入账户名' }]}
+                    >
+                        <Input placeholder='请输入账户名' />
+                    </Form.Item>
+                    <Form.Item label="激活码" name="token"
+                        rules={[{ required: true, message: '请输入激活码' }]}
+                    >
+                        <Input placeholder='请输入激活码' />
+                    </Form.Item>
+                </Form>,
+
+                actions: [
+                    [{ key: 'cancel', text: '取消' },
+                    { key: 'confirm', text: '确定', style: { color: 'var(--leva-colors-accent3)' } }]
+                ],
+                onAction(action, index) {
+                    console.log(action);
+                    if (action.key === 'confirm') {
+                        authForm.submit();
+                    } else {
+                        refDialog.current?.close();
+                    }
+                },
+            })
+        },
+        [authForm, authFormSubmit],
+    )
+
+
 
     return (
         <div className="navbar" onClick={(e) => e.stopPropagation()}>
@@ -170,7 +230,7 @@ const Setting: React.FC<Props> = () => {
                 <div>
                     <Space align="center" block wrap>
                         <span className="menulabel">物体</span>
-                        <Button size="mini" fill="outline" style={{background: '#000', color: '#fff'}} onClick={createObj}>
+                        <Button size="mini" fill="outline" style={{ background: '#000', color: '#fff' }} onClick={createObj}>
                             <AddOutline />
                         </Button>
                         {data.current !== undefined && (
@@ -445,6 +505,7 @@ const Setting: React.FC<Props> = () => {
                     setVisibleSetting(false);
                 }}
                 position="top"
+                maskStyle={{background: 'none'}}
             >
                 <Form
                     className={s.listform}
@@ -461,12 +522,13 @@ const Setting: React.FC<Props> = () => {
                         <Radio.Group>
                             <Space direction="horizontal" wrap>
                                 {objList.map((item) => (
-                                    <Radio key={item.name} value={item.name}>
+                                    <Radio key={item.name} value={item.name} disabled={(item.checkedlocked && !data.auth)}>
                                         <img
                                             src={item.thumbnail}
                                             className="thumbnail"
+                                            onClick={() => item.checkedlocked && !data.auth && checkAuth()}
                                             alt={item.label}
-                                            
+
                                         />
                                     </Radio>
                                 ))}

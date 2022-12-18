@@ -10,7 +10,7 @@ interface Props {
     shadow?: boolean;
 }
 
-const Venus: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
+const Venus: React.FC<Props> = ({ position, opacity, showEdige = false, shadow }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/venus.glb`) as any;
     console.log(nodes);
 
@@ -18,9 +18,9 @@ const Venus: React.FC<Props> = ({ position, opacity, showEdige = false }) => {
         <group rotation={[0, angleToRotation(0), 0]} position={[0,-1,0]}>
             <mesh
                 scale={0.004}
-                receiveShadow
+                receiveShadow={shadow}
                 position={position as any}
-                castShadow
+                castShadow={shadow}
                 geometry={nodes.Venus.geometry}
                 dispose={null}
             >

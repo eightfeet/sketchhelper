@@ -7,6 +7,7 @@ type ListType = {
     name: string;
     label: string;
     thumbnail: string;
+    checkedlocked: boolean;
   },
   opacity: number,
   showEdige: boolean,
@@ -45,6 +46,7 @@ export const store = proxy<{
   fixedPointLight: boolean,
   light: 'point' | 'directional';
   wideAngle: boolean;
+  auth: boolean;
 }>({
   list: [],
   guide: [],
@@ -60,7 +62,8 @@ export const store = proxy<{
   planeColor: '#666',
   light: 'directional',
   fixedPointLight: true,
-  wideAngle: false
+  wideAngle: false,
+  auth: false,
 })
 
 export const unvisibleData = () => {
