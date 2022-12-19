@@ -45,3 +45,11 @@
     width: 200px;
     margin-left: 0px;
 }
+
+.formbody {
+
+    :global(.adm-list-body){
+        border: none
+    }
+
+}

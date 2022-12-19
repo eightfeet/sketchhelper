@@ -20,12 +20,14 @@ import {
     CloseOutline,
 } from 'antd-mobile-icons';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import licenseKey from 'license-key-gen';
 import { useSnapshot } from 'valtio';
 import useKeyPress from '~/hooks/useKeyPress';
 import ColorPicker from '../ColorPicker';
 import { objList } from '~/core/objList';
 import { store, unvisibleData } from '../StilLife/proxyStilLife';
 import s from './Setting.module.scss';
+import { baseLicense, decodeDate } from '~/core/helper';
 
 const pickData = (() => {
     const data: { label: string; value: string }[][] = [[]];
@@ -166,8 +168,22 @@ const Setting: React.FC<Props> = () => {
 
     const authFormSubmit = useCallback(
         () => {
-            const values = authForm.getFieldsValue();
-            console.log(values);
+            
+
+            const { name, license } = authForm.getFieldsValue();
+            const { lice, date } = decodeDate(license);
+            const licData = {
+                ...baseLicense,
+                info: { name },
+            }
+
+            console.log('登陆证明', licData);
+
+
+            console.log(8888, lice, date, licData);
+            
+            const validate = licenseKey.validateLicense(licData, '1X1Y7-8Y207-T4BW6-47727-F7E45-ED14C');
+            console.log('结果', validate);
             store.auth = true;
             Toast.show('激活成功！')
             refDialog.current?.close();
@@ -183,13 +199,14 @@ const Setting: React.FC<Props> = () => {
                 title: '暂无访问权限，请输入账户名与激活码',
                 content: <Form form={authForm}
                     onFinish={authFormSubmit}
+                    className={s.formbody}
                 >
                     <Form.Item label="账户名" name="name"
                         rules={[{ required: true, message: '请输入账户名' }]}
                     >
                         <Input placeholder='请输入账户名' />
                     </Form.Item>
-                    <Form.Item label="激活码" name="token"
+                    <Form.Item label="激活码" name="license"
                         rules={[{ required: true, message: '请输入激活码' }]}
                     >
                         <Input placeholder='请输入激活码' />
@@ -197,8 +214,8 @@ const Setting: React.FC<Props> = () => {
                 </Form>,
 
                 actions: [
-                    [{ key: 'cancel', text: '取消' },
-                    { key: 'confirm', text: '确定', style: { color: 'var(--leva-colors-accent3)' } }]
+                    [{ key: 'cancel', text: '取消', style: { color: 'var(--leva-colors-accent3)'} },
+                    { key: 'confirm', text: '确定', style: { color: 'var(--leva-colors-accent3)', fontWeight: 'bolder'} }]
                 ],
                 onAction(action, index) {
                     console.log(action);

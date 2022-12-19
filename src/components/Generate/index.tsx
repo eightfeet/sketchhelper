@@ -1,43 +1,103 @@
-import { Button, Space } from 'antd-mobile';
-import React, { useCallback, useState } from 'react';
-import dayjs from 'dayjs';
-import { request } from '~/core/request';
+import { Button, Dialog, Form, Input, Space, TextArea } from 'antd-mobile';
+import React, { useCallback, useRef, useState } from 'react';
 import s from './Generate.module.scss';
-import { dtop, ptod } from '~/core/helper';
-import { generateKey } from '~/core/pwd';
+import { encodeDate } from '~/core/helper';
 import licenseKey from 'license-key-gen';
 
 interface Props {}
-const useInfo = {
-    // mobile: '13800101001'
-    // date: 2022
-};
-
-const userLicense = {
-    info: useInfo,
-    prodCode: 'ART',
-    appVersion: '1.0',
-    osType: 'IOS8',
-};
-
 const Generate: React.FC<Props> = ({}) => {
-    const [data, setData] = useState();
+    const [data, setData] = useState<any>();
+    const refDialog = useRef<any>();
+
+    const [userLicense, setUserLicense] = useState<{
+        info: { [key: string]: string };
+        prodCode: string;
+        appVersion: string;
+        osType: string;
+    }>({
+        info: {},
+        prodCode: 'ART',
+        appVersion: '1.0',
+        osType: 'IOS8',
+    });
+    const authForm = Form.useForm()[0];
+
     const createPwd = useCallback(async () => {
-        try{
+        try {
+            console.log('注册证明', {
+                ...userLicense,
+                info: authForm.getFieldsValue(),
+            });
+            setUserLicense((userLicense) => ({
+                ...userLicense,
+                info: authForm.getFieldsValue(),
+            }));
             const license = licenseKey.createLicense(userLicense);
-            const validate = licenseKey.validateLicense(userLicense, "W0247-4RXD3-6TW0F-0FD63-64EFD-38180");
-            console.log('验证', validate);
-        }catch(err){
+            setData({
+                ...authForm.getFieldsValue(),
+                license: encodeDate(license.license),
+            });
+            refDialog.current.close();
+        } catch (err) {
             console.log(err);
         }
+    }, [authForm, userLicense]);
 
+    const submit = useCallback(() => {
+        createPwd();
+    }, [createPwd]);
 
-    }, []);
+    const showCreate = useCallback(() => {
+        refDialog.current = Dialog.show({
+            title: '创建用户',
+            content: (
+                <Form form={authForm} className={s.formbody} onFinish={submit}>
+                    <Form.Item
+                        label="用户名"
+                        name="name"
+                        rules={[{ required: true, message: '请输入用户名' }]}
+                    >
+                        <Input placeholder="请输入用户名" />
+                    </Form.Item>
+                </Form>
+            ),
+            actions: [
+                [
+                    {
+                        key: 'cancel',
+                        text: '取消',
+                        style: { color: 'var(--text-color)' },
+                    },
+                    {
+                        key: 'confirm',
+                        text: '确定',
+                        style: {
+                            color: 'var(--text-color)',
+                            fontWeight: 'bolder',
+                        },
+                    },
+                ],
+            ],
+            onAction(action, index) {
+                console.log(action);
+                if (action.key === 'confirm') {
+                    authForm.submit();
+                } else {
+                    refDialog.current?.close();
+                }
+            },
+        });
+    }, [authForm, submit]);
 
     return (
-        <Space style={{ padding: 20 }}>
-            <Button onClick={createPwd}>创建</Button>
-        </Space>
+        <>
+            <Space style={{ padding: 20 }} direction="vertical">
+                <Button onClick={showCreate}>创建</Button>
+                {data && (
+                    <TextArea rows={5} style={{width: '20rem', font: '1rem'}} defaultValue={`用户名：${data?.name}\n激活码：${data?.license}`} />
+                )}
+            </Space>
+        </>
     );
 };
 
