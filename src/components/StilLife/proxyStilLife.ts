@@ -64,7 +64,7 @@ export const store = proxy<{
   fixedPointLight: true,
   wideAngle: false,
   auth: false,
-})
+});
 
 export const unvisibleData = () => {
   store.list = store.list.map((item, ind) => ({

@@ -27,7 +27,7 @@ import ColorPicker from '../ColorPicker';
 import { objList } from '~/core/objList';
 import { store, unvisibleData } from '../StilLife/proxyStilLife';
 import s from './Setting.module.scss';
-import { baseLicense, decodeDate } from '~/core/helper';
+import { auth, baseLicense, decodeDate } from '~/core/helper';
 
 const pickData = (() => {
     const data: { label: string; value: string }[][] = [[]];
@@ -54,6 +54,15 @@ const Setting: React.FC<Props> = () => {
 
 
     const data = useSnapshot(store);
+
+    useEffect(() => {
+      const sn = window.localStorage.getItem('sn');
+      if (sn) {
+        const {name, license} = JSON.parse(sn);
+        auth(name, license)
+      }
+    }, [])
+    
 
     const createObj = useCallback(() => {
         unvisibleData();
@@ -128,7 +137,7 @@ const Setting: React.FC<Props> = () => {
 
             store.list = store.list.map((item, ind) => {
                 if (item.obj.checkedlocked && !store.auth) {
-                    return {...item}
+                    return { ...item }
                 }
 
                 return {
@@ -167,31 +176,19 @@ const Setting: React.FC<Props> = () => {
 
 
     const authFormSubmit = useCallback(
-        () => {
-            
-
+        async () => {
             const { name, license } = authForm.getFieldsValue();
-            const { lice, date } = decodeDate(license);
-            const licData = {
-                ...baseLicense,
-                info: { name },
+            try {
+                await auth(name, license);
+                Toast.show('激活成功！');
+                refDialog.current.close();
+                window.localStorage.setItem('sn', JSON.stringify({name, license}))
+            } catch (error) {
+                Toast.show('激活码或用户名有误，请重试！')
             }
-
-            console.log('登陆证明', licData);
-
-
-            console.log(8888, lice, date, licData);
-            
-            const validate = licenseKey.validateLicense(licData, '1X1Y7-8Y207-T4BW6-47727-F7E45-ED14C');
-            console.log('结果', validate);
-            store.auth = true;
-            Toast.show('激活成功！')
-            refDialog.current?.close();
         },
         [authForm],
     )
-
-
 
     const checkAuth = useCallback(
         () => {
@@ -214,8 +211,8 @@ const Setting: React.FC<Props> = () => {
                 </Form>,
 
                 actions: [
-                    [{ key: 'cancel', text: '取消', style: { color: 'var(--leva-colors-accent3)'} },
-                    { key: 'confirm', text: '确定', style: { color: 'var(--leva-colors-accent3)', fontWeight: 'bolder'} }]
+                    [{ key: 'cancel', text: '取消', style: { color: 'var(--leva-colors-accent3)' } },
+                    { key: 'confirm', text: '确定', style: { color: 'var(--leva-colors-accent3)', fontWeight: 'bolder' } }]
                 ],
                 onAction(action, index) {
                     console.log(action);
@@ -522,7 +519,7 @@ const Setting: React.FC<Props> = () => {
                     setVisibleSetting(false);
                 }}
                 position="top"
-                maskStyle={{background: 'none'}}
+                maskStyle={{ background: 'none' }}
             >
                 <Form
                     className={s.listform}

@@ -25,7 +25,7 @@ const Eye: React.FC<Props> = ({
 
     return (
         <group {...groups}>
-            <Center position={[0,-0.15,0]}>
+            <Center position={[0,0.7,0]} scale={2}>
                 <group
                     position={[0, 0, 0]}
                     rotation={[angleToRotation(90), angleToRotation(0), 0]}

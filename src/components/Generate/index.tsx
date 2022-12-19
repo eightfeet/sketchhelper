@@ -1,7 +1,7 @@
 import { Button, Dialog, Form, Input, Space, TextArea } from 'antd-mobile';
 import React, { useCallback, useRef, useState } from 'react';
 import s from './Generate.module.scss';
-import { encodeDate } from '~/core/helper';
+import { baseLicense, decodeDate, encodeDate } from '~/core/helper';
 import licenseKey from 'license-key-gen';
 
 interface Props {}
@@ -9,39 +9,26 @@ const Generate: React.FC<Props> = ({}) => {
     const [data, setData] = useState<any>();
     const refDialog = useRef<any>();
 
-    const [userLicense, setUserLicense] = useState<{
-        info: { [key: string]: string };
-        prodCode: string;
-        appVersion: string;
-        osType: string;
-    }>({
-        info: {},
-        prodCode: 'ART',
-        appVersion: '1.0',
-        osType: 'IOS8',
-    });
     const authForm = Form.useForm()[0];
 
     const createPwd = useCallback(async () => {
         try {
-            console.log('注册证明', {
-                ...userLicense,
+            const userLicenseData = {
+                ...baseLicense,
                 info: authForm.getFieldsValue(),
-            });
-            setUserLicense((userLicense) => ({
-                ...userLicense,
-                info: authForm.getFieldsValue(),
-            }));
-            const license = licenseKey.createLicense(userLicense);
+            }
+            const { license } = licenseKey.createLicense(userLicenseData);
+            // const validate = licenseKey.validateLicense(licData, lice);
+            console.log('结果', license, decodeDate(encodeDate(license)));
             setData({
                 ...authForm.getFieldsValue(),
-                license: encodeDate(license.license),
+                license: encodeDate(license),
             });
             refDialog.current.close();
         } catch (err) {
             console.log(err);
         }
-    }, [authForm, userLicense]);
+    }, [authForm]);
 
     const submit = useCallback(() => {
         createPwd();
