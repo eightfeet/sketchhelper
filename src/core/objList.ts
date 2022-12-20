@@ -46,6 +46,7 @@ export const objList = [
     {checkedlocked: true, component: 'body/DavidBowieFaceAnatomy', name: 'David_Bowie_Face_Anatomy', label: '头部肌肉', thumbnail: './glb/thumbnail/body/david_bowie_face_anatomy.png' },
     {checkedlocked: true, component: 'body/OldManHeadMiquelBlay', name: 'old_man_head_miquel_blay', label: '老人石膏像', thumbnail: './glb/thumbnail/body/old_man_head_miquel_blay.png' },
     {checkedlocked: true, component: 'body/Head8FromHeadsBundle2', name: 'head_8_from_heads_bundle_2', label: '老人石膏像', thumbnail: './glb/thumbnail/body/head_8_from_heads_bundle_2.png' },
+    {checkedlocked: true, component: 'body/MultinodularGoitre', name: 'multinodular_goitre', label: '骨骼', thumbnail: './glb/thumbnail/body/multinodular_goitre.png' },
     
 ];
 
