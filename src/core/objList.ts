@@ -47,7 +47,8 @@ export const objList = [
     {checkedlocked: true, component: 'body/OldManHeadMiquelBlay', name: 'old_man_head_miquel_blay', label: '老人石膏像', thumbnail: './glb/thumbnail/body/old_man_head_miquel_blay.png' },
     {checkedlocked: true, component: 'body/Head8FromHeadsBundle2', name: 'head_8_from_heads_bundle_2', label: '老人石膏像', thumbnail: './glb/thumbnail/body/head_8_from_heads_bundle_2.png' },
     {checkedlocked: true, component: 'body/MultinodularGoitre', name: 'multinodular_goitre', label: '骨骼', thumbnail: './glb/thumbnail/body/multinodular_goitre.png' },
-    {checkedlocked: true, component: 'body/EcorcheHead', name: 'ecorche_head', label: '骨骼', thumbnail: './glb/thumbnail/body/ecorche_head.png' },
+    {checkedlocked: true, component: 'body/EcorcheHead', name: 'ecorche_head', label: '模型', thumbnail: './glb/thumbnail/body/ecorche_head.png' },
+    {checkedlocked: true, component: 'body/PlanarHeadByOlegToropyginB', name: 'planar_head_by_oleg_toropygin_b', label: '模型', thumbnail: './glb/thumbnail/body/planar_head_by_oleg_toropygin_b.png' },
     
 ];
 
