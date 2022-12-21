@@ -53,6 +53,7 @@ export const objList = [
     {checkedlocked: true, component: 'body/PlanarSkull', name: 'planar_skull', label: '模型', thumbnail: './glb/thumbnail/body/planar_skull.png' },
     {checkedlocked: true, component: 'body/HeadPlanes', name: 'head_planes', label: '模型', thumbnail: './glb/thumbnail/body/head_planes.png' },
     {checkedlocked: true, component: 'body/LoomisHeadWithCheekbones', name: 'loomis_head_with_cheekbones', label: '模型', thumbnail: './glb/thumbnail/body/loomis_head_with_cheekbones.png' },
+    {checkedlocked: true, component: 'body/HandA', name: 'hand_a', label: '模型', thumbnail: './glb/thumbnail/body/hand_a.png' },
     
 ];
 
