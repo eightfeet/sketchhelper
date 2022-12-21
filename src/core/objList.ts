@@ -49,6 +49,10 @@ export const objList = [
     {checkedlocked: true, component: 'body/MultinodularGoitre', name: 'multinodular_goitre', label: '骨骼', thumbnail: './glb/thumbnail/body/multinodular_goitre.png' },
     {checkedlocked: true, component: 'body/EcorcheHead', name: 'ecorche_head', label: '模型', thumbnail: './glb/thumbnail/body/ecorche_head.png' },
     {checkedlocked: true, component: 'body/PlanarHeadByOlegToropyginB', name: 'planar_head_by_oleg_toropygin_b', label: '模型', thumbnail: './glb/thumbnail/body/planar_head_by_oleg_toropygin_b.png' },
+    {checkedlocked: true, component: 'body/PlanarHeadOlegToropygin', name: 'planar_head_oleg_toropygin', label: '模型', thumbnail: './glb/thumbnail/body/planar_head_oleg_toropygin.png' },
+    {checkedlocked: true, component: 'body/PlanarSkull', name: 'planar_skull', label: '模型', thumbnail: './glb/thumbnail/body/planar_skull.png' },
+    {checkedlocked: true, component: 'body/HeadPlanes', name: 'head_planes', label: '模型', thumbnail: './glb/thumbnail/body/head_planes.png' },
+    {checkedlocked: true, component: 'body/LoomisHeadWithCheekbones', name: 'loomis_head_with_cheekbones', label: '模型', thumbnail: './glb/thumbnail/body/loomis_head_with_cheekbones.png' },
     
 ];
 
