@@ -34,7 +34,7 @@ export const objList = [
     {checkedlocked: true, component: 'body/MaleBody', name: 'malebody', label: '男性身体', thumbnail: './glb/thumbnail/body/malebody.png' },
     {checkedlocked: true, component: 'body/Skeleton', name: 'skeleton', label: '骷髅', thumbnail: './glb/thumbnail/body/skeleton.png' },
     {checkedlocked: true, component: 'body/SkeletonB', name: 'skeleton_b', label: '骷髅', thumbnail: './glb/thumbnail/body/skeleton_b.png' },
-    {checkedlocked: true, component: 'body/LoomisHead', name: 'loomis_head', label: '简易结构', thumbnail: './glb/thumbnail/body/loomis_head.png' },
+    {checkedlocked: true, component: 'body/LoomisHeadB', name: 'loomis_head', label: '简易结构', thumbnail: './glb/thumbnail/body/loomis_head.png' },
     {checkedlocked: true, component: 'body/SkeletonHead', name: 'skeleton_head', label: '骷髅头', thumbnail: './glb/thumbnail/body/skeleton_head.png' },
     {checkedlocked: true, component: 'body/SkeletonHeadD', name: 'skeleton_head_d', label: '骷髅头', thumbnail: './glb/thumbnail/body/skeleton_head_d.png' },
     {checkedlocked: true, component: 'body/HeadReference', name: 'head_reference', label: '头部块面', thumbnail: './glb/thumbnail/body/head_reference.png' },
@@ -55,6 +55,8 @@ export const objList = [
     {checkedlocked: true, component: 'body/LoomisHeadWithCheekbones', name: 'loomis_head_with_cheekbones', label: '模型', thumbnail: './glb/thumbnail/body/loomis_head_with_cheekbones.png' },
     {checkedlocked: true, component: 'body/HandA', name: 'hand_a', label: '手模型', thumbnail: './glb/thumbnail/body/hand_a.png' },
     {checkedlocked: true, component: 'body/EcorcheAnatomyStudy', name: 'ecorche_anatomy_study', label: '模型', thumbnail: './glb/thumbnail/body/ecorche_anatomy_study.png' },
-    
+    {checkedlocked: true, component: 'body/MaleHead3', name: 'male_head_3', label: '头像', thumbnail: './glb/thumbnail/body/male_head_3.png' },
+    {checkedlocked: true, component: 'body/MaleFacialMusclesEcorche', name: 'male_facial_muscles_ecorche', label: '头像', thumbnail: './glb/thumbnail/body/male_facial_muscles_ecorche.png' },
+    {checkedlocked: true, component: 'body/HumanHeadAnatomy', name: 'human_head_anatomy', label: '头像', thumbnail: './glb/thumbnail/body/human_head_anatomy.png' },
 ];
 
