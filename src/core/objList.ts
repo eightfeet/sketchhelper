@@ -58,5 +58,12 @@ export const objList = [
     {checkedlocked: true, component: 'body/MaleHead3', name: 'male_head_3', label: '头像', thumbnail: './glb/thumbnail/body/male_head_3.png' },
     {checkedlocked: true, component: 'body/MaleFacialMusclesEcorche', name: 'male_facial_muscles_ecorche', label: '头像', thumbnail: './glb/thumbnail/body/male_facial_muscles_ecorche.png' },
     {checkedlocked: true, component: 'body/HumanHeadAnatomy', name: 'human_head_anatomy', label: '头像', thumbnail: './glb/thumbnail/body/human_head_anatomy.png' },
+    {checkedlocked: true, component: 'body/MaleBodyBaseMeshHighpoly', name: 'male_body_base_mesh_highpoly', label: '男性肌肉', thumbnail: './glb/thumbnail/body/male_body_base_mesh_highpoly.png' },
+    {checkedlocked: true, component: 'body/HandAnatomy', name: 'hand_anatomy', label: '手动态', thumbnail: './glb/thumbnail/body/hand_anatomy.png' },
+    {checkedlocked: true, component: 'body/FemaleHead2', name: 'female_head_2', label: '女性头部', thumbnail: './glb/thumbnail/body/female_head_2.png' },
+    {checkedlocked: true, component: 'body/LegDec', name: 'leg_dec', label: '腿', thumbnail: './glb/thumbnail/body/leg_dec.png' },
+    {checkedlocked: true, component: 'body/Ear', name: 'ear', label: '耳朵', thumbnail: './glb/thumbnail/body/ear.png' },
+    {checkedlocked: true, component: 'body/WomanEyeSculpt', name: 'woman_eye_sculpt', label: '眼球', thumbnail: './glb/thumbnail/body/woman_eye_sculpt.png' },
+    {checkedlocked: true, component: 'body/FeetSkeleton', name: 'feet_skeleton', label: '脚骨骼', thumbnail: './glb/thumbnail/body/feet_skeleton.png' },
+    {checkedlocked: true, component: 'body/Feet', name: 'feet', label: '脚', thumbnail: './glb/thumbnail/body/feet.png' },
 ];
-
