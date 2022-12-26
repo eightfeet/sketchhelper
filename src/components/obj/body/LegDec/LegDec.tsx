@@ -32,7 +32,7 @@ const MaleBodyBaseMeshHighpoly: React.FC<Props> = ({
             >
                 <group
                     position={[0, 8, 0]}
-                    rotation={[angleToRotation(-90), angleToRotation(0), 0]}
+                    rotation={[angleToRotation(-90), angleToRotation(0), angleToRotation(180)]}
                     scale={1.5}
                 >
                     {nodes.leg_dec_2016OBJcleanergles.children[0].children.map(

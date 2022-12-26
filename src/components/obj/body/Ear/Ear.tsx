@@ -32,7 +32,7 @@ const MaleBodyBaseMeshHighpoly: React.FC<Props> = ({
             >
                 <group
                     position={[0, 8, 0]}
-                    rotation={[angleToRotation(-90), angleToRotation(0), 0]}
+                    rotation={[angleToRotation(-90), angleToRotation(0), angleToRotation(90)]}
                     scale={30}
                 >
                     {nodes.Ear_VirtualX_Sketchfabobjcleanermaterialmergergles.children.map(
