@@ -66,4 +66,11 @@ export const objList = [
     {checkedlocked: true, component: 'body/LegDec', name: 'leg_dec', label: '腿', thumbnail: './glb/thumbnail/body/leg_dec.png' },
     {checkedlocked: true, component: 'body/Feet', name: 'feet', label: '脚', thumbnail: './glb/thumbnail/body/feet.png' },
     {checkedlocked: true, component: 'body/Foot', name: 'foot', label: '脚', thumbnail: './glb/thumbnail/body/foot.png' },
+    {checkedlocked: true, component: 'body/FemaleHumanSkeleton', name: 'female_human_skeleton', label: '女人体骷髅', thumbnail: './glb/thumbnail/body/female_human_skeleton.png' },
+    {checkedlocked: true, component: 'body/MaleHumanSkeleton', name: 'male_human_skeleton', label: '男人体骷髅', thumbnail: './glb/thumbnail/body/male_human_skeleton.png' },
+    {checkedlocked: true, component: 'body/HumanMaleSkull', name: 'human_male_skull', label: '男人头部骷髅', thumbnail: './glb/thumbnail/body/human_male_skull.png' },
+    {checkedlocked: true, component: 'body/HumanFemaleSkull', name: 'human_female_skull', label: '女人头部骷髅', thumbnail: './glb/thumbnail/body/human_female_skull.png' },
+    {checkedlocked: true, component: 'body/FemaleBodyMuscularSystem', name: 'female_body_muscular_system', label: '女人体肌肉', thumbnail: './glb/thumbnail/body/female_body_muscular_system.png' },
+    {checkedlocked: true, component: 'body/MaleBodyMuscularSystem', name: 'male_body_muscular_system', label: '男人体肌肉', thumbnail: './glb/thumbnail/body/male_body_muscular_system.png' },
+    {checkedlocked: true, component: 'body/LimbComparision', name: 'limb_comparision', label: '手臂与前肢骨骼比较', thumbnail: './glb/thumbnail/body/limb_comparision.png' },
 ];
