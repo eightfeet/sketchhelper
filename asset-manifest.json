@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://www.eightfeet.cn/sketchhelper/static/css/main.f87a33c8.css",
-    "main.js": "https://www.eightfeet.cn/sketchhelper/static/js/main.bee32153.js",
+    "main.js": "https://www.eightfeet.cn/sketchhelper/static/js/main.11ad2f40.js",
     "pwd.201ad2ad.css": "https://www.eightfeet.cn/sketchhelper/static/css/pwd.201ad2ad.acb3b84a.css",
     "pwd.201ad2ad.js": "https://www.eightfeet.cn/sketchhelper/static/js/pwd.201ad2ad.d250119e.js",
     "static/js/6871.53a377dc.chunk.js": "https://www.eightfeet.cn/sketchhelper/static/js/6871.53a377dc.chunk.js",
@@ -170,6 +170,6 @@
   },
   "entrypoints": [
     "static/css/main.f87a33c8.css",
-    "static/js/main.bee32153.js"
+    "static/js/main.11ad2f40.js"
   ]
 }
