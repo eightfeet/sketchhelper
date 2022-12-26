@@ -95,7 +95,6 @@ const CircleStepCross: React.FC<Props> = ({
                 const nextItem = extendArray[index + 1];
                 const nextPoints = nextItem ? getCirclePoints(nextItem.radius, segments) : undefined;
                 yPosition = yPosition + item.extend;
-                console.log(yPosition);
                 const extendSubNode: React.ReactNode[] = [];
 
                 // 环形

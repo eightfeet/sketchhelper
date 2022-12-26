@@ -1,11 +1,8 @@
-import { Center, Edges, useGLTF } from '@react-three/drei';
+import { Center, useGLTF } from '@react-three/drei';
 import React from 'react';
 import * as THREE from 'three';
 import { angleToRotation } from '~/core/helper';
-import CircleCross from '../../GuideGroup/CircleCross';
 import CircleStepCross from '../../GuideGroup/CircleStepCross';
-import SquareCross from '../../GuideGroup/SquareCross';
-import Wrap from '../../Wrap';
 
 interface Props {
     position?: number[];
@@ -16,8 +13,6 @@ interface Props {
 
 const Apple: React.FC<Props> = ({ position, opacity, shadow, showEdige = false }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/apple.glb`) as any;
-    console.log(nodes);
-
     return (
         <group>
             <Center top scale={20} position={[0, -1, 0]}>

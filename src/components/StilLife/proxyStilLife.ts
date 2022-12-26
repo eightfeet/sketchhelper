@@ -120,8 +120,6 @@ export const pickGuid = (
     store.currentGuid = el.visible ? ind : undefined;
     return el.visible;
   });
-  console.log('store.guide[index]', store.guide[index]);
-
 }
 
 export const pickFramework = (

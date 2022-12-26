@@ -20,14 +20,13 @@ import {
     CloseOutline,
 } from 'antd-mobile-icons';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import licenseKey from 'license-key-gen';
 import { useSnapshot } from 'valtio';
 import useKeyPress from '~/hooks/useKeyPress';
 import ColorPicker from '../ColorPicker';
 import { objList } from '~/core/objList';
 import { store, unvisibleData } from '../StilLife/proxyStilLife';
 import s from './Setting.module.scss';
-import { auth, baseLicense, decodeDate } from '~/core/helper';
+import { auth } from '~/core/helper';
 
 const pickData = (() => {
     const data: { label: string; value: string }[][] = [[]];
@@ -146,7 +145,6 @@ const Setting: React.FC<Props> = () => {
                 }
             });
         }
-        console.log('storelist', store.list);
     }, [form]);
 
     // 键盘删除
@@ -180,11 +178,11 @@ const Setting: React.FC<Props> = () => {
             const { name, license } = authForm.getFieldsValue();
             try {
                 await auth(name, license);
-                Toast.show('激活成功！');
+                Toast.show(decodeURI('%E6%BF%80%E6%B4%BB%E6%88%90%E5%8A%9F%EF%BC%81'));
                 refDialog.current.close();
                 window.localStorage.setItem('sn', JSON.stringify({name, license}))
             } catch (error) {
-                Toast.show('激活码或用户名有误，请重试！')
+                Toast.show(decodeURI(error as string))
             }
         },
         [authForm],
@@ -215,7 +213,6 @@ const Setting: React.FC<Props> = () => {
                     { key: 'confirm', text: '确定', style: { color: 'var(--leva-colors-accent3)', fontWeight: 'bolder' } }]
                 ],
                 onAction(action, index) {
-                    console.log(action);
                     if (action.key === 'confirm') {
                         authForm.submit();
                     } else {

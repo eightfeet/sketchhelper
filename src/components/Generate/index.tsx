@@ -1,8 +1,17 @@
-import { Button, Dialog, Form, Input, Space, TextArea } from 'antd-mobile';
+import {
+    Button,
+    Dialog,
+    Form,
+    Input,
+    Space,
+    TextArea,
+} from 'antd-mobile';
 import React, { useCallback, useRef, useState } from 'react';
 import s from './Generate.module.scss';
-import { baseLicense, decodeDate, encodeDate } from '~/core/helper';
+import { baseLicense, encodeDate } from '~/core/helper';
 import licenseKey from 'license-key-gen';
+import CustomPicker from './CustomPicker';
+import dayjs from 'dayjs';
 
 interface Props {}
 const Generate: React.FC<Props> = ({}) => {
@@ -13,16 +22,17 @@ const Generate: React.FC<Props> = ({}) => {
 
     const createPwd = useCallback(async () => {
         try {
+            const values = authForm.getFieldsValue();
             const userLicenseData = {
                 ...baseLicense,
-                info: authForm.getFieldsValue(),
-            }
+                info: {
+                    name: values.name
+                },
+            };
             const { license } = licenseKey.createLicense(userLicenseData);
-            // const validate = licenseKey.validateLicense(licData, lice);
-            console.log('结果', license, decodeDate(encodeDate(license)));
             setData({
                 ...authForm.getFieldsValue(),
-                license: encodeDate(license),
+                license: encodeDate(license, dayjs(values.date.toDateString()).format('YYYY-MM-DD')),
             });
             refDialog.current.close();
         } catch (err) {
@@ -46,6 +56,13 @@ const Generate: React.FC<Props> = ({}) => {
                     >
                         <Input placeholder="请输入用户名" />
                     </Form.Item>
+                    <Form.Item
+                        label="结束日期"
+                        name="date"
+                        rules={[{ required: true, message: '请选择日期' }]}
+                    >
+                        <CustomPicker />
+                    </Form.Item>
                 </Form>
             ),
             actions: [
@@ -66,7 +83,6 @@ const Generate: React.FC<Props> = ({}) => {
                 ],
             ],
             onAction(action, index) {
-                console.log(action);
                 if (action.key === 'confirm') {
                     authForm.submit();
                 } else {
@@ -81,7 +97,11 @@ const Generate: React.FC<Props> = ({}) => {
             <Space style={{ padding: 20 }} direction="vertical">
                 <Button onClick={showCreate}>创建</Button>
                 {data && (
-                    <TextArea rows={5} style={{width: '20rem', font: '1rem'}} defaultValue={`用户名：${data?.name}\n激活码：${data?.license}`} />
+                    <TextArea
+                        rows={5}
+                        style={{ width: '20rem', font: '1rem' }}
+                        defaultValue={`用户名：${data?.name}\n激活码：${data?.license}`}
+                    />
                 )}
             </Space>
         </>
