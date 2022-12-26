@@ -32,13 +32,14 @@ const pickData = (() => {
     const data: { label: string; value: string }[][] = [[]];
     for (let index = 1; index < 20; index++) {
         data[0].push({
-            label: `${index * .5}像素`, value: `${index * .5}`
-        })
+            label: `${index * 0.5}像素`,
+            value: `${index * 0.5}`,
+        });
     }
-    return data
+    return data;
 })();
 
-interface Props { }
+interface Props {}
 
 const Setting: React.FC<Props> = () => {
     const [isSetting, setIsSetting] = useState(true);
@@ -51,17 +52,15 @@ const Setting: React.FC<Props> = () => {
     const radiusForm = Form.useForm()[0];
     const authForm = Form.useForm()[0];
 
-
     const data = useSnapshot(store);
 
     useEffect(() => {
-      const sn = window.localStorage.getItem('sn');
-      if (sn) {
-        const {name, license} = JSON.parse(sn);
-        auth(name, license)
-      }
-    }, [])
-    
+        const sn = window.localStorage.getItem('sn');
+        if (sn) {
+            const { name, license } = JSON.parse(sn);
+            auth(name, license);
+        }
+    }, []);
 
     const createObj = useCallback(() => {
         unvisibleData();
@@ -71,7 +70,7 @@ const Setting: React.FC<Props> = () => {
             showEdige: false,
             visible: true,
             shadow: true,
-            obj: objList[0]
+            obj: objList[0],
         });
         store.current = store.list.length - 1;
     }, []);
@@ -133,16 +132,20 @@ const Setting: React.FC<Props> = () => {
     const onFieldsChange = useCallback(() => {
         const data = form.getFieldsValue();
         if (store.current !== undefined) {
-
             store.list = store.list.map((item, ind) => {
                 if (item.obj.checkedlocked && !store.auth) {
-                    return { ...item }
+                    return { ...item };
                 }
 
                 return {
                     ...item,
-                    ...(ind === store.current ? { ...data, obj: objList.find(el => el.name === data.name) } : {}),
-                }
+                    ...(ind === store.current
+                        ? {
+                              ...data,
+                              obj: objList.find((el) => el.name === data.name),
+                          }
+                        : {}),
+                };
             });
         }
     }, [form]);
@@ -160,71 +163,88 @@ const Setting: React.FC<Props> = () => {
         }
     }, [data, deleteFramework, deleteGuid, deleteObj, willDelete]);
 
-    const changeradius = useCallback(
-        () => {
-            const { frameworkradius } = radiusForm.getFieldsValue();
-            if (!isNaN(Number(frameworkradius)) && store.currentFramework !== undefined) {
-                store.framework[store.currentFramework].radius = Number(frameworkradius);
-            }
-        },
-        [radiusForm],
-    )
+    const changeradius = useCallback(() => {
+        const { frameworkradius } = radiusForm.getFieldsValue();
+        if (
+            !isNaN(Number(frameworkradius)) &&
+            store.currentFramework !== undefined
+        ) {
+            store.framework[store.currentFramework].radius =
+                Number(frameworkradius);
+        }
+    }, [radiusForm]);
 
     const refDialog = useRef<any>();
 
+    const authFormSubmit = useCallback(async () => {
+        const { name, license } = authForm.getFieldsValue();
+        try {
+            await auth(name, license);
+            Toast.show(
+                decodeURI('%E6%BF%80%E6%B4%BB%E6%88%90%E5%8A%9F%EF%BC%81')
+            );
+            refDialog.current.close();
+            window.localStorage.setItem(
+                'sn',
+                JSON.stringify({ name, license })
+            );
+        } catch (error) {
+            Toast.show(decodeURI(error as string));
+        }
+    }, [authForm]);
 
-    const authFormSubmit = useCallback(
-        async () => {
-            const { name, license } = authForm.getFieldsValue();
-            try {
-                await auth(name, license);
-                Toast.show(decodeURI('%E6%BF%80%E6%B4%BB%E6%88%90%E5%8A%9F%EF%BC%81'));
-                refDialog.current.close();
-                window.localStorage.setItem('sn', JSON.stringify({name, license}))
-            } catch (error) {
-                Toast.show(decodeURI(error as string))
-            }
-        },
-        [authForm],
-    )
-
-    const checkAuth = useCallback(
-        () => {
-            refDialog.current = Dialog.show({
-                title: '暂无访问权限，请输入账户名与激活码',
-                content: <Form form={authForm}
+    const checkAuth = useCallback(() => {
+        refDialog.current = Dialog.show({
+            title: '暂无访问权限，请输入账户名与激活码',
+            content: (
+                <Form
+                    form={authForm}
                     onFinish={authFormSubmit}
                     className={s.formbody}
                 >
-                    <Form.Item label="账户名" name="name"
+                    <Form.Item
+                        label="账户名"
+                        name="name"
                         rules={[{ required: true, message: '请输入账户名' }]}
                     >
-                        <Input placeholder='请输入账户名' />
+                        <Input placeholder="请输入账户名" />
                     </Form.Item>
-                    <Form.Item label="激活码" name="license"
+                    <Form.Item
+                        label="激活码"
+                        name="license"
                         rules={[{ required: true, message: '请输入激活码' }]}
                     >
-                        <Input placeholder='请输入激活码' />
+                        <Input placeholder="请输入激活码" />
                     </Form.Item>
-                </Form>,
+                </Form>
+            ),
 
-                actions: [
-                    [{ key: 'cancel', text: '取消', style: { color: 'var(--leva-colors-accent3)' } },
-                    { key: 'confirm', text: '确定', style: { color: 'var(--leva-colors-accent3)', fontWeight: 'bolder' } }]
+            actions: [
+                [
+                    {
+                        key: 'cancel',
+                        text: '取消',
+                        style: { color: 'var(--leva-colors-accent3)' },
+                    },
+                    {
+                        key: 'confirm',
+                        text: '确定',
+                        style: {
+                            color: 'var(--leva-colors-accent3)',
+                            fontWeight: 'bolder',
+                        },
+                    },
                 ],
-                onAction(action, index) {
-                    if (action.key === 'confirm') {
-                        authForm.submit();
-                    } else {
-                        refDialog.current?.close();
-                    }
-                },
-            })
-        },
-        [authForm, authFormSubmit],
-    )
-
-
+            ],
+            onAction(action, index) {
+                if (action.key === 'confirm') {
+                    authForm.submit();
+                } else {
+                    refDialog.current?.close();
+                }
+            },
+        });
+    }, [authForm, authFormSubmit]);
 
     return (
         <div className="navbar" onClick={(e) => e.stopPropagation()}>
@@ -241,7 +261,12 @@ const Setting: React.FC<Props> = () => {
                 <div>
                     <Space align="center" block wrap>
                         <span className="menulabel">物体</span>
-                        <Button size="mini" fill="outline" style={{ background: '#000', color: '#fff' }} onClick={createObj}>
+                        <Button
+                            size="mini"
+                            fill="outline"
+                            style={{ background: '#000', color: '#fff' }}
+                            onClick={createObj}
+                        >
                             <AddOutline />
                         </Button>
                         {data.current !== undefined && (
@@ -275,33 +300,39 @@ const Setting: React.FC<Props> = () => {
                             size="mini"
                             fill="outline"
                             onClick={() => {
-                                (data.light === 'directional' ? store.light = 'point' : store.light = 'directional')
+                                data.light === 'directional'
+                                    ? (store.light = 'point')
+                                    : (store.light = 'directional');
                             }}
                         >
                             {data.light === 'directional' && '切换到点光源'}
                             {data.light === 'point' && '切换到平行光'}
                         </Button>
-                        {
-                            data.light === 'point' &&
+                        {data.light === 'point' && (
                             <Button
                                 size="mini"
                                 fill="outline"
                                 onClick={() =>
-                                    (store.fixedPointLight = !data.fixedPointLight)
+                                    (store.fixedPointLight =
+                                        !data.fixedPointLight)
                                 }
                             >
                                 {data.fixedPointLight ? '旋转光源' : '固定光源'}
                             </Button>
-                        }
-                        {data.light !== 'point' && <Button
-                            size="mini"
-                            fill="outline"
-                            onClick={() => {
-                                (store.wideAngle = !data.wideAngle)
-                            }}
-                        >
-                            {!data.wideAngle ? '切换到广角镜头' : '切换到标准镜头'}
-                        </Button>}
+                        )}
+                        {data.light !== 'point' && (
+                            <Button
+                                size="mini"
+                                fill="outline"
+                                onClick={() => {
+                                    store.wideAngle = !data.wideAngle;
+                                }}
+                            >
+                                {!data.wideAngle
+                                    ? '切换到广角镜头'
+                                    : '切换到标准镜头'}
+                            </Button>
+                        )}
                         <ColorPicker
                             onChange={(e) => {
                                 store.planeColor = e;
@@ -361,30 +392,48 @@ const Setting: React.FC<Props> = () => {
                                     size="mini"
                                     fill="outline"
                                     onClick={() => {
-                                        radiusForm.setFieldsValue({ frameworkradius: data.currentFramework ? store.framework[data.currentFramework!]?.radius : 1 })
+                                        radiusForm.setFieldsValue({
+                                            frameworkradius:
+                                                data.currentFramework
+                                                    ? store.framework[
+                                                          data.currentFramework!
+                                                      ]?.radius
+                                                    : 1,
+                                        });
                                         Modal.alert({
                                             title: '半径',
-                                            content: <Form form={radiusForm}
-                                                onFinish={changeradius}
-                                            >
-                                                <Form.Item label="结构线半径"
-                                                    name={'frameworkradius'}
-                                                    initialValue={store.framework[data.currentFramework!]?.radius.toString()}
+                                            content: (
+                                                <Form
+                                                    form={radiusForm}
+                                                    onFinish={changeradius}
                                                 >
-                                                    <Input
-                                                        placeholder='请输入数值'
-                                                        type="number" max={6}
-                                                        step={0.1}
-                                                    />
-                                                </Form.Item></Form>,
+                                                    <Form.Item
+                                                        label="结构线半径"
+                                                        name={'frameworkradius'}
+                                                        initialValue={store.framework[
+                                                            data.currentFramework!
+                                                        ]?.radius.toString()}
+                                                    >
+                                                        <Input
+                                                            placeholder="请输入数值"
+                                                            type="number"
+                                                            max={6}
+                                                            step={0.1}
+                                                        />
+                                                    </Form.Item>
+                                                </Form>
+                                            ),
                                             confirmText: '确定',
                                             onConfirm: () => {
                                                 radiusForm.submit();
-                                            }
-                                        })
+                                            },
+                                        });
                                     }}
                                 >
-                                    半径: {store.framework[data.currentFramework!]?.radius.toString()}
+                                    半径:{' '}
+                                    {store.framework[
+                                        data.currentFramework!
+                                    ]?.radius.toString()}
                                 </Button>
                                 {/* <div className={s.size}>
                             粗细<Slider value={data.frameworkWidth} onChange={(e) => store.frameworkWidth = e as number} className={s.slide} ticks step={0.5} min={0} max={5} />
@@ -413,14 +462,9 @@ const Setting: React.FC<Props> = () => {
                         <Button
                             size="mini"
                             onClick={() => {
-                                store.hideFramework =
-                                    !data.hideFramework;
+                                store.hideFramework = !data.hideFramework;
                             }}
-                            fill={
-                                !store.hideFramework
-                                    ? 'outline'
-                                    : 'solid'
-                            }
+                            fill={!store.hideFramework ? 'outline' : 'solid'}
                         >
                             {data.hideFramework ? '显示' : '隐藏'}
                         </Button>
@@ -457,7 +501,6 @@ const Setting: React.FC<Props> = () => {
                         </Picker>
                         {data.currentGuid !== undefined && (
                             <Space>
-
                                 <ColorPicker
                                     onChange={(e) => {
                                         store.guide[data.currentGuid!].color =
@@ -490,9 +533,7 @@ const Setting: React.FC<Props> = () => {
                             onClick={() => {
                                 store.hideGuide = !data.hideGuide;
                             }}
-                            fill={
-                                !store.hideGuide ? 'outline' : 'solid'
-                            }
+                            fill={!store.hideGuide ? 'outline' : 'solid'}
                         >
                             {data.hideGuide ? '显示' : '隐藏'}
                         </Button>
@@ -533,13 +574,22 @@ const Setting: React.FC<Props> = () => {
                         <Radio.Group>
                             <Space direction="horizontal" wrap>
                                 {objList.map((item) => (
-                                    <Radio key={item.name} value={item.name} disabled={(item.checkedlocked && !data.auth)}>
+                                    <Radio
+                                        key={item.name}
+                                        value={item.name}
+                                        disabled={
+                                            item.checkedlocked && !data.auth
+                                        }
+                                    >
                                         <img
                                             src={item.thumbnail}
                                             className="thumbnail"
-                                            onClick={() => item.checkedlocked && !data.auth && checkAuth()}
+                                            onClick={() =>
+                                                item.checkedlocked &&
+                                                !data.auth &&
+                                                checkAuth()
+                                            }
                                             alt={item.label}
-
                                         />
                                     </Radio>
                                 ))}
