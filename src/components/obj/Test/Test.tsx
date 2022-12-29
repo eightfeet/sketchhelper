@@ -1,8 +1,6 @@
-import { Center, Edges, useGLTF } from '@react-three/drei';
+import { Edges, useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
-import CircleCross from '~/components/GuideGroup/CircleCross';
-import SquareCross from '~/components/GuideGroup/SquareCross';
 import StandardCross from '~/components/GuideGroup/StandardCross';
 import { angleToRotation } from '~/core/helper';
 
@@ -14,7 +12,7 @@ interface Props extends GroupProps {
 
 const Test: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/eye-v1.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups} >

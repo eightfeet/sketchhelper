@@ -1,4 +1,4 @@
-import { Center, Trail, useGLTF } from '@react-three/drei';
+import { Center, useGLTF } from '@react-three/drei';
 import React from 'react';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 const Bottom: React.FC<Props> = ({ position, opacity }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/bottle.glb`) as any;
-    console.log(nodes);
+    
     
     return (
         <Center top scale={35} position={[0, -1, 0]}>

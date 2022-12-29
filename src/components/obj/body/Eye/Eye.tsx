@@ -12,7 +12,6 @@ interface Props extends GroupProps {
 
 const Eye: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/eye-v1.glb`) as any;
-    console.log(nodes);
 
     return (
         <group {...groups} >

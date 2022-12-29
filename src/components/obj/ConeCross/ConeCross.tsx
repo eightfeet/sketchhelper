@@ -1,4 +1,3 @@
-import { useGLTF } from '@react-three/drei';
 import React from 'react';
 import CircleCross from '~/components/GuideGroup/CircleCross';
 import SquareCross from '~/components/GuideGroup/SquareCross';
@@ -10,12 +9,7 @@ interface Props {
     shadow?: boolean;
 }
 
-const ConeCross: React.FC<Props> = ({ position, opacity, showEdige, shadow }) => {
-    const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/conecross.glb`) as any;
-
-    console.log(nodes);
-
-
+const ConeCross: React.FC<Props> = ({ opacity, showEdige, shadow }) => {
 
     return (
         <>

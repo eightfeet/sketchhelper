@@ -1,8 +1,7 @@
-import { Center, Edges, Html, useGLTF } from '@react-three/drei';
+import { Center, Html, useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
 import SquareCross from '~/components/GuideGroup/SquareCross';
-import StandardCross from '~/components/GuideGroup/StandardCross';
 import { angleToRotation } from '~/core/helper';
 
 interface Props extends GroupProps {
@@ -13,7 +12,6 @@ interface Props extends GroupProps {
 
 const HeadReference: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/head_planes_reference.glb`) as any;
-    console.log(nodes);
     const step = 1.30;
     return (
         <group {...groups} >

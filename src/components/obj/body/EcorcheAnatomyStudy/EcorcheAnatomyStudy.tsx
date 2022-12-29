@@ -11,7 +11,6 @@ interface Props {
 
 const EcorcheAnatomyStudy: React.FC<Props> = ({ position, opacity, showEdige = false, shadow }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/ecorche_anatomy_study.glb`) as any;
-    console.log(nodes);
     
     return (
         <Center top scale={0.09} position={[0, 2.05, 0]} rotation={[angleToRotation(-90),angleToRotation(0),0]}>

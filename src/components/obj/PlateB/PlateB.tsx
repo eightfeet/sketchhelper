@@ -1,10 +1,7 @@
-import { Center, Edges, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
-import CircleCross from '~/components/GuideGroup/CircleCross';
 import CircleStepCross from '~/components/GuideGroup/CircleStepCross';
-import SquareCross from '~/components/GuideGroup/SquareCross';
-import StandardCross from '~/components/GuideGroup/StandardCross';
 import { angleToRotation } from '~/core/helper';
 
 interface Props extends GroupProps {
@@ -15,7 +12,7 @@ interface Props extends GroupProps {
 
 const PlateB: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/plateb.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups} >

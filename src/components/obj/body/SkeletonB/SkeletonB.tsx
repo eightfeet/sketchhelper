@@ -1,9 +1,7 @@
-import { Center, Edges, Html, useGLTF } from '@react-three/drei';
+import { Center, Html, useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
-import CircleStepCross from '~/components/GuideGroup/CircleStepCross';
 import SquareCross from '~/components/GuideGroup/SquareCross';
-import StandardCross from '~/components/GuideGroup/StandardCross';
 import { angleToRotation } from '~/core/helper';
 import './SkeletonB.css';
 
@@ -15,7 +13,7 @@ interface Props extends GroupProps {
 
 const SkeletonB: React.FC<Props> = ({ visible, opacity=1, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/skeleton_b.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups} >

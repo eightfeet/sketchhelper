@@ -1,7 +1,6 @@
-import { Center, Edges, useGLTF } from '@react-three/drei';
+import { Center, useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
-import StandardCross from '~/components/GuideGroup/StandardCross';
 import { angleToRotation } from '~/core/helper';
 
 interface Props extends GroupProps {
@@ -12,7 +11,7 @@ interface Props extends GroupProps {
 
 const SkullProportionsKeyLandmarks: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/skull_proportions_key_landmarks.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups} >

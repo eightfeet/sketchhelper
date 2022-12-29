@@ -11,7 +11,6 @@ interface Props {
 
 const HandA: React.FC<Props> = ({ position, opacity, showEdige = false, shadow }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/hand_a.glb`) as any;
-    console.log(nodes);
     
     return (
         <Center top scale={1.5} position={[0, -1, 0]} rotation={[0,angleToRotation(0),0]}>

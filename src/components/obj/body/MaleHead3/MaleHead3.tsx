@@ -2,7 +2,6 @@ import { Center, Edges, useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
 import CircleStepCross from '~/components/GuideGroup/CircleStepCross';
-import StandardCross from '~/components/GuideGroup/StandardCross';
 import { angleToRotation } from '~/core/helper';
 
 interface Props extends GroupProps {
@@ -21,7 +20,7 @@ const EcorcheHead: React.FC<Props> = ({
     const { nodes } = useGLTF(
         `${process.env.PUBLIC_URL || ''}/glb/body/male_head_3.glb`
     ) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups}>

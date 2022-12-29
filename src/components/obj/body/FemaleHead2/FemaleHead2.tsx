@@ -18,7 +18,6 @@ const FemaleHead2: React.FC<Props> = ({
     const { nodes } = useGLTF(
         `${process.env.PUBLIC_URL || ''}/glb/body/female_head_2.glb`
     ) as any;
-    console.log(nodes);
 
     return (
         <Center

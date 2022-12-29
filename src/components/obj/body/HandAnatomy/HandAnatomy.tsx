@@ -10,7 +10,6 @@ interface Props {
 }
 
 const HandAnatomy: React.FC<Props> = ({
-    position,
     opacity,
     showEdige = false,
     shadow,
@@ -18,7 +17,6 @@ const HandAnatomy: React.FC<Props> = ({
     const { nodes } = useGLTF(
         `${process.env.PUBLIC_URL || ''}/glb/body/hand_anatomy.glb`
     ) as any;
-    console.log(nodes);
 
     return (
         <Center

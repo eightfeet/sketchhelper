@@ -12,7 +12,6 @@ interface Props extends GroupProps {
 
 const EcorcheHead: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/ecorche_head.glb`) as any;
-    console.log(nodes);
 
     return (
         <group {...groups} >

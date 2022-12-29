@@ -14,7 +14,7 @@ interface Props extends GroupProps {
 
 const Vaseb: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/vasec.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups} >

@@ -1,6 +1,5 @@
-import { Center, Edges, useGLTF } from '@react-three/drei';
+import { Edges, useGLTF } from '@react-three/drei';
 import React from 'react';
-import * as THREE from 'three';
 import { angleToRotation } from '~/core/helper';
 
 interface Props {
@@ -12,7 +11,7 @@ interface Props {
 
 const Venus: React.FC<Props> = ({ position, opacity, showEdige = false, shadow }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/venus.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group rotation={[0, angleToRotation(0), 0]} position={[0,-1,0]}>

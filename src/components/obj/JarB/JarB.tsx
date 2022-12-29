@@ -14,7 +14,7 @@ interface Props extends GroupProps {
 
 const JarB: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/jarB.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups} >

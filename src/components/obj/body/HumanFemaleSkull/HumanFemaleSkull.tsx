@@ -21,7 +21,6 @@ const HumanFemaleSkull: React.FC<Props> = ({
             process.env.PUBLIC_URL || ''
         }/glb/body/human_female_skull.glb`
     ) as any;
-    console.log(nodes);
 
     return (
         <group {...groups}>

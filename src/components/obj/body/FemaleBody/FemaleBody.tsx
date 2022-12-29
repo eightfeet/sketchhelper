@@ -3,7 +3,6 @@ import { GroupProps } from '@react-three/fiber';
 import React from 'react';
 import CircleStepCross from '~/components/GuideGroup/CircleStepCross';
 import SquareCross from '~/components/GuideGroup/SquareCross';
-import StandardCross from '~/components/GuideGroup/StandardCross';
 import { angleToRotation } from '~/core/helper';
 import './FemaleBody.css';
 
@@ -15,7 +14,6 @@ interface Props extends GroupProps {
 
 const FemaleBody: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/bodyfemalemin.glb`) as any;
-    console.log(nodes);
 
     return (
         <group {...groups} >

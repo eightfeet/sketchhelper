@@ -12,7 +12,7 @@ interface Props extends GroupProps {
 
 const HeadReference: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/head_planes_reference.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups} >

@@ -11,7 +11,7 @@ interface Props extends GroupProps {
 
 const SkeletonHead: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/skeleton_head.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups} >

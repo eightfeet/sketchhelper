@@ -11,7 +11,7 @@ interface Props extends GroupProps {
 
 const MaleBody: React.FC<Props> = ({ visible, opacity, showEdige, shadow, ...groups }) => {
     const { nodes } = useGLTF(`${process.env.PUBLIC_URL || ''}/glb/body/bodymale.glb`) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups} >

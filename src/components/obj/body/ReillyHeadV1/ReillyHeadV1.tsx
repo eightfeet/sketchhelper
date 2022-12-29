@@ -1,4 +1,4 @@
-import { Center, Edges, useGLTF } from '@react-three/drei';
+import { Center, useGLTF } from '@react-three/drei';
 import { GroupProps } from '@react-three/fiber';
 import React from 'react';
 import { angleToRotation } from '~/core/helper';
@@ -21,7 +21,7 @@ const ReillyHeadV1: React.FC<Props> = ({
             process.env.PUBLIC_URL || ''
         }/glb/body/reilly_head_v1.glb`
     ) as any;
-    console.log(nodes);
+    
 
     return (
         <group {...groups}>
