@@ -38,6 +38,8 @@ export const objList = [
     {checkedlocked: true, component: 'body/LoomisHeadB', name: 'loomis_head', label: '简易结构', thumbnail: './glb/thumbnail/body/loomis_head.png' },
     {checkedlocked: true, component: 'body/LoomisHeadWithCheekbones', name: 'loomis_head_with_cheekbones', label: '模型', thumbnail: './glb/thumbnail/body/loomis_head_with_cheekbones.png' },
     {checkedlocked: true, component: 'body/PlanesOfTheHeadAndrewLoomisMethod', name: 'planes_of_the_head_andrew_loomis_method', label: '模型比列', thumbnail: './glb/thumbnail/body/planes_of_the_head_andrew_loomis_method.png' },
+    {checkedlocked: true, component: 'body/ReillyHeadV1', name: 'reilly_head_v1', label: '赖利模型版本1', thumbnail: './glb/thumbnail/body/reilly_head_v1.png' },
+    {checkedlocked: true, component: 'body/ReillyHeadV2', name: 'reilly_head_v2', label: '赖利模型版本2', thumbnail: './glb/thumbnail/body/reilly_head_v2.png' },
     {checkedlocked: true, component: 'body/SkeletonHead', name: 'skeleton_head', label: '骷髅头', thumbnail: './glb/thumbnail/body/skeleton_head.png' },
     {checkedlocked: true, component: 'body/SkeletonHeadD', name: 'skeleton_head_d', label: '骷髅头', thumbnail: './glb/thumbnail/body/skeleton_head_d.png' },
     {checkedlocked: true, component: 'body/HeadReference', name: 'head_reference', label: '头部块面', thumbnail: './glb/thumbnail/body/head_reference.png' },

@@ -567,12 +567,12 @@ const Setting: React.FC<Props> = () => {
                 >
                     <Form.Item
                         name="name"
-                        label="模块类型"
+                        label="模型"
                         layout="vertical"
                         rules={[{ required: true, message: '请选择模块类型' }]}
                     >
                         <Radio.Group>
-                            <Space direction="horizontal" wrap>
+                            <Space direction="horizontal" className={s.modulewrap} wrap>
                                 {objList.map((item) => (
                                     <Radio
                                         key={item.name}

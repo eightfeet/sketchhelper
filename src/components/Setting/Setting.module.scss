@@ -1,5 +1,6 @@
 .listform {
     background-color: #aaa;
+    user-select: none;
     :global{
         .adm-radio {
             border-right: 0;
@@ -52,4 +53,9 @@
         border: none
     }
 
+}
+
+.modulewrap {
+    max-height: 50vh;
+    overflow: auto;
 }
